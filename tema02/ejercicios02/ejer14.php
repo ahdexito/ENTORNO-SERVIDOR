@@ -9,6 +9,7 @@
 
     while ($resultado > 0) {
         // uso de intdiv porque con el operador "/" da error
+        // cada iteración que permita restar un dígito aumenta el contador
         $resultado = intdiv($resultado, 10);
         $contador++;
     }

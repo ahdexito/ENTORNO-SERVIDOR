@@ -6,7 +6,9 @@
     $total = 0;
 
     for ($i = 0; $i <= 30; $i++) {
-        if ($i %2== 0) {
+        // verificar si es par con módulo de 2
+        if ($i % 2 == 0) {
+            // acumular número a la suma
             $total += $i;
         }
     }
