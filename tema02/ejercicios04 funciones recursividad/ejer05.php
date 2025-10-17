@@ -31,7 +31,7 @@
     $base = 5;
     $resultado = calcular_potencias($base);
 
+    // imprimir resultado
     echo "<h3>Función sin exponente como parámetro (2 por defecto)</h3>";
     echo "<p>El resultado de elevar $base a 2 es: $resultado</p>";
-
 ?>
