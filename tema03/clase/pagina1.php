@@ -11,9 +11,24 @@
 <body>
     <main class="container">
         <?php
-        $nombre = $_POST["nombre"];
-        $email = $_POST["email"];
-        $password = $_POST["password"];
+            if (isset($_POST["nombre"]) && !empty($_POST["nombre"]))
+                $nombre = $_POST["nombre"];
+            else {
+                header("Location:formulario.php?error=1");
+                die();
+            }
+            if (isset($_POST["email"]) && !empty($_POST["email"]))
+                $email = $_POST["email"];
+            else {
+                header("Location:formulario.php?error=2");
+                die();
+            }
+            if (isset($_POST["password"]) && !empty($_POST["password"]))
+                $password = $_POST["password"];
+            else {
+                header("Location:formulario.php?error=3");
+                die();
+            }
         ?>
         <h1>Hola, <?= $nombre ?></h1>
         <p>El email pasado es: <strong><?= $email ?> </strong></p>

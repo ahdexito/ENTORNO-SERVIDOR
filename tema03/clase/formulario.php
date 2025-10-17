@@ -8,21 +8,30 @@
 </head>
 <body>
     <main class="container mt-3">
+        <?php 
+            if(isset($_GET["error"]) && !empty($_GET["error"])) {
+                if ($_GET["error"] == 1)  
+                    echo "<div class='alert alert-error' role='alert'>❌ Error: Debe rellenar el campo nombre correctamente</div>";
+                else if ($_GET["error"] == 2)  
+                    echo "<div class='alert alert-error' role='alert'>❌ Error: Debe rellenar el campo email correctamente</div>";
+                else if ($_GET["error"] == 3)  
+                    echo "<div class='alert alert-error' role='alert'>❌ Error: Debe rellenar el campo contraseña correctamente</div>";
+            }
+        ?>
         <form name="registro" method="post" action="pagina1.php">
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" ariadescribedby="nombreHelp" name="nombre" required>
+                <input type="text" class="form-control" id="nombre" ariadescribedby="nombreHelp" name="nombre">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" ariadescribedby="emailHelp" required name="email">
+                <input type="email" class="form-control" id="email" ariadescribedby="emailHelp" name="email">
                 <div id="emailHelp" class="form-text">Nunca compartiremos tu email con
                 nadie.</div>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password"
-                required>
+                <input type="password" class="form-control" id="password" name="password">
             </div>
             <button type="submit" class="btn btn-primary w-100" name="enviar"> Enviar</button>
         </form>
