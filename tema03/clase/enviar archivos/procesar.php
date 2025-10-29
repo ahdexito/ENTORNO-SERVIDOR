@@ -1,7 +1,7 @@
 <?php
     $directorio = "img/"; // carpeta del servidor para guardar imágenes
     $nombre_tmp = $_FILES["archivo"]["tmp_name"]; // nombre temporal que recibe el archivo
-    $nombre = $_FILES["archivo"]["name"]; // nombre del archivo
+    $nombre = uniqid('', true) . $_FILES["archivo"]["name"]; // nombre del archivo
     $ruta_final = $directorio . $nombre; // ruta final del archivo
 
     $fileName = basename($nombre);
