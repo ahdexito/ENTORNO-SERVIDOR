@@ -14,10 +14,10 @@
             <label for="departamento">Departamento:</label><br>
             <select id="departamento" name="departamento">
                 <option>Selecciona una opción</option>
-                <option>Informática</option>
-                <option>Lengua</option>
-                <option>Matemáticas</option>
-                <option>Inglés</option>
+                <option value="INFORMÁTICA">Informática</option>
+                <option value="LENGUA">Lengua</option>
+                <option value="MATEMÁTICAS">Matemáticas</option>
+                <option value="INGLÉS">Inglés</option>
             </select><br><br>
 
             <button type="submit">Enviar</button>
