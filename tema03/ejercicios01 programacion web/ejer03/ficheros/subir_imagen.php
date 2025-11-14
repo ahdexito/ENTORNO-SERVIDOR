@@ -7,14 +7,11 @@
 </head>
 <body>
     <?php
-        $directorio = "/img";
-        $nombre_tmp = $_FILES["imagen"]["tmp_name"];
-        $nombre = $_FILES["imagen"]["name"];
-        $ruta_final = $directorio . $nombre;
+        $nombre_formulario = $_POST["nombre"];
 
+        echo "<h2>$nombre_formulario</h2>";
 
-
-
+        $directorio = "img/";
     ?>
 </body>
 </html>
