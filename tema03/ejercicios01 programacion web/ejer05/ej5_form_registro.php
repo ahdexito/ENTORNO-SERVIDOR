@@ -22,55 +22,56 @@
         <h1>Iniciar sesión</h1>
 
         <label for="nombre">Nombre</label><br>
-        <input type="text" name="nombre" id="nombre" class="form-control-sm" placeholder="Tu nombre">
+        <input type="text" name="nombre" id="nombre" class="form-control-sm" placeholder="Tu nombre" required>
 
         <br><br>
 
         <label for="apellidos">Apellidos</label><br>
-        <input type="text" name="apellidos" id="apellidos" class="form-control-sm" placeholder="Tus apellidos">
+        <input type="text" name="apellidos" id="apellidos" class="form-control-sm" placeholder="Tus apellidos" required>
 
         <br><br>
 
         <label for="email">Email</label><br>
-        <input type="email" name="email" id="email" class="form-control-sm" placeholder="Tu email">
+        <input type="email" name="email" id="email" class="form-control-sm" placeholder="Tu email" required>
         
         <br><br>
 
         <label for="contra">Contraseña</label><br>
-        <input type="password" name="contra" id="contra" class="form-control-sm" placeholder="Tu contraseña">
+        <input type="password" name="contra" id="contra" class="form-control-sm" placeholder="Tu contraseña" required>
         
         <br><br>
         
         <legend>Selecciona tu género:</legend>
-        <input type="radio" id="masculino" name="genero" value="masculino">
+        <input type="radio" id="masculino" name="genero" value="masculino" required>
         <label for="masculino">Masculino</label>
         <br>
-        <input type="radio" id="feminino" name="genero" value="femenino">
+        <input type="radio" id="feminino" name="genero" value="femenino" required>
         <label for="femenino">Femenino</label>
         <br>
-        <input type="radio" id="otro" name="genero" value="otro">
+        <input type="radio" id="otro" name="genero" value="otro" required>
         <label for="otro">Otro</label>
         
         <br><br>
 
         <label for="direccion">Dirección</label><br>
-        <input type="text" name="direccion" id="direccion" class="form-control-sm" placeholder="Tu direccion">
+        <input type="text" name="direccion" id="direccion" class="form-control-sm" placeholder="Tu direccion" required>
 
         <br><br>
 
         <label for="postal">Código Postal</label><br>
-        <input type="text" name="postal" id="postal" class="form-control-sm" placeholder="Tu código postal">
+        <input type="text" name="postal" id="postal" class="form-control-sm" placeholder="Tu código postal" required>
 
         <br><br>
 
         <label for="poblacion">Población</label><br>
-        <input type="text" name="poblacion" id="poblacion" class="form-control-sm" placeholder="Tu población">
+        <input type="text" name="poblacion" id="poblacion" class="form-control-sm" placeholder="Tu población" required>
 
         <br><br>
 
         <label for="provincia">Provincia</label>
-        <select name="provincia" id="provincia">
-            <option>Selecciona una opción</option>
+        <select name="provincia" id="provincia" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            
             <option value="alava">Álava</option>
             <option value="albacete">Albacete</option>
             <option value="alicante">Alicante</option>
