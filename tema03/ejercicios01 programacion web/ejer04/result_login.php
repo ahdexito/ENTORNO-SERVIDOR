@@ -13,6 +13,18 @@
 </head>
 <body>
     <?php
+
+
+        /*
+        if (isset($_POST["nombre"]) && !empty(trim($_POST["nombre"])) && filter_var($_POST["email"]), FILTER_VALIDATE_EMAIL)
+        $nombre = htmlspecialchars($_POST["nombre"]);
+        else {
+            echo "<h1>El nombre de usuario es incorrecto</h1>";
+            header("Refresh:3; url=ej9_form_login.php"); 
+        }
+        */
+
+
         $usuario = [
             "email" => $_POST["email"],
             "contra" => $_POST["contra"]
