@@ -13,18 +13,13 @@
 </head>
 <body>
     <?php
-
-
-        /*
-        if (isset($_POST["nombre"]) && !empty(trim($_POST["nombre"])) && filter_var($_POST["email"]), FILTER_VALIDATE_EMAIL)
-        $nombre = htmlspecialchars($_POST["nombre"]);
-        else {
-            echo "<h1>El nombre de usuario es incorrecto</h1>";
-            header("Refresh:3; url=ej9_form_login.php"); 
+        // prevenir ataques CSRF
+        if (parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) != $_SERVER['HTTP_HOST']){
+            echo "<h1>Error: Debes rellenar el formulario en nuestra web</h1>";
+            header("Refresh:2; url=form_example.php");
         }
-        */
 
-
+        // guardar los campos en array asociativo
         $usuario = [
             "email" => $_POST["email"],
             "contra" => $_POST["contra"]
@@ -35,6 +30,7 @@
         $email_sanitizado = filter_var($usuario["email"], FILTER_SANITIZE_EMAIL);
         $patron_seguro =  '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/';
 
+        // verificar el patrón de la contraseña e imprimir datos
         if (preg_match($patron_seguro, $usuario["contra"])) {
             echo "<p>Usuario: " . $usuario["email"] . "</p>";
             echo "<p>Contraseña: " . $usuario["contra"] . "</p>";
