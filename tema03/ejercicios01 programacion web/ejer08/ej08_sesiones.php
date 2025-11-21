@@ -84,7 +84,7 @@
             <br><br>
 
             <label for="provincia">Provincia</label>
-            <select name="provincia" id="provincia" required>
+            <select name="provincia[]" id="provincia" required>
                 <option value="" disabled selected>Selecciona una opción</option>
                 
                 <option value="alava">Álava</option>
@@ -138,6 +138,7 @@
                 <option value="zamora">Zamora</option>
                 <option value="zaragoza">Zaragoza</option>
             </select>
+            
 
             <br><br>
 

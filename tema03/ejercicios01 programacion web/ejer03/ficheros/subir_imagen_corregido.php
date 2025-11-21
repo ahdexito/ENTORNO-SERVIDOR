@@ -8,29 +8,24 @@
 <body>
     
     <?php
-        // CARPETA DONDE SE GUARDAN LAS IMÁGENES
-        $directorio = "img/";
-
-
         // OBTENER DATOS DEL ARCHIVO
         $nombre_tmp = $_FILES["imagen"]["tmp_name"];
-        $nombre_original = $_FILES["imagen"]["name"];
+        $nombre_tmp = $_FILES["imagen"]["tmp_name"];
 
-
+        // CARPETA DONDE SE GUARDAN LAS IMÁGENES
+        $directorio = "img/";
         // GENERAR NOMBRE ÚNICO
         $nombre = uniqid("", true) . "_" . basename($nombre_original);
-
 
         // GUARDAR RUTA DE DESTINO
         $ruta_final = $directorio . $nombre;
 
-
         // EXTENSIÓN
-        $extension = strtolower(pathinfo($nombre, PATHINFO_EXTENSION));
-
+        $extensionArchivo = strtolower(pathinfo($nombre, PATHINFO_EXTENSION));
 
         // EXTENSIONES PERMITIDAS
         $extensionPermitida = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+
 
         if (in_array($extensionArchivo, $extensionPermitida)) {
 

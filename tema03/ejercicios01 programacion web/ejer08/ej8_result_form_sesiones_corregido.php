@@ -10,7 +10,7 @@
         "genero", "direccion", "postal", "poblacion", "provincia"];
     $errores = [];
 
-    // VALIDAR CAMPOS
+    // VALIDAR CAMPOS Y GUARDAR MENSAJES DE ERROR
     foreach($campos as $campo) {
         if (!validarCampo($campo)) {
             $errores[] = "El campo '$campo' es obligatorio."; 

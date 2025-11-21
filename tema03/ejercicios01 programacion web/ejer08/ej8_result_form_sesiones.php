@@ -1,7 +1,7 @@
 <?php
     // función para validar cada campo que recibe
     function validarCampo($campo) {
-        return isset($_POST[$campo]) && !empty(trim($_POST[$campo]));
+        return isset($_POST[$campo]) && !empty($_POST[$campo]);
     }
 
     // array con los nombres de los campos
@@ -32,7 +32,7 @@
         foreach ($errores as $error) {
             echo "<p style='color:red;'>$error</p>";
         }
-        header("Refresh:5; url=ej5_form_registro.php");
+        header("Refresh:5; url=ej08_sesiones.php");
         exit;
     }
 
