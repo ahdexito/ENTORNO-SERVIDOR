@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    font-family: 'Arial';
+}
+
+
+body {
+    background-image: url(./images/login.jpg);
+    background-size: cover;
+    padding: 30px 10%;
+}
+
+main {
+    background-color: #fcfaf02a;
+    padding: 40px 15%;
+    border-radius: 20px;
+}
+
+h1 {
+    background-color: #001e4571;
+
+    text-align: center;
+    font-size: 5vw;
+    
+    padding: 25px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+}
+
+section {
+    background-color: #5367889e;
+    padding: 40px;
+    border-radius: 10px;
+}
