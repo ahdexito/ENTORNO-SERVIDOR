@@ -11,7 +11,7 @@
     try { // Crear conexión
         $pdo = new PDO($dsn, $usuario, $password);//se establece la conexión
         // La conexión fue exitosa
-        echo "Conexión exitosa con PDO.";
+        // echo "Conexión exitosa con PDO.";
     } catch (\PDOException $e) {
         // La conexión falló
         throw new \PDOException($e->getMessage(), (int)$e->getCode());
