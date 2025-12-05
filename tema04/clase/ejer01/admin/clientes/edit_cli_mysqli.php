@@ -5,6 +5,9 @@
         die();
     }
     include("../db/db.inc");//mysqli
+
+    
+
     if(isset($_POST["nombre"]) && !empty($_POST["nombre"])) {
         $nombre = htmlspecialchars(($_POST["nombre"]));
         $apellidos = htmlspecialchars(($_POST["apellidos"]));
@@ -51,6 +54,18 @@
                 <h2 class="text-light">Registro de Cliente con MySQL</h2>
             </div>
             <div class="card-body">
+
+            <?php
+            if (isset($_GET["edit"])) {
+                $id = intval($_GET["edit"]);
+                $sql = "SELECT * FROM clientes WJERE id = $id;";
+                $res = mysqli_query($conn, $sql);
+                if (mysqli_num_rows($res) > 0) {
+                    
+                }
+            }
+            ?>
+
                 <form method="POST">
                     <div class="row">
                         <div class="col-md-6 mt-3">

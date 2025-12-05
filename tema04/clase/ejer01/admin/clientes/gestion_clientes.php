@@ -11,6 +11,13 @@
     $clientes = $pdo->query("SELECT * FROM clientes ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
     $nombre = $_SESSION["nombre"];
     $rol = $_SESSION["rol"];
+
+    if (isset($_GET["eliminar"])) {
+        $id_cliente = intval($_GET["eliminar"]); // código en mi bd del cliente a eliminar
+        $pdo->prepare("DELETE FROM clientes WHERE id = ?")->execute([$id_cliente]);
+        header("location:gestion_clientes.php");
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +52,23 @@
     <div class="card shadow">
         <div class="card-header bg-primary text-white">📋 Lista de Clientes</div>
             <div class="card-body">
+                <?php
+                    if (isset($_GET["cli"])) {
+                        if ($_GET["cli"] == 0) { // registro correcto
+                            echo '<div class="alert alert-success">✅ Cliente insertado
+                            correctamente.</div>';
+                        }
+                        if ($_GET["cli"] == 1) { // email ya existe
+                            echo '<div class="alert alert-warning">⚠️ El email ya existe
+                            en la base de datos.</div>';
+                        }
+                        if ($_GET["cli"] == 2) { // problema al insertar
+                            echo '<div class="alert alert-danger">❌ Ha ocurrido un error
+                            al intentar insertar el usuario.</div>';
+                        }
+                    }
+                ?>
+
                 <div class="row mb-3 me-2 float-end">
                     <a href="ins_cli_mysqli.php" class="btn btn-success">➕ Nuevo Cliente</a>
                 </div>
@@ -75,6 +99,11 @@
                             <td><?= $c['codpostal'] ?></td>
                             <td><?= htmlspecialchars($c['poblacion']) ?></td>
                             <td><?= htmlspecialchars($c['provincia']) ?></td>
+                            <td>
+                                <a href="edit_cli_mysqli.php?edit" class="btn btn-sm btn-warning">✏️</a>
+                                <a href="?eliminar=<?= $c['id'] ?>" class="btn btn-danger btn-sm"
+                                onclick="return confirm('¿Eliminar cliente?');">🗑️</a>
+                            </td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
