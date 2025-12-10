@@ -6,35 +6,36 @@
     }
     include("../db/db.inc");//mysqli
 
+    if (isset($_POST["accion"]) && $_POST["accion"] == "editar") {// cuando pulse actualizar
+        
+        if(isset($_POST["nombre"]) && !empty($_POST["nombre"])) {
+            $nombre = htmlspecialchars(($_POST["nombre"]));
+            $apellidos = htmlspecialchars(($_POST["apellidos"]));
+            $email = htmlspecialchars(($_POST["email"]));
+            $password = htmlspecialchars((sha1($_POST["password"])));
+            $direccion = htmlspecialchars(($_POST["direccion"]));
+            $genero = htmlspecialchars(($_POST["genero"]));
+            $codpostal = htmlspecialchars(($_POST["codpostal"]));
+            $poblacion = htmlspecialchars(($_POST["poblacion"]));
+            $provincia = htmlspecialchars(($_POST["provincia"]));
+            $id = $_POST["id"];
     
-
-    if(isset($_POST["nombre"]) && !empty($_POST["nombre"])) {
-        $nombre = htmlspecialchars(($_POST["nombre"]));
-        $apellidos = htmlspecialchars(($_POST["apellidos"]));
-        $email = htmlspecialchars(($_POST["email"]));
-        $password = htmlspecialchars((sha1($_POST["password"])));
-        $direccion = htmlspecialchars(($_POST["direccion"]));
-        $genero = htmlspecialchars(($_POST["genero"]));
-        $codpostal = htmlspecialchars(($_POST["codpostal"]));
-        $poblacion = htmlspecialchars(($_POST["poblacion"]));
-        $provincia = htmlspecialchars(($_POST["provincia"]));
-
-        $sql = "SELECT * FROM clientes WHERE email='$email'";
-        $res = mysqli_query($conn, $sql);
-        if (mysqli_num_rows($res) > 0) { // si el email existe en db
-            header("location:gestion_cliente.php?cli=1");
+            $sql = "UPDATE clientes SET nombre = '$nombre', apellidos = '$apellidos', 
+                genero = '$genero', direccion = '$direccion', codpostal = '$codpostal', 
+                poblacion = '$poblacion', provincia = '$provincia', email = '$email' 
+                WHERE id=$id";
+            
+            if (mysqli_query($conn, $sql)) {
+                header("location:gestion_clientes.php?upt=0");
+            }
+            else {
+                header("location:gestion_clientes.php?upt=1");
+            }
             die();
         }
-        
-        $sql = "INSERT INTO clientes(nombre, apellidos, genero, direccion, codpostal, poblacion, provincia, password, email)
-        VALUES ('$nombre', '$apellidos', '$genero', '$direccion', '$codpostal', '$poblacion', '$provincia', '$password', '$email');";
-        
-        if (mysqli_query($conn, $sql)) {
-            header("location:gestion_clientes.php?cli=0");
-        }
-        else {
-            header("location:gestion_clientes.php?cli=2");
-        }
+    }
+    if(!isset($_GET["edit"])) {
+        header("location:gestion_clientes.php");
         die();
     }
 ?>
@@ -56,59 +57,78 @@
             <div class="card-body">
 
             <?php
-            if (isset($_GET["edit"])) {
                 $id = intval($_GET["edit"]);
-                $sql = "SELECT * FROM clientes WJERE id = $id;";
-                $res = mysqli_query($conn, $sql);
-                if (mysqli_num_rows($res) > 0) {
-                    
+                $sql = "SELECT * FROM clientes WHERE id = $id"; // consulta para obtener los datos del cliente
+                $res = mysqli_query($conn, $sql); // ejecutar consulta
+                if (mysqli_num_rows($res) > 0) { // comprobar si hay resultado
+                    $cli = mysqli_fetch_assoc($res); // crear un array asociativo con los datos del cliente
                 }
-            }
+                else {
+                    header("location:gestion_clientes.php");
+                    die();
+                }
             ?>
 
                 <form method="POST">
+                    <input type="hidden" name="id" value="<?=$id;?>">
+                    <input type="hidden" name="accion" value="editar">
                     <div class="row">
                         <div class="col-md-6 mt-3">
                             <label for="nombre" class="form-label">Nombre:</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre">
+                            <input type="text" class="form-control" id="nombre" name="nombre" value="<?= $cli["nombre"] ?>" required>
                         </div>
                         <div class="col-md-6 mt-3">
                             <label for="apellidos" class="form-label">Apellidos:</label>
-                            <input type="text" class="form-control" id="apellidos" name="apellidos">
+                            <input type="text" class="form-control" id="apellidos" name="apellidos" value="<?= $cli["apellidos"] ?>" required>
                         </div>
                         <div class="col-md-6 mt-3">
                             <label for="email" class="form-label">Email:</label>
-                            <input type="email" class="form-control" id="email" name="email">
+                            <input type="email" class="form-control" id="email" name="email" value="<?= $cli["email"] ?>" required>
+                        </div>
+
+                        <div class="col-md-6 mt-3">
+                            <label for="direccion" class="form-label">Dirección:</label>
+                            <input type="text" class="form-control" id="direccion" name="direccion" value="<?= $cli["direccion"] ?>" required>
                         </div>
                         <div class="col-md-6 mt-3">
-                            <label for="password" class="form-label">Password:</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <label for="codpostal" class="form-label">Código Postal:</label>
+                            <input type="text" class="form-control" id="codpostal" name="codpostal" value="<?= $cli["codpostal"] ?>" required>
                         </div>
                         <div class="col-md-6 mt-3">
-                            <label for="direccion" class="form-label">Direccion:</label>
-                            <input type="text" class="form-control" id="direccion" name="direccion">
+                            <label for="poblacion" class="form-label">Población:</label>
+                            <input type="text" class="form-control" id="poblacion" name="poblacion" value="<?= $cli["poblacion"] ?>" required>
                         </div>
                         <div class="col-md-6 mt-3">
-                            <label for="codpostal" class="form-label">Codigo Postal:</label>
-                            <input type="text" class="form-control" id="codpostal" name="codpostal">
+                            <label for="provincia" class="form-label">Provincia:</label>
+                            <input type="text" class="form-control" id="provincia" name="provincia" value="<?= $cli["provincia"] ?>" required>
                         </div>
                         <div class="col-md-6 mt-3">
-                            <label for="poblacion" class="form-label">Poblacion:</label>
-                            <input type="text" class="form-control" id="poblacion" name="poblacion">
-                        </div>
-                        <div class="col-md-6 mt-3">
-                            <label for="provincia" class="form-label">Provicia:</label>
-                            <input type="text" class="form-control" id="provincia" name="provincia">
-                        </div>
-                        <div class="col-md-6 mt-3">
-                            <label for="genero" class="form-label">Genero:</label>
+                            <label for="genero" class="form-label">Género:</label>
                             <select name="genero" id="genero" class="form-select">
-                                <option value="default" selected disabled>Selecciona una opción</option>
-                                <option value="H">Hombre</option>
-                                <option value="M">Mujer</option>
+                                <?php
+                                    $genero = $cli["genero"];
+                                    if ($genero=='H') {
+                                        print'
+                                        <option value="H" selected>Hombre</option>
+                                        <option value="M">Mujer</option>
+                                        <option value="O">Otro</option>';
+                                    }
+                                    else if ($genero=='M') {
+                                        print'
+                                        <option value="H">Hombre</option>
+                                        <option value="M" selected>Mujer</option>
+                                        <option value="O">Otro</option>';
+                                    }
+                                    else if ($genero=='O') {
+                                        print'
+                                        <option value="H">Hombre</option>
+                                        <option value="M">Mujer</option>
+                                        <option value="O" selected>Otro</option>';
+                                    }
+                                ?>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-success mt-5">Guardar cliente</button>
+                        <button type="submit" class="btn btn-success mt-5">Actualizar cliente</button>
                     </div>
                 </form>
             </div>

@@ -70,27 +70,28 @@
                             <input type="password" class="form-control" id="password" name="password">
                         </div>
                         <div class="col-md-6 mt-3">
-                            <label for="direccion" class="form-label">Direccion:</label>
+                            <label for="direccion" class="form-label">Dirección:</label>
                             <input type="text" class="form-control" id="direccion" name="direccion">
                         </div>
                         <div class="col-md-6 mt-3">
-                            <label for="codpostal" class="form-label">Codigo Postal:</label>
+                            <label for="codpostal" class="form-label">Código Postal:</label>
                             <input type="text" class="form-control" id="codpostal" name="codpostal">
                         </div>
                         <div class="col-md-6 mt-3">
-                            <label for="poblacion" class="form-label">Poblacion:</label>
+                            <label for="poblacion" class="form-label">Población:</label>
                             <input type="text" class="form-control" id="poblacion" name="poblacion">
                         </div>
                         <div class="col-md-6 mt-3">
-                            <label for="provincia" class="form-label">Provicia:</label>
+                            <label for="provincia" class="form-label">Provincia:</label>
                             <input type="text" class="form-control" id="provincia" name="provincia">
                         </div>
                         <div class="col-md-6 mt-3">
-                            <label for="genero" class="form-label">Genero:</label>
+                            <label for="genero" class="form-label">Género:</label>
                             <select name="genero" id="genero" class="form-select">
                                 <option value="default" selected disabled>Selecciona una opción</option>
                                 <option value="H">Hombre</option>
                                 <option value="M">Mujer</option>
+                                <option value="O">Otro</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-success mt-5">Guardar cliente</button>
