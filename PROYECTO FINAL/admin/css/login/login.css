@@ -15,10 +15,10 @@ body {
 }
 
 main {
-  background-color: rgba(255, 255, 255, 0.15);
-  width: 95%;
-  height: 95%;
-  margin: 50px 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 60%;
+  min-width: 400px;
+  margin: 30px 0;
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
@@ -28,67 +28,63 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 50px;
+  gap: 30px;
   text-align: center;
 }
 main img {
-  width: 300px;
+  width: 400px;
 }
 main h1 {
-  font-size: 2.5em;
+  font-size: 2em;
   padding: 10px;
   color: #fff;
-  text-shadow: rgb(134, 31.2288135593, 0) 5px 5px 0px;
-  background-color: #ec3700;
-  box-shadow: #ec3700 0px 0px 30px 30px;
+  text-shadow: #333333 3px 3px 0px;
   border-radius: 20px;
 }
 main form {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
   flex-wrap: nowrap;
-  gap: 20px;
-  background-color: rgba(86, 93, 99, 0.8980392157);
-  border: rgba(38.5837837838, 41.7243243243, 44.4162162162, 0.8980392157) 3px solid;
+  background-color: rgba(46, 46, 46, 0.6235294118);
   border-radius: 10px;
   width: 100%;
   max-width: 800px;
-  height: 350px;
+  height: 330px;
   padding: 30px;
 }
 main form h2 {
   color: #fff;
-  text-shadow: rgba(38.5837837838, 41.7243243243, 44.4162162162, 0.8980392157) 3px 3px 0px;
-  font-size: 2em;
+  text-shadow: rgba(0, 0, 0, 0.6235294118) 3px 3px 0px;
+  font-size: 1.5em;
 }
 main form hr {
-  width: 93%;
+  width: 50%;
   max-width: 560px;
-  border: rgba(38.5837837838, 41.7243243243, 44.4162162162, 0.8980392157) 2px solid;
+  border: #999999 2px solid;
   border-radius: 10px;
 }
 main form input {
-  color: #202020;
+  color: #000;
   width: 100%;
   max-width: 600px;
   border-radius: 30px;
   border: 0;
-  padding: 15px 30px;
-  box-shadow: rgba(50.4378378378, 54.5432432432, 58.0621621622, 0.8980392157) 5px 5px 5px 3px;
+  padding: 10px 30px;
+  box-shadow: rgba(7.75, 7.75, 7.75, 0.6235294118) 5px 5px 5px 3px;
   font-size: 1.2em;
 }
 main form button {
-  color: #202020;
+  color: #000;
   width: 100%;
   max-width: 600px;
   border-radius: 30px;
   border: 0;
-  padding: 15px 30px;
-  box-shadow: rgba(50.4378378378, 54.5432432432, 58.0621621622, 0.8980392157) 5px 5px 5px 3px;
+  padding: 10px 30px;
+  box-shadow: rgba(7.75, 7.75, 7.75, 0.6235294118) 5px 5px 5px 3px;
   color: #fff;
-  background-color: #ec3700;
+  background-color: #00ec9d;
   padding: 15px;
   font-size: 1.3em;
   font-weight: bold;
@@ -96,19 +92,20 @@ main form button {
 }
 main p {
   color: #fff;
-  font-size: 1.5em;
 }
 main p a {
-  color: #ec3700;
+  color: #00ec9d;
   font-weight: bold;
 }
 main .error {
-  background: linear-gradient(#c90000 0%, #860000 100%);
+  background-color: rgba(255, 153, 0, 0.7607843137);
   color: #fff;
-  padding: 20px 40px;
-  margin-top: 50px;
+  padding: 10px 40px;
   border-radius: 20px;
-  border: 3px solid #610000;
-  font-size: 1.5em;
   font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 1.3em;
+}
+main .error i {
+  margin-right: 10px;
 }/*# sourceMappingURL=login.css.map */

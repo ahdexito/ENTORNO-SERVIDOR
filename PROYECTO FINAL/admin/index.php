@@ -9,35 +9,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
     <link rel="stylesheet" href="css/index/index.css">
+    <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-        <img src="img/logotipo.png" alt="logotipo" class="logo">
+        <img src="img/logo-horizontal.png" alt="logotipo" class="logo">
 
         <input type="search" placeholder="Buscar aquí..." class="searchbar">
 
         <div class="actions">
             <div class="favoritos">
-                <a href="#"><img src="icon/corazon.png" alt="icono corazón"></a>
+                <a href="#"><i class="fa-solid fa-heart"></i></a>
                 <p>Favoritos</p>
             </div>
 
             <div class="carrito">
-                <a href="#"><img src="icon/carrito.png" alt="icono carrito"></a>
+                <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
                 <p>Carrito</p>
             </div>
 
-            <div class="Perfil">
-                <?php
-                    if (isset($_SESSION["nombre"])) {
-                        echo '<a><img src="icon/usuario.png" alt="icono usuario"></a>';
-                        echo "<p>" . $_SESSION["nombre"] . "</p>";
-                    }
-                    else {
-                        echo '<a href="login.php"><img src="icon/usuario.png" alt="icono usuario"></a>';
-                        echo "<p>Login</p>";
-                    }
-                ?>
+            <div class="perfil">
+            <?php
+                if (isset($_SESSION["nombre"])) {
+                    ?>
+                    <input type="checkbox" id="dropdown-toggle" class="dropdown-toggle"></input>
+                    <i class="fa-solid fa-user"></i>
+
+                    <ul class="dropdown-content">
+                        <a href="desconectar.php">Cerrar sesión</a>
+                    </ul>
+                    
+                    <?php echo "<p>" . $_SESSION["nombre"] . "</p>";
+                }
+                else {
+                    echo '<a href="login.php"><i class="fa-solid fa-user"></i></a>';
+                    echo "<p>Login</p>";
+                }
+            ?>
             </div>
         </div>
     </header>
@@ -58,7 +66,7 @@
     <main>
         <section class="novedades">
             <div class="section-title">
-                <img src="icon/fuego.png" alt="icono fuego">
+                <i class="fa-solid fa-fire icono-fuego"></i>
                 <h2>Últimas novedades</h2>
             </div>
 
@@ -70,6 +78,8 @@
                 <a href="#"><img src="img/botas.png" alt=""></a>
                 <a href="#"><img src="img/pantalon.png" alt=""></a>
                 <a href="#"><img src="img/chaqueta.png" alt=""></a>
+                <a href="#"><img src="img/chaqueta.png" alt=""></a>
+                <a href="#"><img src="img/botas.png" alt=""></a>
             </article>
 
             <hr>
@@ -79,7 +89,14 @@
     </main>
 
     <footer>
-
+        <div class="copy">
+            <i class="fa-regular fa-copyright" style="color: #63E6BE;"></i>
+            <div>   
+                <p>Todos los derechos reservados.</p><br>
+                <p>Ángel García, 2026.</p>
+            </div>
+        </div>
+        
     </footer>
 </body>
 </html>

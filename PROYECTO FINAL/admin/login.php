@@ -9,11 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="css/login/login.css">
+    <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <main>
-        <img src="img/logotipo.png" alt="logotipo">
-        <h1>¡Bienvenido!</h1>
+        <img src="img/logo-vertical.png" alt="logotipo">
+        <h1>¡Bienvenid@!</h1>
 
         <?php
             if(isset($_POST["email"]) && !empty($_POST["email"]) && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
@@ -42,18 +43,18 @@
                     }
 
                     else {
-                        echo "<div class='error'>El email y/o la contraseña NO existen.</div>";
+                        echo "<div class='error'><i class='fa-solid fa-triangle-exclamation'></i>El email y/o la contraseña NO coinciden.</div>";
                     }
                 }
 
                 else {
-                    echo "<div class='error'>Error en el campo 'contraseña'.</div>";
+                    echo "<div class='error'><i class='fa-solid fa-triangle-exclamation'></i>Error en el campo 'contraseña'.</div>";
                 }
             }
 
             else {
                 if(isset($_POST["email"])) {
-                    echo "<div class='error'>El email NO es válido.</div>";
+                    echo "<div class='error'><i class='fa-solid fa-triangle-exclamation'></i>El email NO es válido.</div>";
                 }
             }
         ?>
