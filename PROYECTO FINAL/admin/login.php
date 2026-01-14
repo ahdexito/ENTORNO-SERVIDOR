@@ -53,7 +53,7 @@
 
             else {
                 if(isset($_POST["email"])) {
-                    echo "<div class='mensaje-error'>El email NO es válido.</div>";
+                    echo "<div class='error'>El email NO es válido.</div>";
                 }
             }
         ?>

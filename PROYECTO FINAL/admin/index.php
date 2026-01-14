@@ -1,9 +1,13 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Inicio</title>
     <link rel="stylesheet" href="css/index/index.css">
 </head>
 <body>
@@ -24,8 +28,16 @@
             </div>
 
             <div class="Perfil">
-                <a href="login.php"><img src="icon/usuario.png" alt="icono usuario"></a>
-                <p>Login</p>
+                <?php
+                    if (isset($_SESSION["nombre"])) {
+                        echo '<a><img src="icon/usuario.png" alt="icono usuario"></a>';
+                        echo "<p>" . $_SESSION["nombre"] . "</p>";
+                    }
+                    else {
+                        echo '<a href="login.php"><img src="icon/usuario.png" alt="icono usuario"></a>';
+                        echo "<p>Login</p>";
+                    }
+                ?>
             </div>
         </div>
     </header>
@@ -39,7 +51,7 @@
             <li><a href="#">Guantes</a></li>
             <li><a href="#">Marcas</a></li>
             <li><a href="#">Liquidación</a></li>
-            <li><a href="#">Ropa mujer</a></li>
+            <li><a href="#">Mujer</a></li>
         </ul>
     </nav>
 
