@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Jura:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jura:wght@300..700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Jura";
+}
+
+body {
+  background-color: #3f3f3f;
+}
+
+header {
+  background-color: #202020;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 120px;
+}
+header .logo {
+  width: 200px;
+  margin: 10px;
+}
+header .searchbar {
+  width: 700px;
+  height: 50px;
+  border: 0;
+  border-radius: 30px;
+  padding-left: 30px;
+  font-size: 1.2em;
+  margin: 0 40px;
+}
+header .actions {
+  width: 250px;
+  color: #fff;
+  text-align: center;
+}
+header .actions div {
+  display: inline-block;
+  width: 80px;
+}
+header .actions img {
+  width: 30px;
+  margin-bottom: 10px;
+}
+
+nav {
+  background-color: #fff;
+  padding: 10px;
+}
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  gap: 0px;
+}
+nav ul a {
+  text-decoration: none;
+  color: #202020;
+  font-weight: bold;
+  padding: 10px 20px;
+}
+nav ul a:hover {
+  color: #fff;
+  background-color: #ad0b0b;
+}/*# sourceMappingURL=nuevos.css.map */

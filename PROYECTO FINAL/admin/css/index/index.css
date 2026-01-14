@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Jura:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jura:wght@300..700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Jura";
+}
+
+body {
+  background-color: #3f3f3f;
+}
+
+header {
+  background-color: #202020;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 120px;
+}
+header .logo {
+  width: 200px;
+  margin: 10px;
+}
+header .searchbar {
+  width: 700px;
+  height: 50px;
+  border: 0;
+  border-radius: 30px;
+  padding-left: 30px;
+  font-size: 1.2em;
+  margin: 0 40px;
+}
+header .actions {
+  width: 250px;
+  color: #fff;
+  text-align: center;
+}
+header .actions div {
+  display: inline-block;
+  width: 80px;
+}
+header .actions img {
+  width: 30px;
+  margin-bottom: 10px;
+}
+
+nav {
+  background-color: #fff;
+  padding: 10px;
+}
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  gap: 0px;
+}
+nav ul a {
+  text-decoration: none;
+  color: #202020;
+  font-weight: bold;
+  padding: 10px 20px;
+}
+nav ul a:hover {
+  color: #fff;
+  background-color: #ad0b0b;
+}
+
+main {
+  padding: 40px 20px;
+}
+main .novedades {
+  background-color: #ad0b0b;
+  text-align: center;
+}
+main .novedades .section-title {
+  padding: 10px;
+  display: flex;
+  align-items: end;
+  gap: 20px;
+}
+main .novedades .section-title img {
+  width: 100px;
+}
+main .novedades .section-title h2 {
+  color: #fff;
+  font-size: 3em;
+  text-shadow: rgb(101.0733695652, 6.4266304348, 6.4266304348) 5px 5px 0px;
+}
+main .novedades hr {
+  color: #fff;
+  margin: 0px 20px;
+}
+main .novedades article {
+  margin: 20px;
+  padding: 20px;
+  background-color: rgb(125.0489130435, 7.9510869565, 7.9510869565);
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+main .novedades article img {
+  width: 350px;
+}
+main .novedades p {
+  color: #fff;
+  padding: 40px;
+  font-size: 2em;
+}
+main .novedades p a {
+  color: #ad0b0b;
+  padding: 10px;
+  text-decoration: none;
+  background-color: #fff;
+  border-radius: 10px;
+  font-weight: bold;
+}
+main .novedades p a:hover {
+  background-color: rgb(101.0733695652, 6.4266304348, 6.4266304348);
+  color: #fff;
+  box-shadow: rgb(77.097826087, 4.902173913, 4.902173913) 5px 5px 10px;
+}/*# sourceMappingURL=index.css.map */

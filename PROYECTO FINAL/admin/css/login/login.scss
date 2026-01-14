@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Jura:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jura:wght@300..700&display=swap');
+
+$color-1: #202020;
+$color-2: #3d3d3d;
+$color-3: #565d63e5;
+$color-4: #fff;
+$color-5: #ec3700;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Jura;
+    color: $color-4;
+}
+
+body {
+    background-image: url('../../img/fondo-huellas.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+main {
+    background-color: rgba($color-4, 15%);
+    width: 95%;
+    height: 95%;
+    margin: 50px 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: #000 0px 0px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    text-align: center;
+
+    img {
+        width: 300px;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        padding: 10px;
+        color: $color-4;
+        text-shadow: darken($color-5, 20%) 5px 5px 0px;
+        background-color: $color-5;
+        box-shadow: $color-5 0px 0px 30px 30px;
+        border-radius: 20px;
+    }
+
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 20px;
+        background-color: $color-3;
+        border: darken($color-3, $amount: 20) 3px solid;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 800px;
+        height: 350px;
+        padding: 30px;
+
+        h2 {
+            color: $color-4;
+            text-shadow: darken($color-3, 20%) 3px 3px 0px;
+            font-size: 2em;
+        }
+
+        hr {
+            width: 93%;
+            max-width: 560px;
+            border: darken($color-3, 20%) 2px solid;
+            border-radius: 10px;
+        }
+
+        @mixin input {
+            color: $color-1;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 30px;
+            border: 0;
+            padding: 15px 30px;
+            box-shadow: darken($color-3, 15%) 5px 5px 5px 3px;
+        }
+
+        input {
+            @include input;
+
+            font-size: 1.2em;
+        }
+
+        button {
+            @include input;
+
+            color: $color-4;
+            background-color: $color-5;
+            padding: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    }
+
+    p {
+        color: $color-4;
+        font-size: 1.2em;
+
+        a {
+            color: $color-5;
+            font-weight: bold;
+        }
+    }
+
+    .error {
+        background: linear-gradient(#c90000 0%, #860000 100%);
+        color: #fff;
+        padding: 20px 40px;
+        margin-top: 50px;
+        border-radius: 20px;
+        border: 3px solid #610000;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+}
