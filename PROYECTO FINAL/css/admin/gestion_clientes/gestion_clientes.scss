@@ -115,7 +115,7 @@ main {
             text-shadow: darken($color: $color-1, $amount: 15) 5px 5px 0px;
             color: $color-2;
 
-            i {
+            .engranaje {
                 font-size: 4.5em;
                 margin-top: 10px;
                 margin-bottom: 5px;
@@ -124,6 +124,25 @@ main {
             h2 {
                 font-size: 3em;
             }
+
+            a {
+                background-color: $color-2;
+                color: $color-1;
+                text-decoration: none;
+                border-radius: 10px;
+                font-size: 2em;
+                padding: 10px 20px;
+                text-shadow: none;
+                font-weight: bold;
+                margin-left: auto;
+                margin-right: 10px;
+
+                &:hover {
+                    background-color: darken($color-1, 15%);
+                    color: $color-2;
+                    box-shadow: darken($color-1, $amount: 20%) 5px 5px 10px;
+                }
+            }
         }
 
         hr {
@@ -131,43 +150,29 @@ main {
             margin: 0px 20px;
         }
 
-        article {
-            margin: 20px;
-            padding: 5px;
-            border-radius: 5px;
-            background-color: darken($color-1, 10%);
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
+        table {
+            margin: 20px auto;
+            background-color: $color-2;
+            color: $color-2;
 
-            .boton {
-                background-color: $color-2;
-                width: 300px;
-                height: 300px;
-                margin: 20px;
-                border-radius: 20px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-                gap: 20px;
-                color: darken($color-1, 10%);
-                cursor: pointer;
-                text-decoration: none;
-                font-size: 2em;
-                font-weight: bold;
-                text-shadow: darken($color-2, 25%) 3px 3px 0px;
-                box-shadow: darken($color-1, 15%) 7px 7px 0px;
-                transition: font-size 0.2s ease;
+            thead {
+                background-color: #000;
+            }
 
-                i {
-                    font-size: 3em;
+            tbody {
+                tr:nth-child(odd) {
+                    background-color: #acacac;
+                    color: #000;
                 }
 
-                &:hover {
-                    color: $color-1;
-                    font-size: 2.7em;
+                tr:nth-child(even) {
+                    background-color: #464646;
                 }
+            }
+
+            td {
+                font-family: 'Inter';
+                padding: 20px;
             }
         }
     }

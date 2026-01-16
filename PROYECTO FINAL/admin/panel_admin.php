@@ -18,9 +18,9 @@
         <input type="search" placeholder="Buscar aquí..." class="searchbar">
 
         <div class="actions">
-            <div class="perfil">
-                <a href="desconectar_admin.php"><i class="fa-regular fa-circle-left"></i></a>
-                <p>Cerrar sesión</p>
+            <div class="desconectar">
+                <a href="desconectar_admin.php"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                <p>Logout</p>
             </div>
         </div>
     </header>
@@ -37,9 +37,21 @@
             <hr>
 
             <article>
-                <a href="gestion_clientes.html" class="boton">
+                <a href="gestion_clientes.php" class="boton">
                     <i class="fa-solid fa-users"></i>
                     <p>Clientes</p>
+                </a>
+                <a href="#" class="boton">
+                    <i class="fa-solid fa-shop"></i>
+                    <p>Productos</p>
+                </a>
+                <a href="#" class="boton">
+                    <i class="fa-solid fa-tags"></i>
+                    <p>Rebajas</p>
+                </a>
+                <a href="#" class="boton">
+                    <i class="fa-solid fa-bars-progress"></i>
+                    <p>Ajustes</p>
                 </a>
             </article>
         </section>

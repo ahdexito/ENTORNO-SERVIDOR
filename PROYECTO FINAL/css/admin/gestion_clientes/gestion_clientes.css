@@ -73,7 +73,7 @@ main .panel-control .section-header {
   text-shadow: rgb(0, 39.5, 26.2198275862) 5px 5px 0px;
   color: #fff;
 }
-main .panel-control .section-header i {
+main .panel-control .section-header .engranaje {
   font-size: 4.5em;
   margin-top: 10px;
   margin-bottom: 5px;
@@ -81,45 +81,45 @@ main .panel-control .section-header i {
 main .panel-control .section-header h2 {
   font-size: 3em;
 }
+main .panel-control .section-header a {
+  background-color: #fff;
+  color: #00744d;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 2em;
+  padding: 10px 20px;
+  text-shadow: none;
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: 10px;
+}
+main .panel-control .section-header a:hover {
+  background-color: rgb(0, 39.5, 26.2198275862);
+  color: #fff;
+  box-shadow: rgb(0, 14, 9.2931034483) 5px 5px 10px;
+}
 main .panel-control hr {
   color: #fff;
   margin: 0px 20px;
 }
-main .panel-control article {
-  margin: 20px;
-  padding: 5px;
-  border-radius: 5px;
-  background-color: rgb(0, 65, 43.1465517241);
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-main .panel-control article .boton {
+main .panel-control table {
+  margin: 20px auto;
   background-color: #fff;
-  width: 300px;
-  height: 300px;
-  margin: 20px;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 20px;
-  color: rgb(0, 65, 43.1465517241);
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 2em;
-  font-weight: bold;
-  text-shadow: rgb(191.25, 191.25, 191.25) 3px 3px 0px;
-  box-shadow: rgb(0, 39.5, 26.2198275862) 7px 7px 0px;
-  transition: font-size 0.2s ease;
+  color: #fff;
 }
-main .panel-control article .boton i {
-  font-size: 3em;
+main .panel-control table thead {
+  background-color: #000;
 }
-main .panel-control article .boton:hover {
-  color: #00744d;
-  font-size: 2.7em;
+main .panel-control table tbody tr:nth-child(odd) {
+  background-color: #acacac;
+  color: #000;
+}
+main .panel-control table tbody tr:nth-child(even) {
+  background-color: #464646;
+}
+main .panel-control table td {
+  font-family: "Inter";
+  padding: 20px;
 }
 
 footer {
@@ -139,4 +139,4 @@ footer .copy i {
 footer .copy p {
   display: inline;
   color: #fff;
-}/*# sourceMappingURL=panel_admin.css.map */
+}/*# sourceMappingURL=gestion_clientes.css.map */

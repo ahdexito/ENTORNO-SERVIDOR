@@ -1,8 +1,11 @@
+USE tienda_moto;
+
 INSERT INTO usuarios (`email`, `password`, `rol`, `nombre`) VALUES
     ('anggarsma@alu.edu.gva.es', '7c4a8d09ca3762af61e59520943dc26494f8941b', '1', 'Ángel'),
     ('pepe@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '2', 'Pepe');
 
 INSERT INTO `clientes`(`nombre`, `apellidos`, `genero`, `direccion`, `codpostal`, `poblacion`, `provincia`, `password`, `email`) VALUES
+    ('Ángel', 'García Smakula', 'H', 'Calle Torrevieja', '03185', 'Torrevieja', 'Alicante', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'anggarsma@alu.edu.gva.es'),
     ('Alejandro', 'García López', 'M', 'Calle Mayor 15', '28001', 'Madrid', 'Madrid', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'alejandro.garcia@gmail.com'),
     ('María', 'Rodríguez Pérez', 'F', 'Avenida de la Constitución 4', '41001', 'Sevilla', 'Sevilla', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'm.rodriguez@gmail.com'),
     ('Carlos', 'Sánchez Ruiz', 'M', 'Calle Nueva 22', '08002', 'Barcelona', 'Barcelona', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'csanchez88@gmail.com'),
