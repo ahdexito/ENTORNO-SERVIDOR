@@ -9,7 +9,7 @@
 }
 
 body {
-  background-image: url("../../img/fondo-huellas.jpg");
+  background-image: url("../../../img/fondo-huellas.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -112,4 +112,4 @@ main .error {
 }
 main .error i {
   margin-right: 10px;
-}/*# sourceMappingURL=login.css.map */
+}/*# sourceMappingURL=login_admin.css.map */

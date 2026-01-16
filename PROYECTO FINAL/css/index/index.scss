@@ -121,11 +121,12 @@ header {
                 display: flex;
                 flex-direction: column;
                 box-shadow: #000 0px 0px 15px 5px;
+                border: 2px solid darken($color-4, 10%);
 
                 a {
                     color: $color-2;
                     text-decoration: none;
-                    text-shadow: #000 2px 2px 0px;
+                    text-shadow: darken($color-4, 25%) 2px 2px 0px;
                     background-color: $color-4;
                     width: 100%;
                     padding: 20px;
@@ -134,6 +135,10 @@ header {
                     &:hover {
                         background-color: lighten($color-4, 20%);                        
                     }
+                }
+
+                hr {
+                    border: 1px solid darken($color-4, 10%);
                 }
             }
         }

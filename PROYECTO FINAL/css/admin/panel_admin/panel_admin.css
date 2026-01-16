@@ -47,53 +47,6 @@ header .actions i {
   font-size: 2.5em;
   margin-bottom: 5px;
 }
-header .actions p {
-  margin-top: 50px;
-}
-header .actions .perfil i {
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate(-15px, 27px);
-  z-index: 1;
-}
-header .actions .perfil .dropdown-toggle {
-  position: relative;
-  width: 35px;
-  height: 40px;
-  margin-bottom: 2px;
-  cursor: pointer;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  z-index: 2;
-}
-header .actions .perfil .dropdown-content {
-  display: none;
-}
-header .actions .perfil #dropdown-toggle:checked ~ .dropdown-content {
-  display: flex;
-  position: absolute;
-  width: 180px;
-  top: 40;
-  right: 0;
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: #000 0px 0px 15px 5px;
-}
-header .actions .perfil #dropdown-toggle:checked ~ .dropdown-content a {
-  color: #fff;
-  text-decoration: none;
-  text-shadow: #000 2px 2px 0px;
-  background-color: #faab00;
-  width: 100%;
-  padding: 20px;
-  font-weight: bold;
-}
-header .actions .perfil #dropdown-toggle:checked ~ .dropdown-content a:hover {
-  background-color: rgb(255, 205.072, 97);
-}
 
 hr {
   border: 1px solid #fff;
@@ -137,6 +90,32 @@ main .panel-control article {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+main .panel-control article .boton {
+  background-color: #fff;
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  color: rgb(0, 65, 43.1465517241);
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 3em;
+  font-weight: bold;
+  text-shadow: #999999 3px 3px 0px;
+  box-shadow: rgb(0, 39.5, 26.2198275862) 7px 7px 0px;
+  transition: font-size 0.5s ease;
+}
+main .panel-control article .boton i {
+  font-size: 3em;
+}
+main .panel-control article .boton:hover {
+  color: #00744d;
+  font-size: 3.3em;
 }
 
 footer {

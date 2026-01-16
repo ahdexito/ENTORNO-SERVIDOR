@@ -1,5 +1,5 @@
 <?php
-    include("db/db.inc");
+    include("../db/db.inc");
 ?>
 
 <!DOCTYPE html>
@@ -8,13 +8,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="css/login/login.css">
+    <link rel="stylesheet" href="../css/admin/login_admin/login_admin.css">
     <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <main>
-        <img src="img/logo-vertical.png" alt="logotipo">
-        <h1>¡Bienvenid@!</h1>
+        <img src="../img/logo-vertical.png" alt="logotipo">
+        <h1>Panel de administrador</h1>
 
         <?php
             if(isset($_POST["email"]) && !empty($_POST["email"]) && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
@@ -38,7 +38,7 @@
                         $_SESSION["rol"] = $rol;
                         $_SESSION["email"] = $emailDB;
 
-                        header("location:./index.php");
+                        header("location:./panel_admin.php");
                         die();
                     }
 
@@ -68,7 +68,7 @@
             <button type="submit">Entrar</button>
         </form>
 
-        <p>¿No tienes cuenta? <a href="#">Regístrate</a></p>
+        <p><a href="../login.php">Soy cliente</a></p>
     </main>
 </body>
 </html>

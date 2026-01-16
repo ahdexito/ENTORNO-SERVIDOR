@@ -36,6 +36,8 @@
                     <i class="fa-solid fa-user"></i>
 
                     <div class="dropdown-content">
+                        <a href="#">Ajustes</a>
+                        <hr>
                         <a href="desconectar.php">Cerrar sesión</a>
                     </div>
                     

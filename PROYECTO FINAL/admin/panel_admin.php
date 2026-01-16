@@ -19,8 +19,8 @@
 
         <div class="actions">
             <div class="perfil">
-                <a href="../index.php"><i class="fa-regular fa-circle-left"></i></a>
-                <p>Volver</p>
+                <a href="desconectar_admin.php"><i class="fa-regular fa-circle-left"></i></a>
+                <p>Cerrar sesión</p>
             </div>
         </div>
     </header>
@@ -37,7 +37,10 @@
             <hr>
 
             <article>
-                
+                <a href="gestion_clientes.html" class="boton">
+                    <i class="fa-solid fa-users"></i>
+                    <p>Clientes</p>
+                </a>
             </article>
         </section>
     </main>
@@ -50,7 +53,6 @@
                 <p>Ángel García, 2026.</p>
             </div>
         </div>
-        
     </footer>
 </body>
 </html>

@@ -87,61 +87,6 @@ header {
             font-size: 2.5em;
             margin-bottom: 5px;
         }
-
-        p {
-            margin-top: 50px;
-        }
-
-        .perfil {
-            i {
-                position: absolute;
-                top: 0;
-                right: 0;
-                transform: translate(-15px, 27px);
-                z-index: 1;
-            }
-
-            .dropdown-toggle {
-                position: relative;
-                width: 35px;
-                height: 40px;
-                margin-bottom: 2px;
-                cursor: pointer;
-                appearance: none;
-                z-index: 2;
-            }
-
-            .dropdown-content {
-                display: none;
-            }
-
-            #dropdown-toggle:checked ~ .dropdown-content {
-                display: flex;
-                position: absolute;
-                width: 180px;
-                top: 40;
-                right: 0;
-                margin-top: 30px;
-                display: flex;
-                flex-direction: column;
-                box-shadow: #000 0px 0px 15px 5px;
-
-                a {
-                    color: $color-2;
-                    text-decoration: none;
-                    text-shadow: #000 2px 2px 0px;
-                    background-color: $color-4;
-                    width: 100%;
-                    padding: 20px;
-                    font-weight: bold;
-
-                    &:hover {
-                        background-color: lighten($color-4, 20%);                        
-                    }
-                }
-            }
-        }
-        
     }
 }
 
@@ -187,10 +132,39 @@ main {
             margin: 20px;
             padding: 20px;
             border-radius: 5px;
-            background-color: darken($color: $color-1, $amount: 10);
+            background-color: darken($color-1, 10%);
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
+
+            .boton {
+                background-color: $color-2;
+                width: 300px;
+                height: 300px;
+                border-radius: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                gap: 20px;
+                color: darken($color-1, 10%);
+                cursor: pointer;
+                text-decoration: none;
+                font-size: 3em;
+                font-weight: bold;
+                text-shadow: darken($color-2, 40%) 3px 3px 0px;
+                box-shadow: darken($color-1, 15%) 7px 7px 0px;
+                transition: font-size 0.5s ease;
+
+                i {
+                    font-size: 3em;
+                }
+
+                &:hover {
+                    color: $color-1;
+                    font-size: 3.3em;
+                }
+            }
         }
     }
 }
