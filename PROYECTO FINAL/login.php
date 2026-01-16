@@ -22,7 +22,7 @@
                     $email = htmlspecialchars(trim($_POST["email"]));
                     $password = htmlspecialchars(sha1($_POST["password"]));
 
-                    $check = $conn -> prepare("SELECT nombre, email, rol FROM usuario WHERE email = ? AND password = ?");
+                    $check = $conn -> prepare("SELECT nombre, email, rol FROM usuarios WHERE email = ? AND password = ?");
                     
                     $check -> bind_param("ss", $email, $password);
                     $check -> execute();
@@ -69,6 +69,7 @@
         </form>
 
         <p>¿No tienes cuenta? <a href="#">Regístrate</a></p>
+        <p class="admin"><a href="admin/login_admin.php">Soy administrador</a></p>
     </main>
 </body>
 </html>

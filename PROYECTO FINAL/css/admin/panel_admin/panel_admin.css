@@ -12,7 +12,7 @@ body {
 }
 
 header {
-  background-image: url("../../img/fondo-huellas.jpg");
+  background-image: url("../../../img/fondo-huellas.jpg");
   background-size: cover;
   background-position: center;
   display: flex;
@@ -35,7 +35,6 @@ header .searchbar {
   margin: 0 40px;
 }
 header .actions {
-  width: 250px;
   color: #fff;
   text-align: center;
 }
@@ -43,14 +42,13 @@ header .actions div {
   display: inline-block;
   width: 80px;
 }
-header .actions img {
-  width: 30px;
-  margin-bottom: 10px;
-}
 header .actions i {
   color: #fff;
   font-size: 2.5em;
   margin-bottom: 5px;
+}
+header .actions p {
+  margin-top: 50px;
 }
 header .actions .perfil i {
   position: absolute;
@@ -87,48 +85,31 @@ header .actions .perfil #dropdown-toggle:checked ~ .dropdown-content {
 header .actions .perfil #dropdown-toggle:checked ~ .dropdown-content a {
   color: #fff;
   text-decoration: none;
-  background-color: #ffae00;
+  text-shadow: #000 2px 2px 0px;
+  background-color: #faab00;
   width: 100%;
   padding: 20px;
   font-weight: bold;
-  border-radius: 10px;
-  border: 2px solid #181818;
 }
 header .actions .perfil #dropdown-toggle:checked ~ .dropdown-content a:hover {
-  background-color: rgb(255, 206.4, 102);
-  color: #181818;
+  background-color: rgb(255, 205.072, 97);
 }
 
-nav {
-  background-color: #fff;
-  padding: 10px;
-}
-nav ul {
-  list-style-type: none;
-  display: flex;
-  justify-content: center;
-  gap: 0px;
-}
-nav ul a {
-  text-decoration: none;
-  color: #181818;
-  font-weight: bold;
-  padding: 10px 20px;
-}
-nav ul a:hover {
-  color: #fff;
-  background-color: rgb(0, 65, 43.1465517241);
+hr {
+  border: 1px solid #fff;
 }
 
 main {
   padding: 40px 20px;
 }
-main .novedades {
+main .panel-control {
   background-color: #00744d;
+  box-shadow: #000 0px 0px 15px 5px;
   text-align: center;
   border-radius: 5px;
+  padding: 10px;
 }
-main .novedades .section-title {
+main .panel-control .section-header {
   padding: 10px;
   display: flex;
   align-items: end;
@@ -136,19 +117,19 @@ main .novedades .section-title {
   text-shadow: rgb(0, 39.5, 26.2198275862) 5px 5px 0px;
   color: #fff;
 }
-main .novedades .section-title i {
+main .panel-control .section-header i {
   font-size: 4.5em;
   margin-top: 10px;
   margin-bottom: 5px;
 }
-main .novedades .section-title h2 {
+main .panel-control .section-header h2 {
   font-size: 3em;
 }
-main .novedades hr {
+main .panel-control hr {
   color: #fff;
   margin: 0px 20px;
 }
-main .novedades article {
+main .panel-control article {
   margin: 20px;
   padding: 20px;
   border-radius: 5px;
@@ -156,28 +137,6 @@ main .novedades article {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-}
-main .novedades article img {
-  width: 200px;
-  border-radius: 5px;
-}
-main .novedades p {
-  color: #fff;
-  padding: 40px;
-  font-size: 2em;
-}
-main .novedades p a {
-  color: #00744d;
-  padding: 10px;
-  text-decoration: none;
-  background-color: #fff;
-  border-radius: 10px;
-  font-weight: bold;
-}
-main .novedades p a:hover {
-  background-color: rgb(0, 39.5, 26.2198275862);
-  color: #fff;
-  box-shadow: rgb(0, 14, 9.2931034483) 5px 5px 10px;
 }
 
 footer {
@@ -197,4 +156,4 @@ footer .copy i {
 footer .copy p {
   display: inline;
   color: #fff;
-}/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=panel_admin.css.map */

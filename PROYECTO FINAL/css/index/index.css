@@ -1,0 +1,205 @@
+@import url("https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Jura:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jura:wght@300..700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Jura";
+}
+
+body {
+  background-color: #181818;
+}
+
+header {
+  background-image: url("../../img/fondo-huellas.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 120px;
+}
+header .logo {
+  width: 400px;
+  margin: 10px;
+}
+header .searchbar {
+  display: none;
+  width: 700px;
+  height: 50px;
+  border: 0;
+  border-radius: 30px;
+  padding-left: 30px;
+  font-size: 1.2em;
+  margin: 0 40px;
+}
+header .actions {
+  color: #fff;
+  text-align: center;
+}
+header .actions div {
+  display: inline-block;
+  width: 80px;
+}
+header .actions i {
+  color: #fff;
+  font-size: 2.5em;
+  margin-bottom: 5px;
+}
+header .actions .perfil i {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-15px, 27px);
+  z-index: 1;
+}
+header .actions .perfil .dropdown-toggle {
+  position: relative;
+  width: 35px;
+  height: 40px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  z-index: 2;
+}
+header .actions .perfil .dropdown-content {
+  display: none;
+}
+header .actions .perfil #dropdown-toggle:checked ~ .dropdown-content {
+  display: flex;
+  position: absolute;
+  width: 180px;
+  top: 40;
+  right: 0;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: #000 0px 0px 15px 5px;
+}
+header .actions .perfil #dropdown-toggle:checked ~ .dropdown-content a {
+  color: #fff;
+  text-decoration: none;
+  text-shadow: #000 2px 2px 0px;
+  background-color: #faab00;
+  width: 100%;
+  padding: 20px;
+  font-weight: bold;
+}
+header .actions .perfil #dropdown-toggle:checked ~ .dropdown-content a:hover {
+  background-color: rgb(255, 205.072, 97);
+}
+
+nav {
+  background-color: #fff;
+  padding: 1px;
+}
+@media (min-width: 1201px) {
+  nav {
+    padding: 10px;
+  }
+}
+nav ul {
+  list-style-type: none;
+  gap: 0px;
+  display: none;
+}
+@media (min-width: 1201px) {
+  nav ul {
+    display: flex;
+    justify-content: center;
+  }
+}
+nav ul a {
+  text-decoration: none;
+  color: #181818;
+  font-weight: bold;
+  padding: 10px 20px;
+}
+nav ul a:hover {
+  color: #fff;
+  background-color: rgb(0, 65, 43.1465517241);
+}
+
+main {
+  padding: 40px 20px;
+}
+main .novedades {
+  background-color: #00744d;
+  box-shadow: #000 0px 0px 15px 5px;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px;
+}
+main .novedades .section-title {
+  padding: 10px;
+  display: flex;
+  align-items: end;
+  gap: 20px;
+  text-shadow: rgb(0, 39.5, 26.2198275862) 5px 5px 0px;
+  color: #fff;
+}
+main .novedades .section-title i {
+  font-size: 4.5em;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+main .novedades .section-title h2 {
+  font-size: 3em;
+}
+main .novedades hr {
+  color: #fff;
+  margin: 0px 20px;
+}
+main .novedades article {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgb(0, 65, 43.1465517241);
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+main .novedades article img {
+  width: 200px;
+  border-radius: 5px;
+}
+main .novedades p {
+  color: #fff;
+  padding: 40px;
+  font-size: 2em;
+}
+main .novedades p a {
+  color: #00744d;
+  padding: 10px;
+  text-decoration: none;
+  background-color: #fff;
+  border-radius: 10px;
+  font-weight: bold;
+}
+main .novedades p a:hover {
+  background-color: rgb(0, 39.5, 26.2198275862);
+  color: #fff;
+  box-shadow: rgb(0, 14, 9.2931034483) 5px 5px 10px;
+}
+
+footer {
+  width: 100%;
+  padding: 30px 15px;
+  background: linear-gradient(#464646 0%, #242424 20%, #242424 80%, #161616 100%);
+}
+footer .copy {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-shadow: #000000 3px 3px 10px;
+}
+footer .copy i {
+  font-size: 3em;
+}
+footer .copy p {
+  display: inline;
+  color: #fff;
+}/*# sourceMappingURL=index.css.map */

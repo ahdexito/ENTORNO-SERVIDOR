@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Jura:wght@300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jura:wght@300..700&display=swap');
 
-$color-1: #00ec9d;
-$color-2: #2e2e2e9f;
+$color-1: #00af75;
+$color-2: #000000cb;
 $color-3: #fff;
 
 * {
@@ -20,15 +20,15 @@ body {
 }
 
 main {
-    background-color: rgba(#000, 80%);
+    background-color: rgba(#ffffff, 10%);
     width: 60%;
-    min-width: 400px;
-    margin: 30px 0;
+    min-width: 450px;
+    margin: 30px;
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: #000 0px 0px 20px 20px;
+    box-shadow: #000 0px 0px 40px 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -99,16 +99,25 @@ main {
             font-size: 1.3em;
             font-weight: bold;
             cursor: pointer;
+
+            &:hover {
+                background-color: lighten($color-1, 10%);
+            }
         }
     }
 
     p {
         color: $color-3;
+        font-size: 1.2em;
 
         a {
             color: $color-1;
             font-weight: bold;
         }
+    }
+
+    .admin {
+        font-size: 0.8em;
     }
 
     .error {

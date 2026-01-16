@@ -4,7 +4,36 @@
 $color-1: #00744d;
 $color-2: #fff;
 $color-3: #181818;
-$color-4: #ffae00;
+$color-4: #faab00;
+
+// RESPONSIVE TAMAÑO FIJO
+@mixin respond-to($size) {
+    @if $size == small {
+        @media (max-width: 600px) {
+            @content;
+        }
+    }
+    @else if $size == medium {
+        @media (min-width: 601px) and (max-width: 1200px) {
+            @content;
+        }
+    }
+}
+// RESPONSIVE TAMAÑO MÍNIMO
+@mixin respond-to-min($size) {
+    @if $size == medium {
+        @media (min-width: 601px) {
+            @content;
+        }
+    }
+    @else if $size == large {
+        @media (min-width: 1201px) {
+            @content;
+        }
+    }
+}
+
+
 
 * {
     margin: 0;
@@ -18,7 +47,7 @@ body {
 }
 
 header {
-    background-image: url('../../img/fondo-huellas.jpg');
+    background-image: url('../../../img/fondo-huellas.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -45,7 +74,6 @@ header {
     }
 
     .actions {
-        width: 250px;
         color: $color-2;  
         text-align: center;
 
@@ -54,15 +82,14 @@ header {
             width: 80px;
         }
 
-        img {
-            width: 30px;
-            margin-bottom: 10px;
-        }
-
         i {
             color: $color-2;
             font-size: 2.5em;
             margin-bottom: 5px;
+        }
+
+        p {
+            margin-top: 50px;
         }
 
         .perfil {
@@ -102,17 +129,14 @@ header {
                 a {
                     color: $color-2;
                     text-decoration: none;
+                    text-shadow: #000 2px 2px 0px;
                     background-color: $color-4;
                     width: 100%;
                     padding: 20px;
                     font-weight: bold;
-                    border-radius: 10px;
-                    border: 2px solid $color-3;
 
                     &:hover {
-                        background-color: lighten($color-4, 20%);
-                        color: $color-3;
-                        
+                        background-color: lighten($color-4, 20%);                        
                     }
                 }
             }
@@ -121,40 +145,21 @@ header {
     }
 }
 
-nav {
-    background-color: $color-2;
-    padding: 10px;
-
-    ul {
-        list-style-type: none;
-        display: flex;
-        justify-content: center;
-        gap: 0px;
-
-        a {
-            text-decoration: none;
-            color: $color-3;
-            font-weight: bold;
-            padding: 10px 20px;
-
-            &:hover {
-                color: $color-2;
-                background-color: darken($color-1, 10%);
-            }
-        }
-    }
+hr {
+    border: 1px solid $color-2;
 }
-
 
 main {
     padding: 40px 20px;
 
-    .novedades {
+    .panel-control {
         background-color: $color-1;
+        box-shadow: #000 0px 0px 15px 5px;
         text-align: center;
         border-radius: 5px;
+        padding: 10px;
 
-        .section-title {
+        .section-header {
             padding: 10px;
             display: flex;
             align-items: end;
@@ -186,32 +191,6 @@ main {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-
-            img {
-                width: 200px;
-                border-radius: 5px;
-            }
-        }
-
-        p {
-            color: $color-2;
-            padding: 40px;
-            font-size: 2em;
-        
-            a {
-                color: $color-1;
-                padding: 10px;
-                text-decoration: none;
-                background-color: $color-2;
-                border-radius: 10px;
-                font-weight: bold;
-            }
-
-            a:hover {
-                background-color: darken($color-1, 15%);
-                color: $color-2;
-                box-shadow: darken($color-1, $amount: 20%) 5px 5px 10px;
-            }
         }
     }
 }

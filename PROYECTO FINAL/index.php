@@ -13,7 +13,7 @@
 </head>
 <body>
     <header>
-        <img src="img/logo-horizontal.png" alt="logotipo" class="logo">
+        </a><img src="img/logo-horizontal.png" alt="logotipo" class="logo">
 
         <input type="search" placeholder="Buscar aquí..." class="searchbar">
 
@@ -35,9 +35,9 @@
                     <input type="checkbox" id="dropdown-toggle" class="dropdown-toggle"></input>
                     <i class="fa-solid fa-user"></i>
 
-                    <ul class="dropdown-content">
+                    <div class="dropdown-content">
                         <a href="desconectar.php">Cerrar sesión</a>
-                    </ul>
+                    </div>
                     
                     <?php echo "<p>" . $_SESSION["nombre"] . "</p>";
                 }

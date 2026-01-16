@@ -1,0 +1,56 @@
+<?php
+    session_start();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/admin/panel_admin/panel_admin.css">
+    <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <img src="../img/logo-horizontal.png" alt="logotipo" class="logo">
+
+        <input type="search" placeholder="Buscar aquí..." class="searchbar">
+
+        <div class="actions">
+            <div class="perfil">
+                <a href="../index.php"><i class="fa-regular fa-circle-left"></i></a>
+                <p>Volver</p>
+            </div>
+        </div>
+    </header>
+    
+    <hr>
+
+    <main>
+        <section class="panel-control">
+            <div class="section-header">
+                <i class="fa-solid fa-gear"></i>
+                <h2>Panel de control</h2>
+            </div>
+
+            <hr>
+
+            <article>
+                
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <div class="copy">
+            <i class="fa-regular fa-copyright" style="color: #63E6BE;"></i>
+            <div>   
+                <p>Todos los derechos reservados.</p><br>
+                <p>Ángel García, 2026.</p>
+            </div>
+        </div>
+        
+    </footer>
+</body>
+</html>
