@@ -18,6 +18,10 @@
         <input type="search" placeholder="Buscar aquí..." class="searchbar">
 
         <div class="actions">
+            <div class="inicio">
+                <a href="../index.php"><i class="fa-regular fa-house"></i></a>
+                <p>Inicio</p>
+            </div>
             <div class="desconectar">
                 <a href="desconectar_admin.php"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
                 <p>Logout</p>
@@ -30,7 +34,7 @@
     <main>
         <section class="panel-control">
             <div class="section-header">
-                <i class="fa-solid fa-gear"></i>
+                <i class="fa-solid fa-gear engranaje"></i>
                 <h2>Panel de control</h2>
             </div>
 

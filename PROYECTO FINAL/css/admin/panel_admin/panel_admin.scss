@@ -42,8 +42,15 @@ $color-4: #faab00;
     font-family: 'Jura';
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     background-color: $color-3;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -95,30 +102,29 @@ hr {
 }
 
 main {
+    flex: 1;
     padding: 40px 20px;
 
     .panel-control {
         background-color: $color-1;
         box-shadow: #000 0px 0px 15px 5px;
-        text-align: center;
         border-radius: 5px;
-        padding: 10px;
-        margin: 0 auto;
-        width: 80%;
+        padding: 20px;
+        margin: auto;
+        width: 90%;
         min-width: 450px;
 
         .section-header {
-            padding: 10px;
+            padding: 10px 0px;
             display: flex;
-            align-items: end;
+            align-items: center;
             gap: 20px;
-            text-shadow: darken($color: $color-1, $amount: 15) 5px 5px 0px;
+            text-shadow: darken($color-1, 15%) 5px 5px 0px;
             color: $color-2;
 
-            i {
-                font-size: 4.5em;
-                margin-top: 10px;
-                margin-bottom: 5px;
+            .engranaje {
+                font-size: 3em;
+                margin-bottom: 5px 0px;
             }
 
             h2 {
@@ -193,6 +199,4 @@ footer {
             color: $color-2;
         }
     }
-
-    
 }

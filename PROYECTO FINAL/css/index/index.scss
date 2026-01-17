@@ -18,6 +18,11 @@ $color-4: #faab00;
             @content;
         }
     }
+    @else if $size == small_medium {
+        @media (max-width: 1200px) {
+            @content;
+        }
+    }
 }
 // RESPONSIVE TAMAÑO MÍNIMO
 @mixin respond-to-min($size) {
@@ -42,8 +47,15 @@ $color-4: #faab00;
     font-family: 'Jura';
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     background-color: $color-3;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -88,6 +100,12 @@ header {
             margin-bottom: 5px;
         }
 
+        .carrito, .favoritos {
+            @include respond-to(small_medium) {
+                display: none;
+            }
+        }
+
         .perfil {
             i {
                 position: absolute;
@@ -121,24 +139,24 @@ header {
                 display: flex;
                 flex-direction: column;
                 box-shadow: #000 0px 0px 15px 5px;
-                border: 2px solid darken($color-4, 10%);
+                border: 2px solid darken($color-4, $amount: 10);
 
                 a {
                     color: $color-2;
                     text-decoration: none;
-                    text-shadow: darken($color-4, 25%) 2px 2px 0px;
+                    text-shadow: darken($color-4, $amount: 25) 2px 2px 0px;
                     background-color: $color-4;
                     width: 100%;
                     padding: 20px;
                     font-weight: bold;
 
                     &:hover {
-                        background-color: lighten($color-4, 20%);                        
+                        background-color: lighten($color-4, $amount: 20);                        
                     }
                 }
 
                 hr {
-                    border: 1px solid darken($color-4, 10%);
+                    border: 1px solid darken($color-4, $amount: 10);
                 }
             }
         }
@@ -171,7 +189,7 @@ nav {
 
             &:hover {
                 color: $color-2;
-                background-color: darken($color-1, 10%);
+                background-color: darken($color-1, $amount: 10);
             }
         }
     }
@@ -179,51 +197,55 @@ nav {
 
 
 main {
+    flex: 1;
     padding: 40px 20px;
 
     .novedades {
         background-color: $color-1;
         box-shadow: #000 0px 0px 15px 5px;
-        text-align: center;
         border-radius: 5px;
-        padding: 10px;
+        padding: 20px;
+        margin: auto;
+        width: 95%;
+        display: flex;
+        flex-direction: column;
 
-        .section-title {
-            padding: 10px;
+        .section-header {
+            padding: 10px 0px;
             display: flex;
-            align-items: end;
+            align-items: center;
             gap: 20px;
-            text-shadow: darken($color: $color-1, $amount: 15) 5px 5px 0px;
+            text-shadow: darken($color-1, $amount: 15) 5px 5px 0px;
             color: $color-2;
 
-            i {
-                font-size: 4.5em;
-                margin-top: 10px;
-                margin-bottom: 5px;
+            .icono-fuego {
+                font-size: 3em;
+                margin: 5px 0px;
             }
 
             h2 {
-                font-size: 3em;
+                font-size: 2.5em;
             }
         }
 
         hr {
             color: $color-2;
-            margin: 0px 20px;
         }
 
         article {
-            margin: 20px;
-            padding: 20px;
+            margin: 20px 0;
+            padding: 10px;
             border-radius: 5px;
-            background-color: darken($color: $color-1, $amount: 10);
+            background-color: darken($color-1, $amount: 10);
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
+            width: 100%;
 
             img {
                 width: 200px;
                 border-radius: 5px;
+                margin: 5px;
             }
         }
 
@@ -231,6 +253,7 @@ main {
             color: $color-2;
             padding: 40px;
             font-size: 2em;
+            margin: auto;
         
             a {
                 color: $color-1;
@@ -242,9 +265,9 @@ main {
             }
 
             a:hover {
-                background-color: darken($color-1, 15%);
+                background-color: darken($color-1, $amount: 15);
                 color: $color-2;
-                box-shadow: darken($color-1, $amount: 20%) 5px 5px 10px;
+                box-shadow: darken($color-1, $amount: 20) 5px 5px 10px;
             }
         }
     }

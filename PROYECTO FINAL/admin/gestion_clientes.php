@@ -45,6 +45,10 @@
                 <a href="panel_admin.php"><i class="fa-regular fa-circle-left"></i></a>
                 <p>Atrás</p>
             </div>
+            <div class="inicio">
+                <a href="../index.php"><i class="fa-regular fa-house"></i></a>
+                <p>Inicio</p>
+            </div>
             <div class="desconectar">
                 <a href="desconectar_admin.php"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
                 <p>Logout</p>
@@ -88,55 +92,59 @@
         <section class="panel-control">
             <div class="section-header">
                 <i class="fa-solid fa-gear engranaje"></i>
-                <h2>Gestión de clientes</h2>
-                <a href="#">
-                    <i class="fa-regular fa-square-plus"></i>
-                    Nuevo cliente
-                </a>
+                <h2>Gestión clientes</h2>
             </div>
 
             <hr>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Email</th>
-                        <th>Género</th>
-                        <th>Dirección</th>
-                        <th>Cod. Postal</th>
-                        <th>Población</th>
-                        <th>Provincia</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($clientes as $c): ?>
-                    <tr>
-                        <td><?= $c['id'] ?></td>
-                        <td><?= htmlspecialchars($c['nombre']) ?></td>
-                        <td><?= htmlspecialchars($c['apellidos']) ?></td>
-                        <td><?= htmlspecialchars($c['email']) ?></td>
-                        <td><?= $c['genero'] ?></td>
-                        <td><?= htmlspecialchars($c['direccion']) ?></td>
-                        <td><?= $c['codpostal'] ?></td>
-                        <td><?= htmlspecialchars($c['poblacion']) ?></td>
-                        <td><?= htmlspecialchars($c['provincia']) ?></td>
-                        <td>
-                            <a href="edit_cli.php?edit=<?= $c['id'] ?>">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </a>
-                            <a href="?eliminar=<?= $c['id'] ?>" 
-                            onclick="return confirm('¿Eliminar cliente?');">
-                                <i class="fa-regular fa-trash-can"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+            <a href="ins_cliente.php" class="nuevo-cliente">
+                <i class="fa-regular fa-square-plus"></i>
+                Nuevo cliente
+            </a>
+
+            <div class="caja-overflow">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Acciones</th>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Email</th>
+                            <th>Género</th>
+                            <th>Dirección</th>
+                            <th>Cod. Postal</th>
+                            <th>Población</th>
+                            <th>Provincia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($clientes as $c): ?>
+                        <tr>
+                            <td>
+                                <a href="edit_cli.php?edit=<?= $c['id'] ?>">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </a>
+                                <a href="?eliminar=<?= $c['id'] ?>" 
+                                onclick="return confirm('¿Eliminar cliente?');">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </a>
+                            </td>
+                            <td><?= $c['id'] ?></td>
+                            <td><?= htmlspecialchars($c['nombre']) ?></td>
+                            <td><?= htmlspecialchars($c['apellidos']) ?></td>
+                            <td><?= htmlspecialchars($c['email']) ?></td>
+                            <td><?= $c['genero'] ?></td>
+                            <td><?= htmlspecialchars($c['direccion']) ?></td>
+                            <td><?= $c['codpostal'] ?></td>
+                            <td><?= htmlspecialchars($c['poblacion']) ?></td>
+                            <td><?= htmlspecialchars($c['provincia']) ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            
         </section>
     </main>
 

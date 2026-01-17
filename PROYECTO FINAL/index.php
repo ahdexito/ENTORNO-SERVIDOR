@@ -36,6 +36,12 @@
                     <i class="fa-solid fa-user"></i>
 
                     <div class="dropdown-content">
+
+                        <?php if (isset($_SESSION["rol"])) {
+                            echo "<a href='admin/panel_admin.php'>Panel admin</a>";
+                            echo "<hr>";
+                        }
+                        ?>
                         <a href="#">Ajustes</a>
                         <hr>
                         <a href="desconectar.php">Cerrar sesión</a>
@@ -67,7 +73,7 @@
 
     <main>
         <section class="novedades">
-            <div class="section-title">
+            <div class="section-header">
                 <i class="fa-solid fa-fire icono-fuego"></i>
                 <h2>Últimas novedades</h2>
             </div>

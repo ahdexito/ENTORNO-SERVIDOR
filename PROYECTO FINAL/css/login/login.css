@@ -8,13 +8,21 @@
   color: #fff;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   background-image: url("../../img/fondo-huellas.jpg");
   background-size: cover;
   background-position: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
+  flex: 1;
   background-color: rgba(255, 255, 255, 0.1);
   width: 60%;
   min-width: 450px;

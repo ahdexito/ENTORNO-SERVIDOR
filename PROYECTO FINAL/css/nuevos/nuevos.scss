@@ -13,8 +13,15 @@ $color-4: #fff;
     font-family: 'Jura';
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     background-color: $color-2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -78,4 +85,8 @@ nav {
             }
         }
     }
+}
+
+main {
+    flex: 1;
 }

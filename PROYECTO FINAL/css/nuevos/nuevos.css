@@ -7,8 +7,15 @@
   font-family: "Jura";
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   background-color: #3f3f3f;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -64,4 +71,8 @@ nav ul a {
 nav ul a:hover {
   color: #fff;
   background-color: #ad0b0b;
+}
+
+main {
+  flex: 1;
 }/*# sourceMappingURL=nuevos.css.map */
