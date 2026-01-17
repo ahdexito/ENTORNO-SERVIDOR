@@ -71,7 +71,7 @@ main .panel-control .section-header {
   text-shadow: rgb(0, 39.5, 26.2198275862) 5px 5px 0px;
   color: #fff;
 }
-main .panel-control .section-header .suma {
+main .panel-control .section-header .icono-editar {
   font-size: 3em;
   margin: 5px 0px;
 }
@@ -164,4 +164,4 @@ footer .copy i {
 footer .copy p {
   display: inline;
   color: #fff;
-}/*# sourceMappingURL=ins_cliente.css.map */
+}/*# sourceMappingURL=edit_cliente.css.map */

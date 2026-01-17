@@ -17,26 +17,23 @@
         $codpostal = htmlspecialchars(($_POST["codpostal"]));
         $poblacion = htmlspecialchars(($_POST["poblacion"]));
         $provincia = htmlspecialchars(($_POST["provincia"]));
+        $id = $_POST["id"];
 
-        $sql = "SELECT * FROM clientes WHERE email = '$email'";
-        $res = mysqli_query($conn, $sql);
-
-        if (mysqli_num_rows($res) > 0) {
-            header("location:gestion_clientes.php?cli=1");
-            die();
-        }
-
-        $sql = "INSERT INTO clientes(nombre, apellidos, genero, direccion, codpostal, poblacion, provincia, password, email)
-            VALUES ('$nombre', '$apellidos', '$genero', '$direccion', '$codpostal', '$poblacion', '$provincia', '$password', '$email');";
+        $sql = "UPDATE clientes SET nombre = '$nombre', apellidos = '$apellidos', 
+            genero = '$genero', direccion = '$direccion', codpostal = '$codpostal', 
+            poblacion = '$poblacion', provincia = '$provincia', email = '$email' 
+            WHERE id = $id";
 
         if (mysqli_query($conn, $sql)) {
-            header("location:gestion_clientes.php?cli=0");
+            header("location:gestion_clientes.php?upt=0");
         }
-
         else {
-            header("location:gestion_clientes.php?cli=2");
+            header("location:gestion_clientes.php?upt=1");
         }
-
+        die();
+    }
+    if(!isset($_GET["edit"])) {
+        header("location:gestion_clientes.php");
         die();
     }
 ?>
@@ -47,7 +44,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/admin/ins_cliente/ins_cliente.css">
+    <link rel="stylesheet" href="../css/admin/edit_cliente/edit_cliente.css">
     <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -73,67 +70,96 @@
     <hr>
 
     <main>
+        <?php
+            $id = intval($_GET["edit"]);
+            $sql = "SELECT * FROM clientes WHERE id = '$id'";
+            $res = mysqli_query($conn, $sql);
+
+            if (mysqli_num_rows($res) > 0) {
+                $cli = mysqli_fetch_assoc($res);
+            }
+            else {
+                header("location:gestion_clientes.php");
+                die();
+            }
+        ?>
+
         <section class="panel-control">
             <div class="section-header">
-                <i class="fa-regular fa-square-plus suma"></i>
-                <h2>Añadir cliente</h2>
+                <i class="fa-regular fa-pen-to-square icono-editar"></i>
+                <h2>Editar cliente</h2>
             </div>
 
             <hr>
 
             <form action="" method="POST">
                 <div class="form">
+                    <input type="hidden" name="id" value="<?= $id; ?>">
+                    <input type="hidden" name="accion" value="editar">
+
                     <div class="casilla">
                         <label for="nombre">Nombre</label>
-                        <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+                        <input type="text" name="nombre" id="nombre" value="<?= $cli["nombre"] ?>" required>
                     </div>
 
                     <div class="casilla">
                         <label for="apellidos">Apellidos</label>
-                        <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos">
+                        <input type="text" name="apellidos" id="apellidos" value="<?= $cli["apellidos"] ?>" required>
                     </div>
 
                     <div class="casilla">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" placeholder="Email">
-                    </div>
-
-                    <div class="casilla">
-                        <label for="password">Contraseña</label>
-                        <input type="password" name="password" id="password" placeholder="Contraseña">
+                        <input type="email" name="email" id="email" value="<?= $cli["email"] ?>" required>
                     </div>
 
                     <div class="casilla">
                         <label for="direccion">Dirección</label>
-                        <input type="text" name="direccion" id="direccion" placeholder="Dirección">
+                        <input type="text" name="direccion" id="direccion" value="<?= $cli["direccion"] ?>" required>
                     </div>
 
                     <div class="casilla">
                         <label for="codpostal">Código Postal</label>
-                        <input type="text" name="codpostal" id="codpostal" placeholder="Código Postal">
+                        <input type="text" name="codpostal" id="codpostal" value="<?= $cli["codpostal"] ?>" required>
                     </div>
 
                     <div class="casilla">
                         <label for="poblacion">Población</label>
-                        <input type="text" name="poblacion" id="poblacion" placeholder="Población">
+                        <input type="text" name="poblacion" id="poblacion" value="<?= $cli["poblacion"] ?>" required>
                     </div>
 
                     <div class="casilla">
                         <label for="provincia">Provincia</label>
-                        <input type="text" name="provincia" id="provincia" placeholder="Provincia">
+                        <input type="text" name="provincia" id="provincia" value="<?= $cli["provincia"] ?>" required>
                     </div>
 
                     <div class="casilla">
                         <label for="genero">Género</label>
                         <select name="genero" id="genero" class="genero" required>
-                            <option value="" selected disabled>Selecciona una opción</option>
-                            <option value="H">Hombre</option>
-                            <option value="M">Mujer</option>
-                            <option value="O">Otro</option>
+                            <?php
+                                $genero = $cli["genero"];
+                                if ($genero=='H') {
+                                    print'
+                                    <option value="H" selected>Hombre</option>
+                                    <option value="M">Mujer</option>
+                                    <option value="O">Otro</option>';
+                                }
+                                else if ($genero=='M') {
+                                    print'
+                                    <option value="H">Hombre</option>
+                                    <option value="M" selected>Mujer</option>
+                                    <option value="O">Otro</option>';
+                                }
+                                else if ($genero=='O') {
+                                    print'
+                                    <option value="H">Hombre</option>
+                                    <option value="M">Mujer</option>
+                                    <option value="O" selected>Otro</option>';
+                                }
+                            ?>
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="guardar">Guardar cliente</button>
+                <button type="submit" class="guardar">Actualizar cliente</button>
             </form>
         </section>
     </main>

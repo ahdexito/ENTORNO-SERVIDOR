@@ -8,7 +8,7 @@ CREATE TABLE clientes(
 	id INT(11) PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
     apellidos VARCHAR(100) NOT NULL,
-    genero CHAR(1) NOT NULL,
+    genero ENUM('H', 'M', 'O') NOT NULL,
     direccion VARCHAR(100) NOT NULL,
     codpostal CHAR(5) NOT NULL,
     poblacion VARCHAR(100) NOT NULL,

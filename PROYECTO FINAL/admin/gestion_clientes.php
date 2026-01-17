@@ -62,28 +62,28 @@
         // ALERTAS DE CREACIÓN DE CLIENTE
         if (isset($_GET["cli"])) {
             if ($_GET["cli"] == 0) { // registro correcto
-                echo '<div class="alert alert-success">✅ Cliente insertado
-                correctamente.</div>';
+                echo '<div class="alerta"><i class="fa-solid fa-circle-check check"></i>
+                Cliente insertado correctamente.</div>';
             }
             if ($_GET["cli"] == 1) { // email ya existe
-                echo '<div class="alert alert-warning">⚠️ El email ya existe
-                en la base de datos.</div>';
+                echo '<div class="alerta"><i class="fa-solid fa-circle-exclamation exclamacion"></i>
+                El email ya existe en la base de datos.</div>';
             }
             if ($_GET["cli"] == 2) { // problema al insertar
-                echo '<div class="alert alert-danger">❌ Ha ocurrido un error
-                al intentar insertar el usuario.</div>';
+                echo '<div class="alerta"><i class="fa-solid fa-circle-xmark xmark"></i>
+                Ha ocurrido un error al intentar insertar el usuario.</div>';
             }
         }
 
         // ALERTAS DE MODIFICACIÓN DE CLIENTE
         if (isset($_GET["upt"])) {
             if ($_GET["upt"] == 0) { // actualización correcta
-                echo '<div class="alert alert-success">✅ Cliente actualizado
-                correctamente.</div>';
+                echo '<div class="alerta"><i class="fa-solid fa-circle-check check"></i>
+                Cliente actualizado correctamente.</div>';
             }
             if ($_GET["upt"] == 1) { // problema al actualizar
-                echo '<div class="alert alert-danger">❌ Ha ocurrido un error
-                al intentar actualizar el usuario.</div>';
+                echo '<div class="alerta"><i class="fa-solid fa-circle-xmark xmark"></i>
+                Ha ocurrido un error al intentar actualizar el usuario.</div>';
             }
         }
     ?>
@@ -122,7 +122,7 @@
                         <?php foreach ($clientes as $c): ?>
                         <tr>
                             <td>
-                                <a href="edit_cli.php?edit=<?= $c['id'] ?>">
+                                <a href="edit_cliente.php?edit=<?= $c['id'] ?>">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </a>
                                 <a href="?eliminar=<?= $c['id'] ?>" 

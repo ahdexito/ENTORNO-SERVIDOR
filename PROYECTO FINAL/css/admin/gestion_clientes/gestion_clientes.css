@@ -59,6 +59,28 @@ hr {
   border: 1px solid #fff;
 }
 
+.alerta {
+  background: linear-gradient(#fff 0%, #fff 80%, #181818 100%);
+  padding: 5px;
+  padding-bottom: 20px;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.alerta i {
+  font-size: 2em;
+}
+.alerta .check {
+  color: #06bb00;
+}
+.alerta .exclamacion {
+  color: #faab00;
+}
+.alerta .xmark {
+  color: #db0700;
+}
+
 main {
   flex: 1;
   padding: 40px 20px;
