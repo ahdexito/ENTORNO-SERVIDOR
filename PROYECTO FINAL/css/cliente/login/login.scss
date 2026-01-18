@@ -1,16 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Jura:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jura:wght@300..700&display=swap');
+/* ===========================
+    IMPORTS
+=========================== */
+@import '../../comun';
+@import '../../mixins';
+@import '../../variables';
 
-$color-1: #00af75;
-$color-2: #000000cb;
-$color-3: #fff;
+
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Jura;
-    color: $color-3;
+    color: $color-light;
 }
 
 html, body {
@@ -18,7 +20,7 @@ html, body {
 }
 
 body {
-    background-image: url('../../img/fondo-huellas.jpg');
+    background-image: url('../../../img/fondo-huellas.jpg');
     background-size: cover;
     background-position: center;
     min-height: 100vh;
@@ -31,7 +33,7 @@ body {
 
 main {
     flex: 1;
-    background-color: rgba(#ffffff, 10%);
+    background-color: rgba($color-light, 10%);
     width: 60%;
     min-width: 450px;
     margin: 30px;
@@ -54,8 +56,8 @@ main {
     h1 {
         font-size: 2em;
         padding: 10px;
-        color: $color-3;
-        text-shadow: darken($color-3, 80%) 3px 3px 0px;
+        color: $color-light;
+        text-shadow: darken($color-light, 80%) 3px 3px 0px;
         border-radius: 20px;
     }
 
@@ -65,7 +67,7 @@ main {
         justify-content: space-between;
         flex-direction: column;
         flex-wrap: nowrap;
-        background-color: $color-2;
+        background-color: $color-dark;
         border-radius: 10px;
         width: 100%;
         max-width: 800px;
@@ -73,15 +75,15 @@ main {
         padding: 30px;
 
         h2 {
-            color: $color-3;
-            text-shadow: darken($color-2, 20%) 3px 3px 0px;
+            color: $color-light;
+            text-shadow: darken($color-dark, 20%) 3px 3px 0px;
             font-size: 1.5em;
         }
 
         hr {
             width: 50%;
             max-width: 560px;
-            border: darken($color-3, 40%) 2px solid;
+            border: darken($color-light, 40%) 2px solid;
             border-radius: 10px;
         }
 
@@ -92,7 +94,7 @@ main {
             border-radius: 30px;
             border: 0;
             padding: 10px 30px;
-            box-shadow: darken($color-2, 15%) 5px 5px 5px 3px;
+            box-shadow: darken($color-dark, 15%) 5px 5px 5px 3px;
         }
 
         input {
@@ -104,32 +106,32 @@ main {
         button {
             @include input;
 
-            color: $color-3;
-            background-color: $color-1;
+            color: $color-light;
+            background-color: $color-primary;
             padding: 15px;
             font-size: 1.3em;
             font-weight: bold;
             cursor: pointer;
 
             &:hover {
-                background-color: lighten($color-1, 10%);
+                background-color: lighten($color-primary, 10%);
             }
         }
     }
 
     p {
-        color: $color-3;
+        color: $color-light;
         font-size: 1.2em;
 
         a {
-            color: $color-1;
+            color: $color-primary;
             font-weight: bold;
         }
     }
 
     .error {
-        background-color: #ff9900c2;
-        color: #fff;
+        background-color: $color-accent;
+        color: $color-light;
         padding: 10px 40px;
         border-radius: 20px;
         font-weight: bold;

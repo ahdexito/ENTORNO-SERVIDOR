@@ -1,0 +1,16 @@
+footer {
+    width: 100%;
+    padding: 30px 15px;
+    background: linear-gradient(#464646 0%, #242424 20%, #242424 80%, #161616 100%);
+
+    .copy {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-shadow: 3px 3px 10px #000;
+
+        i { font-size: 3em; }
+
+        p { color: $color-light; }
+    }
+}

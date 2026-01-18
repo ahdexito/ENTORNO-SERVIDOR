@@ -1,74 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Jura:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jura:wght@300..700&display=swap');
-
-$color-1: #00744d;
-$color-2: #fff;
-$color-3: #181818;
-$color-4: #faab00;
-
-// RESPONSIVE POR TAMAÑOS
-@mixin respond-to($size) {
-    @if $size == small {
-        @media (max-width: 600px) {
-            @content;
-        }
-    }
-    @else if $size == medium {
-        @media (min-width: 601px) and (max-width: 1200px) {
-            @content;
-        }
-    }
-    @else if $size == large {
-        @media (min-width: 1201px) {
-            @content;
-        }
-    }
-    @else if $size == small_medium {
-        @media (max-width: 1200px) {
-            @content;
-        }
-    }
-    @else if $size == medium_large {
-        @media (min-width: 601px) {
-            @content;
-        }
-    }   
-}
+/* ===========================
+    IMPORTS
+=========================== */
+@import '../../comun';
+@import '../../mixins';
+@import '../../variables';
+@import '../../footer';
 
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Jura';
-}
-
-html, body {
-    height: 100%;
-}
-
-body {
-    background-color: $color-3;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    &::-webkit-scrollbar {
-        display: none;
-    }
-}
 
 header {
     position: fixed;
+    top: 0;
     width: 100%;
-    background-image: url('../../img/fondo-huellas.jpg');
+    background-image: url('../../../img/fondo-huellas.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 120px;
-    border-bottom: 2px solid $color-2;
+    border-bottom: 2px solid $color-light;
 
     .logo {
         width: 400px;
@@ -89,7 +40,7 @@ header {
     }
 
     .actions {
-        color: $color-2;  
+        color: $color-light;  
         text-align: center;
 
         div {
@@ -98,7 +49,7 @@ header {
         }
 
         i {
-            color: $color-2;
+            color: $color-light;
             font-size: 2.5em;
             margin-bottom: 5px;
         }
@@ -142,24 +93,24 @@ header {
                 display: flex;
                 flex-direction: column;
                 box-shadow: #000 0px 0px 15px 5px;
-                border: 2px solid darken($color-4, $amount: 10);
+                border: 2px solid darken($color-accent, $amount: 10);
 
                 a {
-                    color: $color-2;
+                    color: $color-light;
                     text-decoration: none;
-                    text-shadow: darken($color-4, $amount: 25) 2px 2px 0px;
-                    background-color: $color-4;
+                    text-shadow: darken($color-accent, $amount: 25) 2px 2px 0px;
+                    background-color: $color-accent;
                     width: 100%;
                     padding: 20px;
                     font-weight: bold;
 
                     &:hover {
-                        background-color: lighten($color-4, $amount: 20);                        
+                        background-color: lighten($color-accent, $amount: 20);                        
                     }
                 }
 
                 hr {
-                    border: 1px solid darken($color-4, $amount: 10);
+                    border: 1px solid darken($color-accent, $amount: 10);
                 }
             }
         }
@@ -168,9 +119,8 @@ header {
 }
 
 nav {
-    background-color: $color-2;
+    background-color: $color-light;
     padding: 10px;
-    margin-top: 120px;
     width: 100%;
     @include respond-to(small_medium) {
         display: none;
@@ -188,13 +138,13 @@ nav {
 
         a {
             text-decoration: none;
-            color: $color-3;
+            color: $color-dark;
             font-weight: bold;
             padding: 10px 20px;
 
             &:hover {
-                color: $color-2;
-                background-color: darken($color-1, $amount: 10);
+                color: $color-light;
+                background-color: darken($color-primary, $amount: 10);
             }
         }
     }
@@ -204,13 +154,12 @@ nav {
 main {
     flex: 1;
     padding: 20px;
-    margin-top: 120px;
     @include respond-to(large) {
         margin-top: 0;
     }
 
     .novedades {
-        background-color: $color-1;
+        background-color: $color-primary;
         box-shadow: #000 0px 0px 15px 5px;
         border-radius: 5px;
         min-width: 450px;
@@ -224,8 +173,8 @@ main {
             display: flex;
             align-items: center;
             gap: 20px;
-            text-shadow: darken($color-1, $amount: 15) 5px 5px 0px;
-            color: $color-2;
+            text-shadow: darken($color-primary, $amount: 15) 5px 5px 0px;
+            color: $color-light;
 
             .icono-fuego {
                 font-size: 3em;
@@ -238,14 +187,14 @@ main {
         }
 
         hr {
-            border: 1px solid $color-2;
+            border: 1px solid $color-light;
         }
 
         article {
             margin: 20px 0;
             padding: 10px;
             border-radius: 5px;
-            background-color: darken($color-1, $amount: 10);
+            background-color: darken($color-primary, $amount: 10);
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
@@ -259,49 +208,25 @@ main {
         }
 
         p {
-            color: $color-2;
+            color: $color-light;
             padding: 40px;
             font-size: 2em;
             margin: auto;
         
             a {
-                color: $color-1;
+                color: $color-primary;
                 padding: 10px;
                 text-decoration: none;
-                background-color: $color-2;
+                background-color: $color-light;
                 border-radius: 10px;
                 font-weight: bold;
             }
 
             a:hover {
-                background-color: darken($color-1, $amount: 15);
-                color: $color-2;
-                box-shadow: darken($color-1, $amount: 20) 5px 5px 10px;
+                background-color: darken($color-primary, $amount: 15);
+                color: $color-light;
+                box-shadow: darken($color-primary, $amount: 20) 5px 5px 10px;
             }
         }
     }
-}
-
-footer {
-    width: 100%;
-    padding: 30px 15px;
-    background: linear-gradient(#464646 0%, #242424 20%, #242424 80%, #161616 100%);
-
-    .copy {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        text-shadow: #000000 3px 3px 10px;
-
-        i {
-            font-size: 3em;
-        }
-
-        p {
-            display: inline;
-            color: $color-2;
-        }
-    }
-
-    
 }

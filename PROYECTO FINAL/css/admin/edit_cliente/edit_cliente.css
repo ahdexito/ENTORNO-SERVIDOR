@@ -1,17 +1,8 @@
 /* ===========================
-    FUENTES
+    IMPORTS
 =========================== */
 @import url("https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
-/* ===========================
-    VARIABLES
-=========================== */
-/* ===========================
-    RESPONSIVE
-=========================== */
-/* ===========================
-    BASE
-=========================== */
 * {
   margin: 0;
   padding: 0;
@@ -24,6 +15,7 @@ html, body {
 }
 
 body {
+  padding-top: 120px;
   min-height: 100vh;
   background-color: #181818;
   display: flex;
@@ -37,11 +29,30 @@ hr {
   border: 1px solid #fff;
 }
 
+footer {
+  width: 100%;
+  padding: 30px 15px;
+  background: linear-gradient(#464646 0%, #242424 20%, #242424 80%, #161616 100%);
+}
+footer .copy {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-shadow: 3px 3px 10px #000;
+}
+footer .copy i {
+  font-size: 3em;
+}
+footer .copy p {
+  color: #fff;
+}
+
 /* ===========================
     HEADER
 =========================== */
 header {
   position: fixed;
+  top: 0;
   width: 100%;
   height: 120px;
   display: flex;
@@ -73,7 +84,6 @@ header .actions i {
 =========================== */
 main {
   flex: 1;
-  margin-top: 120px;
   padding: 20px;
 }
 main .panel-control {
@@ -163,26 +173,5 @@ main .panel-control form .guardar {
   display: block;
   cursor: pointer;
   background-color: #faab00;
-  color: #fff;
-}
-
-/* ===========================
-    FOOTER
-=========================== */
-footer {
-  width: 100%;
-  padding: 30px 15px;
-  background: linear-gradient(#464646 0%, #242424 20%, #242424 80%, #161616 100%);
-}
-footer .copy {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-shadow: 3px 3px 10px #000;
-}
-footer .copy i {
-  font-size: 3em;
-}
-footer .copy p {
   color: #fff;
 }/*# sourceMappingURL=edit_cliente.css.map */
