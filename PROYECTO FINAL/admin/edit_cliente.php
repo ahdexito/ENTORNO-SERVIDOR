@@ -67,8 +67,6 @@
         </div>
     </header>
     
-    <hr>
-
     <main>
         <?php
             $id = intval($_GET["edit"]);

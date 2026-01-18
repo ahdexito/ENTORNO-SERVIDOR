@@ -1,10 +1,22 @@
-@import url("https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Jura:wght@300..700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jura:wght@300..700&display=swap");
+/* ===========================
+    FUENTES
+=========================== */
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+/* ===========================
+    VARIABLES
+=========================== */
+/* ===========================
+    MIXINS
+=========================== */
+/* ===========================
+    BASE
+=========================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Jura";
+  font-family: "Jura", sans-serif;
 }
 
 html, body {
@@ -12,61 +24,62 @@ html, body {
 }
 
 body {
-  background-color: #181818;
   min-height: 100vh;
+  background-color: #181818;
   display: flex;
   flex-direction: column;
 }
-
-header {
-  background-image: url("../../../img/fondo-huellas.jpg");
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 120px;
-}
-header .logo {
-  width: 400px;
-  margin: 10px;
-}
-header .searchbar {
+body::-webkit-scrollbar {
   display: none;
-  width: 700px;
-  height: 50px;
-  border: 0;
-  border-radius: 30px;
-  padding-left: 30px;
-  font-size: 1.2em;
-  margin: 0 40px;
-}
-header .actions {
-  color: #fff;
-  text-align: center;
-}
-header .actions div {
-  display: inline-block;
-  width: 80px;
-}
-header .actions i {
-  color: #fff;
-  font-size: 2.5em;
-  margin-bottom: 5px;
 }
 
 hr {
   border: 1px solid #fff;
 }
 
+/* ===========================
+    HEADER
+=========================== */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: url("../../../img/fondo-huellas.jpg") center/cover;
+  border-bottom: 2px solid #fff;
+  z-index: 10;
+}
+header .logo {
+  width: 400px;
+  margin: 10px;
+}
+header .actions {
+  text-align: center;
+  color: #fff;
+}
+header .actions div {
+  display: inline-block;
+  width: 80px;
+}
+header .actions i {
+  font-size: 2.5em;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+/* ===========================
+    ALERTAS
+=========================== */
 .alerta {
-  background: linear-gradient(#fff 0%, #fff 80%, #181818 100%);
-  padding: 5px;
-  padding-bottom: 20px;
-  font-size: 1.5em;
   display: flex;
   align-items: center;
   gap: 20px;
+  padding: 5px 5px 20px;
+  font-size: 1.5em;
+  background: linear-gradient(#fff 0%, #fff 80%, #181818 100%);
 }
 .alerta i {
   font-size: 2em;
@@ -81,50 +94,49 @@ hr {
   color: #db0700;
 }
 
+/* ===========================
+    MAIN
+=========================== */
 main {
   flex: 1;
-  padding: 40px 20px;
+  margin-top: 120px;
+  padding: 20px;
 }
 main .panel-control {
-  background-color: #00744d;
-  box-shadow: #000 0px 0px 15px 5px;
-  border-radius: 5px;
-  padding: 20px;
-  margin: auto;
   width: 90%;
+  margin: auto;
+  padding: 20px;
+  background-color: #00744d;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 5px #000;
   display: flex;
   flex-direction: column;
 }
 main .panel-control .section-header {
-  padding: 10px 0px;
   display: flex;
   align-items: center;
   gap: 20px;
-  text-shadow: rgb(0, 39.5, 26.2198275862) 5px 5px 0px;
+  padding: 10px 0;
   color: #fff;
+  text-shadow: rgb(0, 39.5, 26.2198275862) 5px 5px 0;
 }
-main .panel-control .section-header .engranaje {
+main .panel-control .section-header .icono-clientes {
   font-size: 3em;
-  margin: 5px 0px;
 }
 main .panel-control .section-header h2 {
   font-size: 2.5em;
 }
-main .panel-control hr {
-  color: #fff;
-}
 main .panel-control .nuevo-cliente {
-  background-color: #fff;
-  color: #00744d;
+  width: 100%;
+  margin: 20px auto 0;
+  padding: 10px;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
   text-decoration: none;
   border-radius: 10px;
-  font-size: 2em;
-  padding: 10px;
-  text-shadow: none;
-  font-weight: bold;
-  margin: 0 auto;
-  margin-top: 20px;
-  width: 100%;
+  background-color: #fff;
+  color: #00744d;
 }
 main .panel-control .nuevo-cliente:hover {
   background-color: rgb(0, 39.5, 26.2198275862);
@@ -132,20 +144,20 @@ main .panel-control .nuevo-cliente:hover {
   box-shadow: rgb(0, 14, 9.2931034483) 5px 5px 10px;
 }
 main .panel-control .caja-overflow {
+  margin-top: 20px;
   overflow-x: auto;
   border: 3px solid #fff;
-  margin-top: 20px;
 }
 main .panel-control .caja-overflow table {
-  background-color: #fff;
-  color: #fff;
-  border-collapse: collapse;
   width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
   text-align: center;
 }
 main .panel-control .caja-overflow table thead {
-  background-color: #131313;
   height: 80px;
+  background-color: #131313;
+  color: #fff;
 }
 main .panel-control .caja-overflow table tbody tr:nth-child(odd) {
   background-color: #acacac;
@@ -156,22 +168,27 @@ main .panel-control .caja-overflow table tbody tr:nth-child(odd) i {
 }
 main .panel-control .caja-overflow table tbody tr:nth-child(even) {
   background-color: #464646;
+  color: #fff;
 }
 main .panel-control .caja-overflow table tbody tr:nth-child(even) i {
   color: #fff;
 }
-main .panel-control .caja-overflow table td, main .panel-control .caja-overflow table th {
-  font-family: "Inter";
+main .panel-control .caja-overflow table th, main .panel-control .caja-overflow table td {
   padding: 10px;
+  font-family: "Inter", sans-serif;
   font-size: 1.2em;
+  white-space: nowrap;
 }
-main .panel-control .caja-overflow table td a, main .panel-control .caja-overflow table th a {
+main .panel-control .caja-overflow table th a, main .panel-control .caja-overflow table td a {
   text-decoration: none;
 }
-main .panel-control .caja-overflow table td a i, main .panel-control .caja-overflow table th a i {
+main .panel-control .caja-overflow table th a i, main .panel-control .caja-overflow table td a i {
   font-size: 1.5em;
 }
 
+/* ===========================
+    FOOTER
+=========================== */
 footer {
   width: 100%;
   padding: 30px 15px;
@@ -181,12 +198,11 @@ footer .copy {
   display: flex;
   align-items: center;
   gap: 10px;
-  text-shadow: #000000 3px 3px 10px;
+  text-shadow: 3px 3px 10px #000;
 }
 footer .copy i {
   font-size: 3em;
 }
 footer .copy p {
-  display: inline;
   color: #fff;
 }/*# sourceMappingURL=gestion_clientes.css.map */

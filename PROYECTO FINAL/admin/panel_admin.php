@@ -15,8 +15,6 @@
     <header>
         <img src="../img/logo-horizontal.png" alt="logotipo" class="logo">
 
-        <input type="search" placeholder="Buscar aquí..." class="searchbar">
-
         <div class="actions">
             <div class="inicio">
                 <a href="../index.php"><i class="fa-regular fa-house"></i></a>
@@ -29,8 +27,6 @@
         </div>
     </header>
     
-    <hr>
-
     <main>
         <section class="panel-control">
             <div class="section-header">

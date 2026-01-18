@@ -38,6 +38,8 @@
     <header>
         <img src="../img/logo-horizontal.png" alt="logotipo" class="logo">
 
+        <input type="search" placeholder="Buscar aquí..." class="searchbar">
+
         <div class="actions">
             <div class="atras">
                 <a href="panel_admin.php"><i class="fa-regular fa-circle-left"></i></a>
@@ -54,6 +56,8 @@
         </div>
     </header>
     
+    <hr>
+
     <?php
         // ALERTAS DE CREACIÓN DE CLIENTE
         if (isset($_GET["cli"])) {
@@ -87,7 +91,7 @@
     <main>
         <section class="panel-control">
             <div class="section-header">
-                <i class="fa-solid fa-users icono-clientes"></i>
+                <i class="fa-solid fa-gear engranaje"></i>
                 <h2>Gestión clientes</h2>
             </div>
 
@@ -95,7 +99,7 @@
 
             <a href="ins_cliente.php" class="nuevo-cliente">
                 <i class="fa-regular fa-square-plus"></i>
-                Insertar cliente
+                Nuevo cliente
             </a>
 
             <div class="caja-overflow">

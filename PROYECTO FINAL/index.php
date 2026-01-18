@@ -88,6 +88,7 @@
                 <a href="#"><img src="img/chaqueta.png" alt=""></a>
                 <a href="#"><img src="img/chaqueta.png" alt=""></a>
                 <a href="#"><img src="img/botas.png" alt=""></a>
+                <a href="#"><img src="img/pantalon.png" alt=""></a>
             </article>
 
             <hr>

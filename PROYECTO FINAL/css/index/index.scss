@@ -6,7 +6,7 @@ $color-2: #fff;
 $color-3: #181818;
 $color-4: #faab00;
 
-// RESPONSIVE TAMAÑO FIJO
+// RESPONSIVE POR TAMAÑOS
 @mixin respond-to($size) {
     @if $size == small {
         @media (max-width: 600px) {
@@ -18,26 +18,22 @@ $color-4: #faab00;
             @content;
         }
     }
-    @else if $size == small_medium {
-        @media (max-width: 1200px) {
-            @content;
-        }
-    }
-}
-// RESPONSIVE TAMAÑO MÍNIMO
-@mixin respond-to-min($size) {
-    @if $size == medium {
-        @media (min-width: 601px) {
-            @content;
-        }
-    }
     @else if $size == large {
         @media (min-width: 1201px) {
             @content;
         }
     }
+    @else if $size == small_medium {
+        @media (max-width: 1200px) {
+            @content;
+        }
+    }
+    @else if $size == medium_large {
+        @media (min-width: 601px) {
+            @content;
+        }
+    }   
 }
-
 
 
 * {
@@ -56,9 +52,15 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 header {
+    position: fixed;
+    width: 100%;
     background-image: url('../../img/fondo-huellas.jpg');
     background-size: cover;
     background-position: center;
@@ -66,6 +68,7 @@ header {
     align-items: center;
     justify-content: space-between;
     height: 120px;
+    border-bottom: 2px solid $color-2;
 
     .logo {
         width: 400px;
@@ -166,9 +169,11 @@ header {
 
 nav {
     background-color: $color-2;
-    padding: 1px;
-    @include respond-to-min(large) {
-        padding: 10px;
+    padding: 10px;
+    margin-top: 120px;
+    width: 100%;
+    @include respond-to(small_medium) {
+        display: none;
     }
 
     ul {
@@ -176,7 +181,7 @@ nav {
         list-style-type: none;
         gap: 0px;
         display: none;
-        @include respond-to-min(large) {
+        @include respond-to(large) {
             display: flex;
             justify-content: center;
         }
@@ -198,15 +203,19 @@ nav {
 
 main {
     flex: 1;
-    padding: 40px 20px;
+    padding: 20px;
+    margin-top: 120px;
+    @include respond-to(large) {
+        margin-top: 0;
+    }
 
     .novedades {
         background-color: $color-1;
         box-shadow: #000 0px 0px 15px 5px;
         border-radius: 5px;
+        min-width: 450px;
         padding: 20px;
         margin: auto;
-        width: 95%;
         display: flex;
         flex-direction: column;
 
@@ -229,7 +238,7 @@ main {
         }
 
         hr {
-            color: $color-2;
+            border: 1px solid $color-2;
         }
 
         article {

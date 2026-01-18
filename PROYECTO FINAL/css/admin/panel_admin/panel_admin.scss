@@ -1,177 +1,149 @@
+/* ===========================
+    FUENTES
+=========================== */
 @import url('https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Jura:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jura:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-$color-1: #00744d;
-$color-2: #fff;
-$color-3: #181818;
-$color-4: #faab00;
+/* ===========================
+    VARIABLES
+=========================== */
+$color-primary: #00744d;
+$color-light: #fff;
+$color-dark: #181818;
+$color-accent: #faab00;
 
-// RESPONSIVE TAMAÑO FIJO
+/* ===========================
+    MIXINS
+=========================== */
 @mixin respond-to($size) {
-    @if $size == small {
-        @media (max-width: 600px) {
-            @content;
-        }
-    }
-    @else if $size == medium {
-        @media (min-width: 601px) and (max-width: 1200px) {
-            @content;
-        }
-    }
-}
-// RESPONSIVE TAMAÑO MÍNIMO
-@mixin respond-to-min($size) {
-    @if $size == medium {
-        @media (min-width: 601px) {
-            @content;
-        }
-    }
-    @else if $size == large {
-        @media (min-width: 1201px) {
-            @content;
-        }
-    }
+    @if $size == small { @media (max-width: 600px) { @content; } }
+    @else if $size == medium { @media (min-width: 601px) and (max-width: 1200px) { @content; } }
+    @else if $size == large { @media (min-width: 1201px) { @content; } }
 }
 
-
-
+/* ===========================
+    BASE
+=========================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Jura';
+    font-family: 'Jura', sans-serif;
 }
 
-html, body {
-    height: 100%;
-}
+html, body { height: 100%; }
 
 body {
-    background-color: $color-3;
     min-height: 100vh;
+    background-color: $color-dark;
     display: flex;
     flex-direction: column;
+
+    &::-webkit-scrollbar { display: none; }
 }
 
+hr { border: 1px solid $color-light; }
+
+/* ===========================
+    HEADER
+=========================== */
 header {
-    background-image: url('../../../img/fondo-huellas.jpg');
-    background-size: cover;
-    background-position: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 120px;
+    background: url('../../../img/fondo-huellas.jpg') center / cover;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 120px;
+    border-bottom: 2px solid $color-light;
+    z-index: 10;
 
     .logo {
         width: 400px;
         margin: 10px;
     }
 
-    .searchbar {
-        
-        display: none;
-
-        width: 700px;
-        height: 50px;
-        border: 0;
-        border-radius: 30px;
-        padding-left: 30px;
-        font-size: 1.2em;
-        margin: 0 40px;
-    }
-
     .actions {
-        color: $color-2;  
+        color: $color-light;
         text-align: center;
 
         div {
             display: inline-block;
             width: 80px;
         }
-
+            
         i {
-            color: $color-2;
+            color: $color-light;
             font-size: 2.5em;
             margin-bottom: 5px;
         }
     }
 }
 
-hr {
-    border: 1px solid $color-2;
-}
-
+/* ===========================
+    MAIN
+=========================== */
 main {
     flex: 1;
-    padding: 40px 20px;
+    margin-top: 120px;
+    padding: 20px;
 
     .panel-control {
-        background-color: $color-1;
-        box-shadow: #000 0px 0px 15px 5px;
-        border-radius: 5px;
-        padding: 20px;
-        margin: auto;
         width: 90%;
         min-width: 450px;
+        margin: auto;
+        padding: 20px;
+        background-color: $color-primary;
+        border-radius: 5px;
+        box-shadow: 0 0 15px 5px #000;
 
         .section-header {
-            padding: 10px 0px;
             display: flex;
             align-items: center;
             gap: 20px;
-            text-shadow: darken($color-1, 15%) 5px 5px 0px;
-            color: $color-2;
+            padding: 10px 0;
+            color: $color-light;
+            text-shadow: darken($color-primary, 15%) 5px 5px 0;
 
-            .engranaje {
-                font-size: 3em;
-                margin-bottom: 5px 0px;
-            }
+            .engranaje { font-size: 3em; }
 
-            h2 {
-                font-size: 3em;
-            }
-        }
-
-        hr {
-            color: $color-2;
-            margin: 0px 20px;
+            h2 { font-size: 2.5em; }
         }
 
         article {
-            margin: 20px;
+            margin-top: 20px;
             padding: 5px;
+            background-color: darken($color-primary, 10%);
             border-radius: 5px;
-            background-color: darken($color-1, 10%);
             display: flex;
-            justify-content: space-around;
             flex-wrap: wrap;
+            justify-content: space-around;
 
             .boton {
-                background-color: $color-2;
                 width: 300px;
                 height: 300px;
                 margin: 20px;
+                background-color: $color-light;
+                color: darken($color-primary, 10%);
                 border-radius: 20px;
                 display: flex;
+                flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                flex-direction: column;
                 gap: 20px;
-                color: darken($color-1, 10%);
-                cursor: pointer;
-                text-decoration: none;
                 font-size: 2em;
                 font-weight: bold;
-                text-shadow: darken($color-2, 25%) 3px 3px 0px;
-                box-shadow: darken($color-1, 15%) 7px 7px 0px;
-                transition: font-size 0.2s ease;
+                text-decoration: none;
+                cursor: pointer;
+                text-shadow: darken($color-light, 25%) 3px 3px 0;
+                box-shadow: darken($color-primary, 15%) 7px 7px 0;
+                transition: font-size 0.2s ease, color 0.2s ease;
 
-                i {
-                    font-size: 3em;
-                }
+                i { font-size: 3em; }
 
                 &:hover {
-                    color: $color-1;
+                    color: $color-primary;
                     font-size: 2.7em;
                 }
             }
@@ -179,6 +151,9 @@ main {
     }
 }
 
+/* ===========================
+    FOOTER
+=========================== */
 footer {
     width: 100%;
     padding: 30px 15px;
@@ -188,15 +163,10 @@ footer {
         display: flex;
         align-items: center;
         gap: 10px;
-        text-shadow: #000000 3px 3px 10px;
+        text-shadow: 3px 3px 10px #000;
 
-        i {
-            font-size: 3em;
-        }
+        i { font-size: 3em; }
 
-        p {
-            display: inline;
-            color: $color-2;
-        }
+        p { color: $color-light; }
     }
 }

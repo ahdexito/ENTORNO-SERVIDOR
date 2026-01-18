@@ -70,13 +70,11 @@
         </div>
     </header>
     
-    <hr>
-
     <main>
         <section class="panel-control">
             <div class="section-header">
                 <i class="fa-regular fa-square-plus suma"></i>
-                <h2>Añadir cliente</h2>
+                <h2>Insertar cliente</h2>
             </div>
 
             <hr>

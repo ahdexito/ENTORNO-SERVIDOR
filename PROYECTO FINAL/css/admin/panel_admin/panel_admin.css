@@ -1,10 +1,22 @@
+/* ===========================
+    FUENTES
+=========================== */
 @import url("https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Jura:wght@300..700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Gugi&family=Imprima&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jura:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+/* ===========================
+    VARIABLES
+=========================== */
+/* ===========================
+    MIXINS
+=========================== */
+/* ===========================
+    BASE
+=========================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Jura";
+  font-family: "Jura", sans-serif;
 }
 
 html, body {
@@ -12,34 +24,37 @@ html, body {
 }
 
 body {
-  background-color: #181818;
   min-height: 100vh;
+  background-color: #181818;
   display: flex;
   flex-direction: column;
 }
+body::-webkit-scrollbar {
+  display: none;
+}
 
+hr {
+  border: 1px solid #fff;
+}
+
+/* ===========================
+    HEADER
+=========================== */
 header {
-  background-image: url("../../../img/fondo-huellas.jpg");
-  background-size: cover;
-  background-position: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 120px;
+  background: url("../../../img/fondo-huellas.jpg") center/cover;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 120px;
+  border-bottom: 2px solid #fff;
+  z-index: 10;
 }
 header .logo {
   width: 400px;
   margin: 10px;
-}
-header .searchbar {
-  display: none;
-  width: 700px;
-  height: 50px;
-  border: 0;
-  border-radius: 30px;
-  padding-left: 30px;
-  font-size: 1.2em;
-  margin: 0 40px;
 }
 header .actions {
   color: #fff;
@@ -55,70 +70,65 @@ header .actions i {
   margin-bottom: 5px;
 }
 
-hr {
-  border: 1px solid #fff;
-}
-
+/* ===========================
+    MAIN
+=========================== */
 main {
   flex: 1;
-  padding: 40px 20px;
+  margin-top: 120px;
+  padding: 20px;
 }
 main .panel-control {
-  background-color: #00744d;
-  box-shadow: #000 0px 0px 15px 5px;
-  border-radius: 5px;
-  padding: 20px;
-  margin: auto;
   width: 90%;
   min-width: 450px;
+  margin: auto;
+  padding: 20px;
+  background-color: #00744d;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 5px #000;
 }
 main .panel-control .section-header {
-  padding: 10px 0px;
   display: flex;
   align-items: center;
   gap: 20px;
-  text-shadow: rgb(0, 39.5, 26.2198275862) 5px 5px 0px;
+  padding: 10px 0;
   color: #fff;
+  text-shadow: rgb(0, 39.5, 26.2198275862) 5px 5px 0;
 }
 main .panel-control .section-header .engranaje {
   font-size: 3em;
-  margin-bottom: 5px 0px;
 }
 main .panel-control .section-header h2 {
-  font-size: 3em;
-}
-main .panel-control hr {
-  color: #fff;
-  margin: 0px 20px;
+  font-size: 2.5em;
 }
 main .panel-control article {
-  margin: 20px;
+  margin-top: 20px;
   padding: 5px;
-  border-radius: 5px;
   background-color: rgb(0, 65, 43.1465517241);
+  border-radius: 5px;
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 main .panel-control article .boton {
-  background-color: #fff;
   width: 300px;
   height: 300px;
   margin: 20px;
+  background-color: #fff;
+  color: rgb(0, 65, 43.1465517241);
   border-radius: 20px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   gap: 20px;
-  color: rgb(0, 65, 43.1465517241);
-  cursor: pointer;
-  text-decoration: none;
   font-size: 2em;
   font-weight: bold;
-  text-shadow: rgb(191.25, 191.25, 191.25) 3px 3px 0px;
-  box-shadow: rgb(0, 39.5, 26.2198275862) 7px 7px 0px;
-  transition: font-size 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
+  text-shadow: rgb(191.25, 191.25, 191.25) 3px 3px 0;
+  box-shadow: rgb(0, 39.5, 26.2198275862) 7px 7px 0;
+  transition: font-size 0.2s ease, color 0.2s ease;
 }
 main .panel-control article .boton i {
   font-size: 3em;
@@ -128,6 +138,9 @@ main .panel-control article .boton:hover {
   font-size: 2.7em;
 }
 
+/* ===========================
+    FOOTER
+=========================== */
 footer {
   width: 100%;
   padding: 30px 15px;
@@ -137,12 +150,11 @@ footer .copy {
   display: flex;
   align-items: center;
   gap: 10px;
-  text-shadow: #000000 3px 3px 10px;
+  text-shadow: 3px 3px 10px #000;
 }
 footer .copy i {
   font-size: 3em;
 }
 footer .copy p {
-  display: inline;
   color: #fff;
 }/*# sourceMappingURL=panel_admin.css.map */

@@ -16,9 +16,15 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+body::-webkit-scrollbar {
+  display: none;
 }
 
 header {
+  position: fixed;
+  width: 100%;
   background-image: url("../../img/fondo-huellas.jpg");
   background-size: cover;
   background-position: center;
@@ -26,6 +32,7 @@ header {
   align-items: center;
   justify-content: space-between;
   height: 120px;
+  border-bottom: 2px solid #fff;
 }
 header .logo {
   width: 400px;
@@ -110,11 +117,13 @@ header .actions .perfil #dropdown-toggle:checked ~ .dropdown-content hr {
 
 nav {
   background-color: #fff;
-  padding: 1px;
+  padding: 10px;
+  margin-top: 120px;
+  width: 100%;
 }
-@media (min-width: 1201px) {
+@media (max-width: 1200px) {
   nav {
-    padding: 10px;
+    display: none;
   }
 }
 nav ul {
@@ -141,15 +150,21 @@ nav ul a:hover {
 
 main {
   flex: 1;
-  padding: 40px 20px;
+  padding: 20px;
+  margin-top: 120px;
+}
+@media (min-width: 1201px) {
+  main {
+    margin-top: 0;
+  }
 }
 main .novedades {
   background-color: #00744d;
   box-shadow: #000 0px 0px 15px 5px;
   border-radius: 5px;
+  min-width: 450px;
   padding: 20px;
   margin: auto;
-  width: 95%;
   display: flex;
   flex-direction: column;
 }
@@ -169,7 +184,7 @@ main .novedades .section-header h2 {
   font-size: 2.5em;
 }
 main .novedades hr {
-  color: #fff;
+  border: 1px solid #fff;
 }
 main .novedades article {
   margin: 20px 0;

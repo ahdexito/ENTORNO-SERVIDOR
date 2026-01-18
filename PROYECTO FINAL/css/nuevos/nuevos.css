@@ -17,6 +17,9 @@ body {
   display: flex;
   flex-direction: column;
 }
+body::-webkit-scrollbar {
+  display: none;
+}
 
 header {
   background-color: #202020;
