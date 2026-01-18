@@ -63,7 +63,6 @@ header {
   align-items: center;
   justify-content: space-between;
   border-bottom: 2px solid #fff;
-  z-index: 10;
 }
 header .logo {
   width: 400px;
@@ -94,7 +93,7 @@ main .panel-control {
   width: 90%;
   margin: auto;
   padding: 20px;
-  background-color: #00744d;
+  background-color: #028a5d;
   border-radius: 5px;
   box-shadow: 0 0 15px 5px #000;
   display: flex;
@@ -106,9 +105,9 @@ main .panel-control .section-header {
   gap: 20px;
   padding: 10px 0;
   color: #fff;
-  text-shadow: rgb(0, 39.5, 26.2198275862) 5px 5px 0;
+  text-shadow: rgb(0.9071428571, 62.5928571429, 42.1821428571) 5px 5px 0;
 }
-main .panel-control .section-header .suma {
+main .panel-control .section-header .icono-header {
   font-size: 3em;
 }
 main .panel-control .section-header h2 {
@@ -117,7 +116,7 @@ main .panel-control .section-header h2 {
 main .panel-control form {
   margin-top: 20px;
   padding: 20px;
-  background-color: rgb(0, 65, 43.1465517241);
+  background-color: rgb(1.2714285714, 87.7285714286, 59.1214285714);
   border-radius: 10px;
 }
 main .panel-control form .form {
@@ -137,7 +136,7 @@ main .panel-control form .form .casilla {
   padding: 0;
   display: flex;
   flex-direction: column;
-  background-color: rgb(0, 39.5, 26.2198275862);
+  background-color: rgb(0.9071428571, 62.5928571429, 42.1821428571);
   color: #fff;
 }
 main .panel-control form .form .casilla label {
@@ -152,7 +151,7 @@ main .panel-control form .form .casilla input {
   border-radius: 15px;
   font-size: 1.2em;
 }
-main .panel-control form .form .casilla .genero {
+main .panel-control form .form .casilla .seleccion {
   width: 100%;
   min-width: 300px;
   max-width: 400px;
@@ -178,4 +177,5 @@ main .panel-control form .guardar {
   cursor: pointer;
   background-color: #faab00;
   color: #fff;
+  font-weight: bold;
 }/*# sourceMappingURL=ins_cliente.css.map */

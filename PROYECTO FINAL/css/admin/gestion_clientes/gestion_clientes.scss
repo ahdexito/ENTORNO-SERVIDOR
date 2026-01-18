@@ -1,9 +1,9 @@
 /* ===========================
     IMPORTS
 =========================== */
+@import '../../variables';
 @import '../../comun';
 @import '../../mixins';
-@import '../../variables';
 @import '../../footer';
 
 /* ===========================
@@ -86,12 +86,12 @@ main {
             color: $color-light;
             text-shadow: darken($color-primary, 15%) 5px 5px 0;
 
-            .icono-clientes { font-size: 3em; }
+            .icono-header { font-size: 3em; }
 
             h2 { font-size: 2.5em; }
         }
 
-        .nuevo-cliente {
+        .boton-insertar {
             width: 100%;
             margin: 20px auto 0;
             padding: 10px;
@@ -148,6 +148,7 @@ main {
                     font-family: 'Inter', sans-serif;
                     font-size: 1.2em;
                     white-space: nowrap;
+                    border: 1px solid #000;
 
                     a {
                         text-decoration: none;

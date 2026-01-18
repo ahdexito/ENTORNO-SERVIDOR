@@ -1,1 +1,208 @@
-/*# sourceMappingURL=gestion_productos.css.map */
+/* ===========================
+    IMPORTS
+=========================== */
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Jura", sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  padding-top: 120px;
+  min-height: 100vh;
+  background-color: #181818;
+  display: flex;
+  flex-direction: column;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+
+hr {
+  border: 1px solid #fff;
+}
+
+footer {
+  width: 100%;
+  padding: 30px 15px;
+  background: linear-gradient(#464646 0%, #242424 20%, #242424 80%, #161616 100%);
+}
+footer .copy {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-shadow: 3px 3px 10px #000;
+}
+footer .copy i {
+  font-size: 3em;
+}
+footer .copy p {
+  color: #fff;
+}
+
+/* ===========================
+    HEADER
+=========================== */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: url("../../../img/fondo-huellas.jpg") center/cover;
+  border-bottom: 2px solid #fff;
+  z-index: 10;
+}
+header .logo {
+  width: 400px;
+  margin: 10px;
+}
+header .actions {
+  text-align: center;
+  color: #fff;
+}
+header .actions div {
+  display: inline-block;
+  width: 80px;
+}
+header .actions i {
+  font-size: 2.5em;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+/* ===========================
+    ALERTAS
+=========================== */
+.alerta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 5px 5px 20px;
+  font-size: 1.5em;
+  background: linear-gradient(#fff 0%, #fff 80%, #181818 100%);
+}
+.alerta i {
+  font-size: 2em;
+}
+.alerta .check {
+  color: #06bb00;
+}
+.alerta .exclamacion {
+  color: #faab00;
+}
+.alerta .xmark {
+  color: #db0700;
+}
+
+/* ===========================
+    MAIN
+=========================== */
+main {
+  flex: 1;
+  padding: 20px;
+}
+main .panel-control {
+  width: 90%;
+  margin: auto;
+  padding: 20px;
+  background-color: #028a5d;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 5px #000;
+  display: flex;
+  flex-direction: column;
+}
+main .panel-control .section-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 0;
+  color: #fff;
+  text-shadow: rgb(0.9071428571, 62.5928571429, 42.1821428571) 5px 5px 0;
+}
+main .panel-control .section-header .icono-header {
+  font-size: 3em;
+}
+main .panel-control .section-header h2 {
+  font-size: 2.5em;
+}
+main .panel-control .boton-insertar {
+  width: 100%;
+  margin: 20px auto 0;
+  padding: 10px;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #028a5d;
+}
+main .panel-control .boton-insertar:hover {
+  background-color: rgb(0.9071428571, 62.5928571429, 42.1821428571);
+  color: #fff;
+  box-shadow: rgb(0.5428571429, 37.4571428571, 25.2428571429) 5px 5px 10px;
+}
+main .panel-control .caja-overflow {
+  margin-top: 20px;
+  overflow-x: auto;
+  border: 3px solid #fff;
+}
+main .panel-control .caja-overflow table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  text-align: center;
+}
+main .panel-control .caja-overflow table thead {
+  height: 80px;
+  background-color: #131313;
+  color: #fff;
+}
+main .panel-control .caja-overflow table tbody tr:nth-child(odd) {
+  background-color: #acacac;
+  color: #000;
+}
+main .panel-control .caja-overflow table tbody tr:nth-child(odd) i {
+  color: #000;
+}
+main .panel-control .caja-overflow table tbody tr:nth-child(even) {
+  background-color: #464646;
+  color: #fff;
+}
+main .panel-control .caja-overflow table tbody tr:nth-child(even) i {
+  color: #fff;
+}
+main .panel-control .caja-overflow table th, main .panel-control .caja-overflow table td {
+  padding: 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.2em;
+  border: 1px solid #000;
+}
+main .panel-control .caja-overflow table th a, main .panel-control .caja-overflow table td a {
+  text-decoration: none;
+}
+main .panel-control .caja-overflow table th a i, main .panel-control .caja-overflow table td a i {
+  font-size: 1.5em;
+}
+main .panel-control .caja-overflow table th img, main .panel-control .caja-overflow table td img {
+  width: 150px;
+  border-radius: 10px;
+  box-shadow: #000 0px 0px 15px 3px;
+}
+main .panel-control .caja-overflow table td:not(:first-child) {
+  height: 170px;
+  font-size: 1.5em;
+}
+main .panel-control .caja-overflow table th:last-child, main .panel-control .caja-overflow table td:last-child {
+  text-align: left;
+}/*# sourceMappingURL=gestion_productos.css.map */

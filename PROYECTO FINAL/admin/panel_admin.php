@@ -45,7 +45,7 @@
                     <i class="fa-solid fa-users"></i>
                     <p>Clientes</p>
                 </a>
-                <a href="#" class="boton">
+                <a href="gestion_productos.php" class="boton">
                     <i class="fa-solid fa-shop"></i>
                     <p>Productos</p>
                 </a>

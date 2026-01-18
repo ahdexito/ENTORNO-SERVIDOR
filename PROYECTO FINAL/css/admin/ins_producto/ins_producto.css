@@ -48,6 +48,9 @@ footer .copy p {
 }
 
 /* ===========================
+    MIXINS
+=========================== */
+/* ===========================
     HEADER
 =========================== */
 header {
@@ -55,28 +58,29 @@ header {
   top: 0;
   width: 100%;
   height: 120px;
+  background: url("../../../img/fondo-huellas.jpg") center/cover;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: url("../../../img/fondo-huellas.jpg") center/cover;
   border-bottom: 2px solid #fff;
+  z-index: 10;
 }
 header .logo {
   width: 400px;
   margin: 10px;
 }
 header .actions {
-  color: #fff;
   text-align: center;
+  color: #fff;
 }
 header .actions div {
   display: inline-block;
   width: 80px;
 }
 header .actions i {
-  color: #fff;
   font-size: 2.5em;
   margin-bottom: 5px;
+  color: #fff;
 }
 
 /* ===========================
@@ -90,7 +94,7 @@ main .panel-control {
   width: 90%;
   margin: auto;
   padding: 20px;
-  background-color: #00744d;
+  background-color: #028a5d;
   border-radius: 5px;
   box-shadow: 0 0 15px 5px #000;
   display: flex;
@@ -102,9 +106,9 @@ main .panel-control .section-header {
   gap: 20px;
   padding: 10px 0;
   color: #fff;
-  text-shadow: rgb(0, 39.5, 26.2198275862) 5px 5px 0;
+  text-shadow: rgb(0.9071428571, 62.5928571429, 42.1821428571) 5px 5px 0;
 }
-main .panel-control .section-header .icono-editar {
+main .panel-control .section-header .icono-header {
   font-size: 3em;
 }
 main .panel-control .section-header h2 {
@@ -113,7 +117,7 @@ main .panel-control .section-header h2 {
 main .panel-control form {
   margin-top: 20px;
   padding: 20px;
-  background-color: rgb(0, 65, 43.1465517241);
+  background-color: rgb(1.2714285714, 87.7285714286, 59.1214285714);
   border-radius: 10px;
 }
 main .panel-control form .form {
@@ -131,10 +135,10 @@ main .panel-control form .form .casilla {
   border-radius: 15px;
   font-size: 1.2em;
   padding: 0;
-  color: #fff;
   display: flex;
   flex-direction: column;
-  background-color: rgb(0, 39.5, 26.2198275862);
+  background-color: rgb(0.9071428571, 62.5928571429, 42.1821428571);
+  color: #fff;
 }
 main .panel-control form .form .casilla label {
   margin: 10px 20px;
@@ -148,7 +152,7 @@ main .panel-control form .form .casilla input {
   border-radius: 15px;
   font-size: 1.2em;
 }
-main .panel-control form .form .casilla .genero {
+main .panel-control form .form .casilla .seleccion {
   width: 100%;
   min-width: 300px;
   max-width: 400px;
@@ -161,6 +165,38 @@ main .panel-control form .form .casilla .genero {
      -moz-appearance: none;
           appearance: none;
 }
+main .panel-control form .form .casilla .area-texto {
+  width: 100%;
+  min-width: 300px;
+  max-width: 400px;
+  padding: 15px 20px;
+  border: 0;
+  border-radius: 15px;
+  font-size: 1.2em;
+  height: 57px;
+}
+main .panel-control form .form .casilla .check-background {
+  background-color: #3af734;
+  height: 57px;
+  border-radius: 15px;
+}
+main .panel-control form .form .casilla .check-background .check {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  min-width: none;
+  max-width: none;
+  width: 100%;
+  height: 100%;
+}
+main .panel-control form .form .casilla .imagen {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  color: #000;
+  font-size: 0.7em;
+  font-weight: bold;
+}
 main .panel-control form .guardar {
   width: 100%;
   min-width: 300px;
@@ -169,9 +205,10 @@ main .panel-control form .guardar {
   border: 0;
   border-radius: 15px;
   font-size: 1.2em;
-  margin: 50px auto 0;
   display: block;
+  margin: 50px auto 0;
   cursor: pointer;
   background-color: #faab00;
   color: #fff;
-}/*# sourceMappingURL=edit_cliente.css.map */
+  font-weight: bold;
+}/*# sourceMappingURL=ins_producto.css.map */

@@ -73,7 +73,7 @@
     <main>
         <section class="panel-control">
             <div class="section-header">
-                <i class="fa-regular fa-square-plus suma"></i>
+                <i class="fa-regular fa-square-plus icono-header"></i>
                 <h2>Insertar cliente</h2>
             </div>
 
@@ -83,7 +83,7 @@
                 <div class="form">
                     <div class="casilla">
                         <label for="nombre">Nombre</label>
-                        <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+                        <input type="text" name="nombre" id="nombre" placeholder="Nombre del cliente">
                     </div>
 
                     <div class="casilla">
@@ -123,7 +123,7 @@
 
                     <div class="casilla">
                         <label for="genero">Género</label>
-                        <select name="genero" id="genero" class="genero" required>
+                        <select name="genero" id="genero" class="seleccion" required>
                             <option value="" selected disabled>Selecciona una opción</option>
                             <option value="H">Hombre</option>
                             <option value="M">Mujer</option>
@@ -131,6 +131,7 @@
                         </select>
                     </div>
                 </div>
+
                 <button type="submit" class="guardar">Guardar cliente</button>
             </form>
         </section>

@@ -44,7 +44,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/admin/edit_cliente/edit_cliente.css">
+    <link rel="stylesheet" href="../css/admin/ins_cliente/ins_cliente.css">
     <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -84,7 +84,7 @@
 
         <section class="panel-control">
             <div class="section-header">
-                <i class="fa-regular fa-pen-to-square icono-editar"></i>
+                <i class="fa-regular fa-pen-to-square icono-header"></i>
                 <h2>Editar cliente</h2>
             </div>
 
@@ -132,7 +132,7 @@
 
                     <div class="casilla">
                         <label for="genero">Género</label>
-                        <select name="genero" id="genero" class="genero" required>
+                        <select name="genero" id="genero" class="seleccion" required>
                             <?php
                                 $genero = $cli["genero"];
                                 if ($genero=='H') {

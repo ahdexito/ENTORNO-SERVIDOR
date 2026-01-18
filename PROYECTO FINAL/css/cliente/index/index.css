@@ -170,7 +170,7 @@ nav ul a {
 }
 nav ul a:hover {
   color: #fff;
-  background-color: rgb(0, 65, 43.1465517241);
+  background-color: rgb(1.2714285714, 87.7285714286, 59.1214285714);
 }
 
 main {
@@ -183,7 +183,7 @@ main {
   }
 }
 main .novedades {
-  background-color: #00744d;
+  background-color: #028a5d;
   box-shadow: #000 0px 0px 15px 5px;
   border-radius: 5px;
   min-width: 450px;
@@ -197,7 +197,7 @@ main .novedades .section-header {
   display: flex;
   align-items: center;
   gap: 20px;
-  text-shadow: rgb(0, 39.5, 26.2198275862) 5px 5px 0px;
+  text-shadow: rgb(0.9071428571, 62.5928571429, 42.1821428571) 5px 5px 0px;
   color: #fff;
 }
 main .novedades .section-header .icono-fuego {
@@ -214,7 +214,7 @@ main .novedades article {
   margin: 20px 0;
   padding: 10px;
   border-radius: 5px;
-  background-color: rgb(0, 65, 43.1465517241);
+  background-color: rgb(1.2714285714, 87.7285714286, 59.1214285714);
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -232,7 +232,7 @@ main .novedades p {
   margin: auto;
 }
 main .novedades p a {
-  color: #00744d;
+  color: #028a5d;
   padding: 10px;
   text-decoration: none;
   background-color: #fff;
@@ -240,7 +240,7 @@ main .novedades p a {
   font-weight: bold;
 }
 main .novedades p a:hover {
-  background-color: rgb(0, 39.5, 26.2198275862);
+  background-color: rgb(0.9071428571, 62.5928571429, 42.1821428571);
   color: #fff;
-  box-shadow: rgb(0, 14, 9.2931034483) 5px 5px 10px;
+  box-shadow: rgb(0.5428571429, 37.4571428571, 25.2428571429) 5px 5px 10px;
 }/*# sourceMappingURL=index.css.map */

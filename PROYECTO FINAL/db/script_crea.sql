@@ -34,6 +34,7 @@ CREATE TABLE productos(
     activo TINYINT(1) NOT NULL,
     marca VARCHAR(50),
     material VARCHAR(50) DEFAULT 'piel',
+    talla VARCHAR(10),
     medidas VARCHAR(200),
     genero ENUM('hombre', 'mujer', 'unisex') NOT NULL DEFAULT 'hombre',
     tipo ENUM('chaqueta', 'pantalon', 'mono', 'botas', 'guantes') NOT NULL,

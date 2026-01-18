@@ -1,10 +1,23 @@
 /* ===========================
     IMPORTS
 =========================== */
+@import '../../variables';
 @import '../../comun';
 @import '../../mixins';
-@import '../../variables';
 @import '../../footer';
+
+/* ===========================
+    MIXINS
+=========================== */
+@mixin input-base {
+    width: 100%;
+    min-width: 300px;
+    max-width: 400px;
+    padding: 15px 20px;
+    border: 0;
+    border-radius: 15px;
+    font-size: 1.2em;
+}
 
 /* ===========================
     HEADER
@@ -14,11 +27,12 @@ header {
     top: 0;
     width: 100%;
     height: 120px;
+    background: url('../../../img/fondo-huellas.jpg') center / cover;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: url('../../../img/fondo-huellas.jpg') center / cover;
     border-bottom: 2px solid $color-light;
+    z-index: 10;
 
     .logo {
         width: 400px;
@@ -26,15 +40,18 @@ header {
     }
 
     .actions {
-        color: $color-light;
         text-align: center;
+        color: $color-light;
 
-        div { display: inline-block; width: 80px; }
+        div {
+            display: inline-block;
+            width: 80px;
+        }
 
         i {
-            color: $color-light;
             font-size: 2.5em;
             margin-bottom: 5px;
+            color: $color-light;
         }
     }
 }
@@ -64,7 +81,7 @@ main {
             color: $color-light;
             text-shadow: darken($color-primary, 15%) 5px 5px 0;
 
-            .icono-editar { font-size: 3em; }
+            .icono-header { font-size: 3em; }
 
             h2 { font-size: 2.5em; }
         }
@@ -75,16 +92,6 @@ main {
             background-color: darken($color-primary, 10%);
             border-radius: 10px;
 
-            @mixin input {
-                width: 100%;
-                min-width: 300px;
-                max-width: 400px;
-                padding: 15px 20px;
-                border: 0;
-                border-radius: 15px;
-                font-size: 1.2em;
-            }
-
             .form {
                 display: flex;
                 flex-wrap: wrap;
@@ -92,32 +99,61 @@ main {
                 gap: 20px;
 
                 .casilla {
-                    @include input;
+                    @include input-base;
                     padding: 0;
-                    color: $color-light;
                     display: flex;
                     flex-direction: column;
                     background-color: darken($color-primary, 15%);
+                    color: $color-light;
 
                     label { margin: 10px 20px; }
 
-                    input { @include input; }
+                    input { @include input-base; }
 
-                    .genero {
-                        @include input;
+                    .seleccion {
+                        @include input-base;
                         background-color: $color-light;
                         appearance: none;
+                    }
+
+                    .area-texto {
+                        @include input-base;
+                        height: 57px;
+                    }
+
+                    .check-background {
+                        background-color: #3af734;
+                        height: 57px;
+                        border-radius: 15px;
+
+                        .check {
+                            appearance: none;
+                            min-width: none;
+                            max-width: none;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+
+                    .imagen {
+                        width: 100%;
+                        height: 100%;
+                        background-color: $color-light;
+                        color: #000;
+                        font-size: 0.7em;
+                        font-weight: bold;
                     }
                 }
             }
 
             .guardar {
-                @include input;
-                margin: 50px auto 0;
+                @include input-base;
                 display: block;
+                margin: 50px auto 0;
                 cursor: pointer;
                 background-color: $color-accent;
                 color: $color-light;
+                font-weight: bold;
             }
         }
     }

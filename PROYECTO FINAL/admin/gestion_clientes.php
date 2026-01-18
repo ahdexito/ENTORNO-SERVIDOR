@@ -87,13 +87,13 @@
     <main>
         <section class="panel-control">
             <div class="section-header">
-                <i class="fa-solid fa-users icono-clientes"></i>
-                <h2>Gestión clientes</h2>
+                <i class="fa-solid fa-users icono-header"></i>
+                <h2>Gestión de clientes</h2>
             </div>
 
             <hr>
 
-            <a href="ins_cliente.php" class="nuevo-cliente">
+            <a href="ins_cliente.php" class="boton-insertar">
                 <i class="fa-regular fa-square-plus"></i>
                 Insertar cliente
             </a>

@@ -1,127 +1,114 @@
 /* ===========================
     IMPORTS
 =========================== */
-@import '../../comun';
-@import '../../mixins';
 @import '../../variables';
+@import '../../mixins';
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
 
+$color-dark: #000000a4;
 
-
+/* ===========================
+    BASE
+=========================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Jura;
-    color: $color-light;
-}
-
-html, body {
-    height: 100%;
+    font-family: 'Jura', sans-serif;
 }
 
 body {
-    background-image: url('../../../img/fondo-huellas.jpg');
-    background-size: cover;
-    background-position: center;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    &::-webkit-scrollbar {
-        display: none;
-    }
+    background: url('../../../img/fondo-huellas.jpg') center / cover;
+
+    &::-webkit-scrollbar { display: none; }
 }
 
+/* ===========================
+    MAIN
+=========================== */
 main {
-    flex: 1;
-    background-color: rgba($color-light, 10%);
     width: 60%;
     min-width: 450px;
-    margin: 30px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 30px auto;
     padding: 20px;
+    background-color: rgba($color-light, 10%);
     border-radius: 5px;
-    box-shadow: #000 0px 0px 40px 40px;
+    box-shadow: 0 0 40px 40px #000;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     gap: 30px;
     text-align: center;
 
-    img {
-        width: 400px;
-    }
+    img { width: 400px; }
 
     h1 {
-        font-size: 2em;
         padding: 10px;
+        font-size: 2em;
         color: $color-light;
-        text-shadow: darken($color-light, 80%) 3px 3px 0px;
         border-radius: 20px;
+        text-shadow: darken($color-light, 80%) 3px 3px 0;
     }
 
     form {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        background-color: $color-dark;
-        border-radius: 10px;
         width: 100%;
         max-width: 800px;
         height: 330px;
         padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $color-dark;
+        border-radius: 10px;
 
         h2 {
-            color: $color-light;
-            text-shadow: darken($color-dark, 20%) 3px 3px 0px;
             font-size: 1.5em;
+            color: $color-light;
+            text-shadow: darken($color-dark, 20%) 3px 3px 0;
         }
 
         hr {
             width: 50%;
             max-width: 560px;
-            border: darken($color-light, 40%) 2px solid;
+            border: 2px solid darken($color-light, 40%);
             border-radius: 10px;
         }
 
         @mixin input {
-            color: #000;
             width: 100%;
             max-width: 600px;
-            border-radius: 30px;
-            border: 0;
             padding: 10px 30px;
+            border: 0;
+            border-radius: 30px;
+            color: #000;
             box-shadow: darken($color-dark, 15%) 5px 5px 5px 3px;
         }
 
         input {
             @include input;
-
             font-size: 1.2em;
         }
 
         button {
             @include input;
-
-            color: $color-light;
-            background-color: $color-primary;
             padding: 15px;
             font-size: 1.3em;
             font-weight: bold;
             cursor: pointer;
+            color: $color-light;
+            background-color: $color-primary;
 
-            &:hover {
-                background-color: lighten($color-primary, 10%);
-            }
+            &:hover { background-color: lighten($color-primary, 10%); }
         }
     }
 
     p {
-        color: $color-light;
         font-size: 1.2em;
+        color: $color-light;
 
         a {
             color: $color-primary;
@@ -130,16 +117,13 @@ main {
     }
 
     .error {
-        background-color: $color-accent;
-        color: $color-light;
         padding: 10px 40px;
-        border-radius: 20px;
-        font-weight: bold;
-        margin-bottom: 10px;
         font-size: 1.3em;
+        font-weight: bold;
+        color: $color-light;
+        background-color: $color-accent;
+        border-radius: 20px;
 
-        i {
-            margin-right: 10px;
-        }
+        i { margin-right: 10px; }
     }
 }

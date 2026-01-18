@@ -8,19 +8,19 @@
     include("../db/db.inc");
 
     // OBTENER CLIENTES
-    $resultado = $conn -> query("SELECT * FROM clientes ORDER BY id DESC");
-    $clientes = $resultado -> fetch_all(MYSQLI_ASSOC);
+    $resultado = $conn -> query("SELECT * FROM productos ORDER BY id DESC");
+    $productos = $resultado -> fetch_all(MYSQLI_ASSOC);
 
     // ELIMINAR CLIENTE
     if (isset($_GET["eliminar"])) {
-        $id_cliente = intval($_GET["eliminar"]);
+        $id_producto = intval($_GET["eliminar"]);
 
-        $stmt = $conn -> prepare("DELETE FROM clientes WHERE id = ?");
-        $stmt -> bind_param("i", $id_cliente);
+        $stmt = $conn -> prepare("DELETE FROM productos WHERE id = ?");
+        $stmt -> bind_param("i", $id_producto);
         $stmt -> execute();
         $stmt -> close();
 
-        header("location:gestion_clientes.php");
+        header("location:gestion_productos.php");
         exit();
     }
 ?>
@@ -31,14 +31,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/admin/gestion_clientes/gestion_clientes.css">
+    <link rel="stylesheet" href="../css/admin/gestion_productos/gestion_productos.css">
     <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
         <img src="../img/logo-horizontal.png" alt="logotipo" class="logo">
-
-        <input type="search" placeholder="Buscar aquí..." class="searchbar">
 
         <div class="actions">
             <div class="atras">
@@ -56,34 +54,32 @@
         </div>
     </header>
     
-    <hr>
-
     <?php
-        // ALERTAS DE CREACIÓN DE CLIENTE
-        if (isset($_GET["cli"])) {
-            if ($_GET["cli"] == 0) { // registro correcto
+        // ALERTAS DE CREACIÓN DE PRODUCTO
+        if (isset($_GET["prod"])) {
+            if ($_GET["prod"] == 0) { // inserción correcta
                 echo '<div class="alerta"><i class="fa-solid fa-circle-check check"></i>
-                Cliente insertado correctamente.</div>';
+                Producto insertado correctamente.</div>';
             }
-            if ($_GET["cli"] == 1) { // email ya existe
-                echo '<div class="alerta"><i class="fa-solid fa-circle-exclamation exclamacion"></i>
-                El email ya existe en la base de datos.</div>';
-            }
-            if ($_GET["cli"] == 2) { // problema al insertar
+            if ($_GET["prod"] == 1) { // problema al insertar producto
                 echo '<div class="alerta"><i class="fa-solid fa-circle-xmark xmark"></i>
-                Ha ocurrido un error al intentar insertar el usuario.</div>';
+                Ha ocurrido un error al intentar insertar el producto.</div>';
+            }
+            if ($_GET["prod"] == 2) { // problema al insertar imagen
+                echo '<div class="alerta"><i class="fa-solid fa-circle-xmark xmark"></i>
+                Ha ocurrido un error al intentar insertar la imagen.</div>';
             }
         }
 
-        // ALERTAS DE MODIFICACIÓN DE CLIENTE
+        // ALERTAS DE MODIFICACIÓN DE PRODUCTO
         if (isset($_GET["upt"])) {
             if ($_GET["upt"] == 0) { // actualización correcta
                 echo '<div class="alerta"><i class="fa-solid fa-circle-check check"></i>
-                Cliente actualizado correctamente.</div>';
+                Producto actualizado correctamente.</div>';
             }
             if ($_GET["upt"] == 1) { // problema al actualizar
                 echo '<div class="alerta"><i class="fa-solid fa-circle-xmark xmark"></i>
-                Ha ocurrido un error al intentar actualizar el usuario.</div>';
+                Ha ocurrido un error al intentar actualizar el producto.</div>';
             }
         }
     ?>
@@ -91,15 +87,15 @@
     <main>
         <section class="panel-control">
             <div class="section-header">
-                <i class="fa-solid fa-gear engranaje"></i>
-                <h2>Gestión clientes</h2>
+                <i class="fa-solid fa-shop icono-header"></i>
+                <h2>Gestión de productos</h2>
             </div>
 
             <hr>
 
-            <a href="ins_cliente.php" class="nuevo-cliente">
+            <a href="ins_producto.php" class="boton-insertar">
                 <i class="fa-regular fa-square-plus"></i>
-                Nuevo cliente
+                Insertar producto
             </a>
 
             <div class="caja-overflow">
@@ -107,38 +103,49 @@
                     <thead>
                         <tr>
                             <th>Acciones</th>
+                            <th>Imagen</th>
                             <th>ID</th>
                             <th>Nombre</th>
-                            <th>Apellidos</th>
-                            <th>Email</th>
+                            <th>Precio</th>
+                            <th>Activo</th>
+                            <th>Marca</th>
+                            <th>Material</th>
+                            <th>Talla</th>
                             <th>Género</th>
-                            <th>Dirección</th>
-                            <th>Cod. Postal</th>
-                            <th>Población</th>
-                            <th>Provincia</th>
+                            <th>Tipo</th>
+                            <th class="medidas">Medidas</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($clientes as $c): ?>
+                        <?php foreach ($productos as $p): ?>
                         <tr>
                             <td>
-                                <a href="edit_cliente.php?edit=<?= $c['id'] ?>">
+                                <a href="edit_producto.php?edit=<?= $p['id'] ?>">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </a>
-                                <a href="?eliminar=<?= $c['id'] ?>" 
-                                onclick="return confirm('¿Eliminar cliente?');">
+                                <a href="?eliminar=<?= $p['id'] ?>" 
+                                onclick="return confirm('¿Eliminar producto?');">
                                     <i class="fa-regular fa-trash-can"></i>
                                 </a>
                             </td>
-                            <td><?= $c['id'] ?></td>
-                            <td><?= htmlspecialchars($c['nombre']) ?></td>
-                            <td><?= htmlspecialchars($c['apellidos']) ?></td>
-                            <td><?= htmlspecialchars($c['email']) ?></td>
-                            <td><?= $c['genero'] ?></td>
-                            <td><?= htmlspecialchars($c['direccion']) ?></td>
-                            <td><?= $c['codpostal'] ?></td>
-                            <td><?= htmlspecialchars($c['poblacion']) ?></td>
-                            <td><?= htmlspecialchars($c['provincia']) ?></td>
+                            <td>
+                                <img src="../img/<?= htmlspecialchars($p['imagen']) ?>" alt="imagen producto">
+                            </td>
+                            <td><?= $p['id'] ?></td>
+                            <td><?= htmlspecialchars($p['nombre']) ?></td>
+                            <td><?= number_format($p['precio'], 2) ?> €</td>
+                            <td>
+                                <?php 
+                                if ($p['activo']) echo '<i class="fa-solid fa-check"></i>';
+                                else echo '<i class="fa-solid fa-x"></i>';
+                                ?>
+                            </td>
+                            <td><?= htmlspecialchars($p['marca']) ?></td>
+                            <td><?= htmlspecialchars($p['material']) ?></td>
+                            <td><?= htmlspecialchars($p['talla']) ?></td>
+                            <td><?= $p['genero'] ?></td>
+                            <td><?= $p['tipo'] ?></td>
+                            <td><?= htmlspecialchars($p['medidas']) ?></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
