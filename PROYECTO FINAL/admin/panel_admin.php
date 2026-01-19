@@ -17,8 +17,11 @@
 </head>
 <body>
     <header>
-        <img src="../img/logo-horizontal.png" alt="logotipo" class="logo">
-
+        <a href="../index.php">
+            <img src="../img/logo-horizontal.png" alt="logotipo" class="logo logo-large">
+            <img src="../img/logo-horizontal-recortado.png" alt="logotipo" class="logo logo-small">
+        </a>
+        
         <div class="actions">
             <div class="inicio">
                 <a href="../index.php"><i class="fa-regular fa-house"></i></a>

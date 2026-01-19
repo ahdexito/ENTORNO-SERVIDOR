@@ -29,6 +29,108 @@ hr {
   border: 1px solid #fff;
 }
 
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-image: url("../../../img/fondo-huellas.jpg");
+  background-size: cover;
+  background-position: center;
+  border-bottom: 2px solid #fff;
+}
+header .logo {
+  width: 400px;
+  margin: 10px;
+  transition: transform 0.2s ease;
+}
+@media (max-width: 670px) {
+  header .logo {
+    width: 178px;
+  }
+}
+header .logo:hover {
+  transform: scale(1.07) translateX(10px);
+}
+@media (min-width: 671px) {
+  header .logo-small {
+    display: none;
+  }
+}
+@media (max-width: 670px) {
+  header .logo-large {
+    display: none;
+  }
+}
+header .searchbar {
+  display: none;
+  width: 700px;
+  height: 50px;
+  border: 0;
+  border-radius: 30px;
+  padding-left: 30px;
+  font-size: 1.2em;
+  margin: 0 40px;
+}
+header .actions {
+  color: #fff;
+  text-align: center;
+}
+header .actions div {
+  display: inline-block;
+  width: 80px;
+}
+header .actions i {
+  color: #fff;
+  font-size: 2.5em;
+  margin-bottom: 5px;
+  transition: 0.2s ease;
+}
+header .actions i:hover {
+  color: #faab00;
+  transform: translateY(-5px);
+}
+header .actions i.is-active {
+  color: #faab00;
+}
+header .actions .dropdown {
+  position: relative;
+}
+header .actions .dropdown .dropdown-btn {
+  cursor: pointer;
+}
+header .actions .dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  width: 180px;
+  flex-direction: column;
+  box-shadow: #000 0px 0px 15px 5px;
+  border: 2px solid rgb(199, 136.116, 0);
+}
+header .actions .dropdown .dropdown-content a {
+  color: #fff;
+  text-decoration: none;
+  text-shadow: rgb(71.5, 48.906, 0) 2px 2px 0px;
+  background: #faab00;
+  width: 100%;
+  padding: 20px;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+header .actions .dropdown .dropdown-content a:hover {
+  background-color: rgb(255, 205.072, 97);
+}
+header .actions .dropdown .dropdown-content hr {
+  border: 1px solid rgb(199, 136.116, 0);
+}
+header .actions .dropdown .show {
+  display: flex;
+}
+
 footer {
   width: 100%;
   padding: 30px 15px;
@@ -44,39 +146,6 @@ footer .copy i {
   font-size: 3em;
 }
 footer .copy p {
-  color: #fff;
-}
-
-/* ===========================
-    HEADER
-=========================== */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: url("../../../img/fondo-huellas.jpg") center/cover;
-  border-bottom: 2px solid #fff;
-  z-index: 10;
-}
-header .logo {
-  width: 400px;
-  margin: 10px;
-}
-header .actions {
-  text-align: center;
-  color: #fff;
-}
-header .actions div {
-  display: inline-block;
-  width: 80px;
-}
-header .actions i {
-  font-size: 2.5em;
-  margin-bottom: 5px;
   color: #fff;
 }
 
@@ -115,7 +184,7 @@ main .panel-control {
   width: 90%;
   margin: auto;
   padding: 20px;
-  background-color: #028a5d;
+  background-color: #17684d;
   border-radius: 5px;
   box-shadow: 0 0 15px 5px #000;
   display: flex;
@@ -127,7 +196,7 @@ main .panel-control .section-header {
   gap: 20px;
   padding: 10px 0;
   color: #fff;
-  text-shadow: rgb(0.9071428571, 62.5928571429, 42.1821428571) 5px 5px 0;
+  text-shadow: rgb(9.1456692913, 41.3543307087, 30.6181102362) 5px 5px 0;
 }
 main .panel-control .section-header .icono-header {
   font-size: 3em;
@@ -145,12 +214,13 @@ main .panel-control .boton-insertar {
   text-decoration: none;
   border-radius: 10px;
   background-color: #fff;
-  color: #028a5d;
+  color: #17684d;
+  transition: 0.2s ease;
 }
 main .panel-control .boton-insertar:hover {
-  background-color: rgb(0.9071428571, 62.5928571429, 42.1821428571);
+  background-color: rgb(9.1456692913, 41.3543307087, 30.6181102362);
   color: #fff;
-  box-shadow: rgb(0.5428571429, 37.4571428571, 25.2428571429) 5px 5px 10px;
+  box-shadow: rgb(4.5275590551, 20.4724409449, 15.157480315) 5px 5px 10px;
 }
 main .panel-control .caja-overflow {
   margin-top: 20px;

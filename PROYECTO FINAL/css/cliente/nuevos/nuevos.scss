@@ -4,73 +4,119 @@
 @import '../../variables';
 @import '../../comun';
 @import '../../mixins';
+@import '../../header';
 @import '../../footer';
 
 
-
-header {
-    background-color: $color-1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 120px;
-
-    .logo {
-        width: 200px;
-        margin: 10px;
-    }
-
-    .searchbar {
-        width: 700px;
-        height: 50px;
-        border: 0;
-        border-radius: 30px;
-        padding-left: 30px;
-        font-size: 1.2em;
-        margin: 0 40px;
-    }
-
-    .actions {
-        width: 250px;
-        color: $color-4;  
-        text-align: center;
-
-        div {
-            display: inline-block;
-            width: 80px;
-        }
-
-        img {
-            width: 30px;
-            margin-bottom: 10px;
-        }
-    }
-}
-
 nav {
-    background-color: $color-4;
+    background-color: $color-light;
     padding: 10px;
+    width: 100%;
+    @include respond-to(small_medium) {
+        display: none;
+    }
 
     ul {
+        
         list-style-type: none;
-        display: flex;
-        justify-content: center;
         gap: 0px;
+        display: none;
+        @include respond-to(large) {
+            display: flex;
+            justify-content: center;
+        }
 
         a {
             text-decoration: none;
-            color: $color-1;
+            color: $color-dark;
             font-weight: bold;
             padding: 10px 20px;
 
             &:hover {
-                color: $color-4;
-                background-color: #ad0b0b;
+                color: $color-light;
+                background-color: darken($color-primary, $amount: 10);
             }
         }
     }
 }
 
+
 main {
     flex: 1;
+    padding: 20px;
+    @include respond-to(large) {
+        margin-top: 0;
+    }
+
+    .novedades {
+        background-color: $color-primary;
+        box-shadow: #000 0px 0px 15px 5px;
+        border-radius: 5px;
+        min-width: 450px;
+        padding: 20px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+
+        .section-header {
+            padding: 10px 0px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-shadow: darken($color-primary, $amount: 15) 5px 5px 0px;
+            color: $color-light;
+
+            .icono-fuego {
+                font-size: 3em;
+                margin: 5px 0px;
+            }
+
+            h2 {
+                font-size: 2.5em;
+            }
+        }
+
+        hr {
+            border: 1px solid $color-light;
+        }
+
+        article {
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: darken($color-primary, $amount: 10);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            width: 100%;
+
+            img {
+                width: 200px;
+                border-radius: 5px;
+                margin: 5px;
+            }
+        }
+
+        p {
+            color: $color-light;
+            padding: 40px;
+            font-size: 2em;
+            margin: auto;
+        
+            a {
+                color: $color-primary;
+                padding: 10px;
+                text-decoration: none;
+                background-color: $color-light;
+                border-radius: 10px;
+                font-weight: bold;
+            }
+
+            a:hover {
+                background-color: darken($color-primary, $amount: 15);
+                color: $color-light;
+                box-shadow: darken($color-primary, $amount: 20) 5px 5px 10px;
+            }
+        }
+    }
 }

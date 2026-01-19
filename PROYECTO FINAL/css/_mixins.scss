@@ -1,7 +1,7 @@
 @mixin respond-to($size) {
-    @if $size == small { @media (max-width: 600px) { @content; } }
-    @else if $size == medium { @media (min-width: 601px) and (max-width: 1200px) { @content; } }
+    @if $size == small { @media (max-width: 670px) { @content; } }
+    @else if $size == medium { @media (min-width: 671px) and (max-width: 1200px) { @content; } }
     @else if $size == large { @media (min-width: 1201px) { @content; } }
     @else if $size == small_medium { @media (max-width: 1200px) { @content; } }
-    @else if $size == medium_large { @media (min-width: 601px) { @content; } }
+    @else if $size == medium_large { @media (min-width: 671px) { @content; } }
 }

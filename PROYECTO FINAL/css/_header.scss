@@ -1,0 +1,112 @@
+@import 'variables';
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-image: url('../../../img/fondo-huellas.jpg');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 2px solid $color-light;
+
+    .logo {
+        width: 400px;
+        margin: 10px;
+        transition: transform 0.2s ease;
+        @include respond-to(small) { width: 178px; }
+
+        &:hover {
+            transform: scale(1.07) translateX(10px);
+        }
+    }
+
+    .logo-small { @include respond-to(medium_large) { display: none; } }
+
+    .logo-large { @include respond-to(small) {display: none; } }
+
+    .searchbar {
+        
+        display: none;
+
+        width: 700px;
+        height: 50px;
+        border: 0;
+        border-radius: 30px;
+        padding-left: 30px;
+        font-size: 1.2em;
+        margin: 0 40px;
+    }
+
+    .actions {
+        color: $color-light;  
+        text-align: center;
+
+        div {
+            display: inline-block;
+            width: 80px;
+        }
+
+        i {
+            color: $color-light;
+            font-size: 2.5em;
+            margin-bottom: 5px;
+            transition: 0.2s ease;
+            
+            &:hover {
+                color: $color-accent;
+                transform: translateY(-5px);
+            }
+
+            &.is-active {
+                color: $color-accent;
+            }
+        }
+
+        .dropdown {
+            position: relative;
+
+            .dropdown-btn {
+                cursor: pointer;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                right: 0;
+                width: 180px;
+                flex-direction: column;
+                box-shadow: #000 0px 0px 15px 5px;
+                border: 2px solid darken($color-accent, $amount: 10);
+            }
+
+            .dropdown-content {
+                a {
+                    color: $color-light;
+                    text-decoration: none;
+                    text-shadow: darken($color-accent, $amount: 35) 2px 2px 0px;
+                    background: $color-accent;
+                    width: 100%;
+                    padding: 20px;
+                    font-weight: bold;
+                    transition: 0.2s ease;
+
+                    &:hover {
+                        background-color: lighten($color-accent, $amount: 20);                        
+                    }
+                }
+
+                hr {
+                    border: 1px solid darken($color-accent, $amount: 10);
+                }
+            }
+
+            .show {
+                display: flex;
+            }
+        }   
+    }
+}

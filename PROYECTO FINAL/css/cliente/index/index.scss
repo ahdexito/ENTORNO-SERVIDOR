@@ -2,135 +2,26 @@
     IMPORTS
 =========================== */
 @import '../../variables';
-@import '../../comun';
 @import '../../mixins';
+@import '../../comun';
 @import '../../footer';
+@import '../../header';
 
-
-
-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-image: url('../../../img/fondo-huellas.jpg');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 120px;
-    border-bottom: 2px solid $color-light;
-
-    .logo {
-        width: 400px;
-        margin: 10px;
-    }
-
-    .searchbar {
-        
-        display: none;
-
-        width: 700px;
-        height: 50px;
-        border: 0;
-        border-radius: 30px;
-        padding-left: 30px;
-        font-size: 1.2em;
-        margin: 0 40px;
-    }
-
-    .actions {
-        color: $color-light;  
-        text-align: center;
-
-        div {
-            display: inline-block;
-            width: 80px;
-        }
-
-        i {
-            color: $color-light;
-            font-size: 2.5em;
-            margin-bottom: 5px;
-        }
-
-        .carrito, .favoritos {
-            @include respond-to(small_medium) {
-                display: none;
-            }
-        }
-
-        .perfil {
-            i {
-                position: absolute;
-                top: 0;
-                right: 0;
-                transform: translate(-15px, 27px);
-                z-index: 1;
-            }
-
-            .dropdown-toggle {
-                position: relative;
-                width: 35px;
-                height: 40px;
-                margin-bottom: 2px;
-                cursor: pointer;
-                appearance: none;
-                z-index: 2;
-            }
-
-            .dropdown-content {
-                display: none;
-            }
-
-            #dropdown-toggle:checked ~ .dropdown-content {
-                display: flex;
-                position: absolute;
-                width: 180px;
-                top: 40;
-                right: 0;
-                margin-top: 30px;
-                display: flex;
-                flex-direction: column;
-                box-shadow: #000 0px 0px 15px 5px;
-                border: 2px solid darken($color-accent, $amount: 10);
-
-                a {
-                    color: $color-light;
-                    text-decoration: none;
-                    text-shadow: darken($color-accent, $amount: 25) 2px 2px 0px;
-                    background-color: $color-accent;
-                    width: 100%;
-                    padding: 20px;
-                    font-weight: bold;
-
-                    &:hover {
-                        background-color: lighten($color-accent, $amount: 20);                        
-                    }
-                }
-
-                hr {
-                    border: 1px solid darken($color-accent, $amount: 10);
-                }
-            }
-        }
-        
-    }
-}
 
 nav {
     background-color: $color-light;
     padding: 10px;
     width: 100%;
+    border-bottom: 2px solid $color-light;
     @include respond-to(small_medium) {
         display: none;
     }
 
     ul {
-        
         list-style-type: none;
         gap: 0px;
         display: none;
+        border-bottom: 1px solid $color-light;
         @include respond-to(large) {
             display: flex;
             justify-content: center;
@@ -141,6 +32,7 @@ nav {
             color: $color-dark;
             font-weight: bold;
             padding: 10px 20px;
+            transition: 0.2s ease-out;
 
             &:hover {
                 color: $color-light;

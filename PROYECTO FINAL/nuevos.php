@@ -1,31 +1,61 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Inicio</title>
     <link rel="stylesheet" href="css/cliente/nuevos/nuevos.css">
+    <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-        <img src="img/logotipo.png" alt="logotipo" class="logo">
-
+        <a href="index.php">
+            <img src="img/logo-horizontal.png" alt="logotipo" class="logo logo-large">
+            <img src="img/logo-horizontal-recortado.png" alt="logotipo" class="logo logo-small">
+        </a>
+        
         <input type="search" placeholder="Buscar aquí..." class="searchbar">
 
         <div class="actions">
-            <div class="favoritos">
-                <a href="#"><img src="icon/corazon.png" alt="icono corazón"></a>
-                <p>Favoritos</p>
+            <div class="atras">
+                <a href="index.php"><i class="fa-regular fa-circle-left"></i></a>
+                <p>Atrás</p>
             </div>
 
             <div class="carrito">
-                <a href="#"><img src="icon/carrito.png" alt="icono carrito"></a>
+                <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
                 <p>Carrito</p>
             </div>
 
-            <div class="Perfil">
-                <a href="#"><img src="icon/usuario.png" alt="icono usuario"></a>
-                <p>Perfil</p>
+            <div class="usuario dropdown">
+            <?php
+                if (isset($_SESSION["nombre"])) {
+                    ?>
+                    <i class="fa-solid fa-user icono-usuario dropdown-btn" id="dropdown-btn"></i>
+
+                    <div class="dropdown-content">
+                        <?php if (isset($_SESSION["rol"])) {
+                            echo "<a href='admin/panel_admin.php'>Panel admin</a>";
+                            echo "<hr>";
+                        }?>
+                        <a href="#">Favoritos</a>
+                        <hr>
+                        <a href="#">Ajustes</a>
+                        <hr>
+                        <a href="desconectar.php">Cerrar sesión</a>
+                    </div>
+                    
+                    <?php echo "<p>" . $_SESSION["nombre"] . "</p>";
+                }
+                else {
+                    echo '<a href="login.php"><i class="fa-solid fa-user"></i></a>';
+                    echo "<p>Login</p>";
+                }
+            ?>
             </div>
         </div>
     </header>
@@ -39,16 +69,35 @@
             <li><a href="#">Guantes</a></li>
             <li><a href="#">Marcas</a></li>
             <li><a href="#">Liquidación</a></li>
-            <li><a href="#">Ropa mujer</a></li>
+            <li><a href="#">Mujer</a></li>
         </ul>
     </nav>
 
     <main>
-        
+        <section class="novedades">
+            <article>
+                <a href="#"><img src="img/chaqueta.png" alt=""></a>
+                <a href="#"><img src="img/pantalon.png" alt=""></a>
+                <a href="#"><img src="img/botas.png" alt=""></a>
+                <a href="#"><img src="img/pantalon.png" alt=""></a>
+                <a href="#"><img src="img/chaqueta.png" alt=""></a>
+                <a href="#"><img src="img/chaqueta.png" alt=""></a>
+                <a href="#"><img src="img/botas.png" alt=""></a>
+                <a href="#"><img src="img/pantalon.png" alt=""></a>
+            </article>
+        </section>
     </main>
 
     <footer>
-
+        <div class="copy">
+            <i class="fa-regular fa-copyright" style="color: #63E6BE;"></i>
+            <div>   
+                <p>Todos los derechos reservados.</p><br>
+                <p>Ángel García, 2026.</p>
+            </div>
+        </div>
+        
+        <script src="js/dropdown.js"></script>
     </footer>
 </body>
 </html>

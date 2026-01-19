@@ -36,8 +36,11 @@
 </head>
 <body>
     <header>
-        <img src="../img/logo-horizontal.png" alt="logotipo" class="logo">
-
+        <a href="../index.php">
+            <img src="../img/logo-horizontal.png" alt="logotipo" class="logo logo-large">
+            <img src="../img/logo-horizontal-recortado.png" alt="logotipo" class="logo logo-small">
+        </a>
+        
         <div class="actions">
             <div class="atras">
                 <a href="panel_admin.php"><i class="fa-regular fa-circle-left"></i></a>

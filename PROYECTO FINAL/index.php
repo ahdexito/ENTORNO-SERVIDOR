@@ -13,8 +13,11 @@
 </head>
 <body>
     <header>
-        </a><img src="img/logo-horizontal.png" alt="logotipo" class="logo">
-
+        <a href="index.php">
+            <img src="img/logo-horizontal.png" alt="logotipo" class="logo logo-large">
+            <img src="img/logo-horizontal-recortado.png" alt="logotipo" class="logo logo-small">
+        </a>
+        
         <input type="search" placeholder="Buscar aquí..." class="searchbar">
 
         <div class="actions">
@@ -28,20 +31,17 @@
                 <p>Carrito</p>
             </div>
 
-            <div class="perfil">
+            <div class="usuario dropdown">
             <?php
                 if (isset($_SESSION["nombre"])) {
                     ?>
-                    <input type="checkbox" id="dropdown-toggle" class="dropdown-toggle"></input>
-                    <i class="fa-solid fa-user"></i>
+                    <i class="fa-solid fa-user icono-usuario dropdown-btn" id="dropdown-btn"></i>
 
                     <div class="dropdown-content">
-
                         <?php if (isset($_SESSION["rol"])) {
                             echo "<a href='admin/panel_admin.php'>Panel admin</a>";
                             echo "<hr>";
-                        }
-                        ?>
+                        }?>
                         <a href="#">Ajustes</a>
                         <hr>
                         <a href="desconectar.php">Cerrar sesión</a>
@@ -105,7 +105,7 @@
                 <p>Ángel García, 2026.</p>
             </div>
         </div>
-        
+        <script src="js/dropdown.js"></script>
     </footer>
 </body>
 </html>
