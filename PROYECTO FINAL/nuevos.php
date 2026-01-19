@@ -52,7 +52,7 @@
                     <?php echo "<p>" . $_SESSION["nombre"] . "</p>";
                 }
                 else {
-                    echo '<a href="login.php"><i class="fa-solid fa-user"></i></a>';
+                    echo '<a href="login.php"><i class="fa-solid fa-user icono-accion"></i></a>';
                     echo "<p>Login</p>";
                 }
             ?>
