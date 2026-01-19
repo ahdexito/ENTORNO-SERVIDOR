@@ -24,11 +24,11 @@
         
         <div class="actions">
             <div class="inicio">
-                <a href="../index.php"><i class="fa-regular fa-house"></i></a>
+                <a href="../index.php"><i class="fa-regular fa-house icono-accion"></i></a>
                 <p>Inicio</p>
             </div>
             <div class="desconectar">
-                <a href="desconectar_admin.php"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                <a href="desconectar_admin.php"><i class="fa-solid fa-arrow-right-from-bracket icono-accion"></i></a>
                 <p>Logout</p>
             </div>
         </div>
@@ -37,7 +37,7 @@
     <main>
         <section class="panel-control">
             <div class="section-header">
-                <i class="fa-solid fa-gear engranaje"></i>
+                <i class="fa-solid fa-bars-progress icono-header"></i>
                 <h2>Panel de control</h2>
             </div>
 
@@ -57,7 +57,7 @@
                     <p>Rebajas</p>
                 </a>
                 <a href="#" class="boton">
-                    <i class="fa-solid fa-bars-progress"></i>
+                    <i class="fa-solid fa-gear"></i>
                     <p>Ajustes</p>
                 </a>
             </article>

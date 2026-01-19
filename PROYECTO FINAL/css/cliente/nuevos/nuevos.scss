@@ -96,27 +96,5 @@ main {
                 margin: 5px;
             }
         }
-
-        p {
-            color: $color-light;
-            padding: 40px;
-            font-size: 2em;
-            margin: auto;
-        
-            a {
-                color: $color-primary;
-                padding: 10px;
-                text-decoration: none;
-                background-color: $color-light;
-                border-radius: 10px;
-                font-weight: bold;
-            }
-
-            a:hover {
-                background-color: darken($color-primary, $amount: 15);
-                color: $color-light;
-                box-shadow: darken($color-primary, $amount: 20) 5px 5px 10px;
-            }
-        }
     }
 }

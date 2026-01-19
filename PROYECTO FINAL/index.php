@@ -22,12 +22,12 @@
 
         <div class="actions">
             <div class="favoritos">
-                <a href="#"><i class="fa-solid fa-heart"></i></a>
+                <a href="#"><i class="fa-solid fa-heart icono-accion"></i></a>
                 <p>Favoritos</p>
             </div>
 
             <div class="carrito">
-                <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#"><i class="fa-solid fa-cart-shopping icono-accion"></i></a>
                 <p>Carrito</p>
             </div>
 
@@ -35,16 +35,16 @@
             <?php
                 if (isset($_SESSION["nombre"])) {
                     ?>
-                    <i class="fa-solid fa-user icono-usuario dropdown-btn" id="dropdown-btn"></i>
+                    <i class="fa-solid fa-user icono-usuario dropdown-btn icono-accion" id="dropdown-btn"></i>
 
                     <div class="dropdown-content">
                         <?php if (isset($_SESSION["rol"])) {
-                            echo "<a href='admin/panel_admin.php'>Panel admin</a>";
+                            echo "<a href='admin/panel_admin.php'><i class='fa-solid fa-bars-progress icono-dropdown'></i>Panel admin</a>";
                             echo "<hr>";
                         }?>
-                        <a href="#">Ajustes</a>
+                        <a href="#"><i class="fa-solid fa-gear icono-dropdown"></i>Ajustes</a>
                         <hr>
-                        <a href="desconectar.php">Cerrar sesión</a>
+                        <a href="desconectar.php"><i class="fa-solid fa-arrow-right-from-bracket icono-dropdown"></i>Cerrar sesión</a>
                     </div>
                     
                     <?php echo "<p>" . $_SESSION["nombre"] . "</p>";

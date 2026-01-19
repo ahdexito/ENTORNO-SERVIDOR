@@ -83,18 +83,18 @@ header .actions div {
   display: inline-block;
   width: 80px;
 }
-header .actions i {
+header .actions .icono-accion {
   color: #fff;
   font-size: 2.5em;
   margin-bottom: 5px;
   transition: 0.2s ease;
 }
-header .actions i:hover {
-  color: #faab00;
+header .actions .icono-accion:hover {
+  color: #fa7900;
   transform: translateY(-5px);
 }
-header .actions i.is-active {
-  color: #faab00;
+header .actions .icono-accion.is-active {
+  color: #fa7900;
 }
 header .actions .dropdown {
   position: relative;
@@ -106,26 +106,33 @@ header .actions .dropdown .dropdown-content {
   display: none;
   position: absolute;
   right: 0;
-  width: 180px;
+  width: 250px;
   flex-direction: column;
   box-shadow: #000 0px 0px 15px 5px;
-  border: 2px solid rgb(199, 136.116, 0);
+  border: 2px solid rgb(199, 96.316, 0);
 }
 header .actions .dropdown .dropdown-content a {
   color: #fff;
   text-decoration: none;
-  text-shadow: rgb(71.5, 48.906, 0) 2px 2px 0px;
-  background: #faab00;
+  text-shadow: rgb(71.5, 34.606, 0) 2px 2px 0px;
+  background: #fa7900;
   width: 100%;
   padding: 20px;
+  font-size: 1.2em;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   transition: 0.2s ease;
 }
 header .actions .dropdown .dropdown-content a:hover {
-  background-color: rgb(255, 205.072, 97);
+  background-color: rgb(255, 173.472, 97);
+}
+header .actions .dropdown .dropdown-content .icono-dropdown {
+  font-size: 1.5em;
 }
 header .actions .dropdown .dropdown-content hr {
-  border: 1px solid rgb(199, 136.116, 0);
+  border: 1px solid rgb(199, 96.316, 0);
 }
 header .actions .dropdown .show {
   display: flex;
@@ -167,7 +174,7 @@ footer .copy p {
   color: #06bb00;
 }
 .alerta .exclamacion {
-  color: #faab00;
+  color: #ffc505;
 }
 .alerta .xmark {
   color: #db0700;

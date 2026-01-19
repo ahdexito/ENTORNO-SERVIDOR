@@ -83,15 +83,15 @@
         
         <div class="actions">
             <div class="atras">
-                <a href="gestion_productos.php"><i class="fa-regular fa-circle-left"></i></a>
+                <a href="gestion_productos.php"><i class="fa-regular fa-circle-left icono-accion"></i></a>
                 <p>Atrás</p>
             </div>
             <div class="inicio">
-                <a href="../index.php"><i class="fa-regular fa-house"></i></a>
+                <a href="../index.php"><i class="fa-regular fa-house icono-accion"></i></a>
                 <p>Inicio</p>
             </div>
             <div class="desconectar">
-                <a href="desconectar_admin.php"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                <a href="desconectar_admin.php"><i class="fa-solid fa-arrow-right-from-bracket icono-accion"></i></a>
                 <p>Logout</p>
             </div>
         </div>
@@ -184,19 +184,7 @@
                 <p>Ángel García, 2026.</p>
             </div>
         </div>
-        <script>
-            const check = document.getElementById("activo");
-            const caja = document.getElementById("check-background");
-
-            check.addEventListener("change", () => {
-                if (check.checked) {
-                    caja.style.backgroundColor = "#56ee50";
-                }
-                else {
-                    caja.style.backgroundColor = "#c42f2f";
-                }
-            });
-        </script>
+        <script src="../js/check-activo.js"></script>
     </footer>
 </body>
 </html>

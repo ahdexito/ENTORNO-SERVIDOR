@@ -50,7 +50,7 @@ header {
             width: 80px;
         }
 
-        i {
+        .icono-accion {
             color: $color-light;
             font-size: 2.5em;
             margin-bottom: 5px;
@@ -77,7 +77,7 @@ header {
                 display: none;
                 position: absolute;
                 right: 0;
-                width: 180px;
+                width: 250px;
                 flex-direction: column;
                 box-shadow: #000 0px 0px 15px 5px;
                 border: 2px solid darken($color-accent, $amount: 10);
@@ -91,17 +91,19 @@ header {
                     background: $color-accent;
                     width: 100%;
                     padding: 20px;
+                    font-size: 1.2em;
                     font-weight: bold;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
                     transition: 0.2s ease;
 
-                    &:hover {
-                        background-color: lighten($color-accent, $amount: 20);                        
-                    }
+                    &:hover { background-color: lighten($color-accent, $amount: 20); }
                 }
 
-                hr {
-                    border: 1px solid darken($color-accent, $amount: 10);
-                }
+                .icono-dropdown { font-size: 1.5em; }
+
+                hr { border: 1px solid darken($color-accent, $amount: 10); }
             }
 
             .show {
