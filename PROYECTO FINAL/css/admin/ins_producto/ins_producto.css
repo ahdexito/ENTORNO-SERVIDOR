@@ -76,7 +76,7 @@ hr {
   font-weight: bold;
 }
 .paginador .icono-flecha {
-  background-color: #fa7900;
+  background-color: #17684d;
   border: 2px solid #fff;
 }
 
@@ -285,10 +285,10 @@ main .panel-control form .form .casilla {
   background-color: rgb(9.1456692913, 41.3543307087, 30.6181102362);
   color: #fff;
 }
-main .panel-control form .form .casilla label {
+main .panel-control form .form .casilla label, main .panel-control form .form .casilla p {
   margin: 10px 20px;
 }
-main .panel-control form .form .casilla input {
+main .panel-control form .form .casilla input:not(.checkbox, .imagen) {
   width: 100%;
   min-width: 300px;
   max-width: 400px;
@@ -321,24 +321,47 @@ main .panel-control form .form .casilla .area-texto {
   font-size: 1.2em;
   height: 57px;
 }
-main .panel-control form .form .casilla .check-background {
-  background-color: #0078d4;
-  height: 57px;
-  border-radius: 15px;
-}
-main .panel-control form .form .casilla .check-background .check {
-  min-width: none;
-  max-width: none;
-  width: 100%;
-  height: 100%;
-}
 main .panel-control form .form .casilla .imagen {
+  padding: 15px;
   width: 100%;
   height: 100%;
+  border-radius: 15px;
   background-color: #fff;
   color: #000;
   font-size: 0.7em;
-  font-weight: bold;
+  cursor: pointer;
+}
+main .panel-control form .form .casilla .imagen::file-selector-button {
+  cursor: pointer;
+  font-size: 1.7em;
+  border: 0;
+  background-color: #fff;
+  font-family: "Jura";
+}
+main .panel-control form .form .checkbox-background {
+  width: 100%;
+  min-width: 300px;
+  max-width: 400px;
+  padding: 15px 20px;
+  border: 0;
+  border-radius: 15px;
+  font-size: 1.2em;
+  background-color: #fff;
+  height: 57px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+main .panel-control form .form .checkbox-background .checkbox {
+  min-width: none;
+  max-width: none;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+main .panel-control form .form .checkbox-background .checkbox-info {
+  color: #000;
 }
 main .panel-control form .guardar {
   width: 100%;

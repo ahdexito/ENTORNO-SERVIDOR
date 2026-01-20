@@ -8,7 +8,7 @@
     include("../db/db.inc");
 
     // PAGINADOR
-    $num_lineas = 5;
+    $num_lineas = 4;
     $pagina = isset($_GET['pag']) ? max(1, intval($_GET['pag'])) : 1;
     $offset = ($pagina - 1) * $num_lineas;
 

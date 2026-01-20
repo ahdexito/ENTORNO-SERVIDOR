@@ -1,11 +1,11 @@
-const check = document.getElementById("activo");
-const caja = document.getElementById("check-background");
+const check = document.getElementById("checkbox");
+const info = document.getElementById("checkbox-info");
 
 check.addEventListener("change", () => {
     if (check.checked) {
-        caja.style.backgroundColor = "#0078d4";
+        info.textContent = "Activado";
     }
     else {
-        caja.style.backgroundColor = "#fff";
+        info.textContent = "Desactivado";
     }
 });

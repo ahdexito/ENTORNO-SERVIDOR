@@ -151,9 +151,10 @@
                     </div>
 
                     <div class="casilla">
-                        <label for="activo">Activo</label>
-                        <div class="check-background" id="check-background">
-                            <input type="checkbox" name="activo" id="activo" class="check" checked>
+                        <p>Activo</p>
+                        <div class="checkbox-background" id="checkbox-background">
+                            <span class="checkbox-info" id="checkbox-info">Activado</span>
+                            <input type="checkbox" name="activo" id="checkbox" class="checkbox" checked>
                         </div>
                     </div>
 
