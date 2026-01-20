@@ -60,28 +60,6 @@ main {
         display: flex;
         flex-direction: column;
 
-        .section-header {
-            padding: 10px 0px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            text-shadow: darken($color-primary, $amount: 15) 5px 5px 0px;
-            color: $color-light;
-
-            .icono-fuego {
-                font-size: 3em;
-                margin: 5px 0px;
-            }
-
-            h2 {
-                font-size: 2.5em;
-            }
-        }
-
-        hr {
-            border: 1px solid $color-light;
-        }
-
         article {
             margin: 20px 0;
             padding: 10px;

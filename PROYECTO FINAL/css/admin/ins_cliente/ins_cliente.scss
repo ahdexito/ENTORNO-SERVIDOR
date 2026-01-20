@@ -37,19 +37,6 @@ main {
         display: flex;
         flex-direction: column;
 
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 10px 0;
-            color: $color-light;
-            text-shadow: darken($color-primary, 15%) 5px 5px 0;
-
-            .icono-header { font-size: 3em; }
-
-            h2 { font-size: 2.5em; }
-        }
-
         form {
             margin-top: 20px;
             padding: 20px;

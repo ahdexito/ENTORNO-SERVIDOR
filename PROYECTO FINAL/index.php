@@ -74,7 +74,7 @@
     <main>
         <section class="novedades">
             <div class="section-header">
-                <i class="fa-solid fa-fire icono-fuego"></i>
+                <i class="fa-solid fa-fire icono-header"></i>
                 <h2>Últimas novedades</h2>
             </div>
 

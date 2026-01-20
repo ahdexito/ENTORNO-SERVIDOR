@@ -7,11 +7,32 @@
 
     include("../db/db.inc");
 
-    // OBTENER CLIENTES
-    $resultado = $conn -> query("SELECT * FROM productos ORDER BY id DESC");
-    $productos = $resultado -> fetch_all(MYSQLI_ASSOC);
+    // PAGINADOR
+    $num_lineas = 2;
+    $pagina = isset($_GET['pag']) ? max(1, intval($_GET['pag'])) : 1;
+    $offset = ($pagina - 1) * $num_lineas;
 
-    // ELIMINAR CLIENTE
+    // TOTAL DE REGISTROS
+    $total_resultado = $conn -> query(
+        "SELECT COUNT(*) AS total FROM productos"
+    );
+    $total_filas = $total_resultado -> fetch_assoc()['total'];
+    $total_paginas = ceil($total_filas / $num_lineas);
+
+    // OBTENER PRODUCTOS
+    $resultado = $conn->query(
+        "SELECT * FROM productos 
+        ORDER BY id DESC 
+        LIMIT $num_lineas OFFSET $offset"
+    );
+    $productos = $resultado->fetch_all(MYSQLI_ASSOC);
+
+    // LÓGICA DE RANGO PARA EL HTML
+    $rango = 1; // cuántas páginas mostrar a cada lado de la actual
+    $inicio = max(1, $pagina - $rango);
+    $fin = min($total_paginas, $pagina + $rango);
+
+    // ELIMINAR PRODUCTOS
     if (isset($_GET["eliminar"])) {
         $id_producto = intval($_GET["eliminar"]);
 
@@ -154,7 +175,29 @@
                     </tbody>
                 </table>
             </div>
-            
+            <div class="paginador">
+                <?php if ($pagina > 1): ?>
+                    <a href="?pag=<?= $pagina - 1 ?>" class="icono-flecha"><i class="fa-solid fa-angle-left"></i></a>
+                <?php endif; ?>
+
+                <?php if ($inicio > 1): ?>
+                    <a href="?pag=1" class="pagina-limite">1</a>
+                <?php endif; ?>
+
+                <?php for ($i = $inicio; $i <= $fin; $i++): ?>
+                    <a href="?pag=<?= $i ?>" class="<?= $i == $pagina ? 'activo' : '' ?>">
+                        <?= $i ?>
+                    </a>
+                <?php endfor; ?>
+
+                <?php if ($fin < $total_paginas): ?>
+                    <a href="?pag=<?= $total_paginas ?>" class="pagina-limite"><?= $total_paginas ?></a>
+                <?php endif; ?>
+
+                <?php if ($pagina < $total_paginas): ?>
+                    <a href="?pag=<?= $pagina + 1 ?>" class="icono-flecha"><i class="fa-solid fa-angle-right"></i></a>
+                <?php endif; ?>
+            </div>
         </section>
     </main>
 

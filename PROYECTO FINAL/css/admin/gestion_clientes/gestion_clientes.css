@@ -25,8 +25,78 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 0;
+  color: #fff;
+  text-shadow: rgb(9.1456692913, 41.3543307087, 30.6181102362) 5px 5px 0;
+}
+.section-header .icono-header {
+  font-size: 3em;
+}
+.section-header h2 {
+  font-size: 2.5em;
+}
+
 hr {
   border: 1px solid #fff;
+}
+
+.paginador {
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.paginador a {
+  width: 40px;
+  height: 40px;
+  padding: 20px;
+  background-color: rgb(13.7637795276, 62.2362204724, 46.0787401575);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.5em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s ease;
+}
+.paginador a:hover:not(.activo) {
+  background-color: #fa7900;
+  transform: scale(1.2);
+}
+.paginador .activo {
+  background-color: rgb(4.5275590551, 20.4724409449, 15.157480315);
+  color: #17684d;
+  font-weight: bold;
+}
+.paginador .icono-flecha {
+  background-color: #fa7900;
+  border: 2px solid #fff;
+}
+
+.boton-insertar {
+  width: 100%;
+  margin: 20px auto 0;
+  padding: 10px;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #17684d;
+  transition: 0.2s ease;
+}
+.boton-insertar:hover {
+  background-color: #fa7900;
+  color: #fff;
+  box-shadow: rgb(4.5275590551, 20.4724409449, 15.157480315) 5px 5px 10px;
 }
 
 header {
@@ -196,38 +266,6 @@ main .panel-control {
   box-shadow: 0 0 15px 5px #000;
   display: flex;
   flex-direction: column;
-}
-main .panel-control .section-header {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 10px 0;
-  color: #fff;
-  text-shadow: rgb(9.1456692913, 41.3543307087, 30.6181102362) 5px 5px 0;
-}
-main .panel-control .section-header .icono-header {
-  font-size: 3em;
-}
-main .panel-control .section-header h2 {
-  font-size: 2.5em;
-}
-main .panel-control .boton-insertar {
-  width: 100%;
-  margin: 20px auto 0;
-  padding: 10px;
-  font-size: 2em;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 10px;
-  background-color: #fff;
-  color: #17684d;
-  transition: 0.2s ease;
-}
-main .panel-control .boton-insertar:hover {
-  background-color: rgb(9.1456692913, 41.3543307087, 30.6181102362);
-  color: #fff;
-  box-shadow: rgb(4.5275590551, 20.4724409449, 15.157480315) 5px 5px 10px;
 }
 main .panel-control .caja-overflow {
   margin-top: 20px;

@@ -42,39 +42,6 @@ main {
         display: flex;
         flex-direction: column;
 
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 10px 0;
-            color: $color-light;
-            text-shadow: darken($color-primary, 15%) 5px 5px 0;
-
-            .icono-header { font-size: 3em; }
-
-            h2 { font-size: 2.5em; }
-        }
-
-        .boton-insertar {
-            width: 100%;
-            margin: 20px auto 0;
-            padding: 10px;
-            font-size: 2em;
-            font-weight: bold;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 10px;
-            background-color: $color-light;
-            color: $color-primary;
-            transition: 0.2s ease;
-
-            &:hover {
-                background-color: darken($color-primary, 15%);
-                color: $color-light;
-                box-shadow: darken($color-primary, 20%) 5px 5px 10px;
-            }
-        }
-
         .caja-overflow {
             margin-top: 20px;
             overflow-x: auto;
