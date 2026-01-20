@@ -101,6 +101,7 @@ hr {
 
 header {
   position: fixed;
+  z-index: 10;
   top: 0;
   width: 100%;
   height: 120px;
@@ -159,9 +160,21 @@ header .actions .icono-accion {
   margin-bottom: 5px;
   transition: 0.2s ease;
 }
+@keyframes salto-breve {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-7px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 header .actions .icono-accion:hover {
   color: #fa7900;
-  transform: translateY(-5px);
+  animation: salto-breve 0.3s ease-out forwards;
+  text-shadow: #fff 4px 4px 0;
 }
 header .actions .icono-accion.is-active {
   color: #fa7900;
@@ -176,7 +189,7 @@ header .actions .dropdown .dropdown-content {
   display: none;
   position: absolute;
   right: 0;
-  width: 250px;
+  width: 280px;
   flex-direction: column;
   box-shadow: #000 0px 0px 15px 5px;
   border: 2px solid rgb(199, 96.316, 0);
@@ -258,7 +271,7 @@ main {
   padding: 20px;
 }
 main .panel-control {
-  width: 90%;
+  width: 100%;
   margin: auto;
   padding: 20px;
   background-color: #17684d;

@@ -15,7 +15,7 @@ main {
     padding: 20px;
 
     .panel-control {
-        width: 90%;
+        width: 100%;
         min-width: 450px;
         margin: auto;
         padding: 20px;
@@ -50,13 +50,14 @@ main {
                 cursor: pointer;
                 text-shadow: darken($color-light, 25%) 3px 3px 0;
                 box-shadow: darken($color-primary, 15%) 7px 7px 0;
-                transition: font-size 0.2s ease, color 0.2s ease, background-color 0.1s linear, text-shadow 0.2s ease;
+                transition: 0.2s ease;
 
                 &:hover {
                     color: $color-light;
                     font-size: 3.5em;
                     background-color: $color-accent;
                     text-shadow: darken($color-accent, $amount: 10%) 5px 5px 0;
+                    transform: scale(1.05);
                 }
 
                 i { font-size: 3em; }

@@ -33,7 +33,7 @@ main {
     padding: 20px;
 
     .panel-control {
-        width: 90%;
+        width: 100%;
         margin: auto;
         padding: 20px;
         background-color: $color-primary;
@@ -64,14 +64,22 @@ main {
                         background-color: #acacac;
                         color: #000;
 
-                        i { color: #000; }
+                        i { 
+                            color: #000; 
+                            transition: 0.2s ease;
+                            &:hover { text-shadow: $color-light 3px 3px 0px; }
+                        }
                     }
 
                     tr:nth-child(even) {
                         background-color: #464646;
                         color: $color-light;
 
-                        i { color: $color-light; }
+                        i { 
+                            color: $color-light;
+                            transition: 0.2s ease; 
+                            &:hover { text-shadow: #000 3px 3px 0px; }
+                        }
                     }
                 }
 

@@ -28,7 +28,7 @@ main {
     padding: 20px;
 
     .panel-control {
-        width: 90%;
+        width: 100%;
         margin: auto;
         padding: 20px;
         background-color: $color-primary;
@@ -65,18 +65,28 @@ main {
                         @include input-base;
                         background-color: $color-light;
                         appearance: none;
+                        cursor: pointer;
                     }
                 }
             }
 
             .guardar {
                 @include input-base;
+                max-width: none;
                 display: block;
                 margin: 50px auto 0;
                 cursor: pointer;
-                background-color: $color-accent;
-                color: $color-light;
+                background-color: $color-light;
+                color: darken($color-primary, 10%);
                 font-weight: bold;
+                font-size: 2em;
+                transition: 0.2s ease;
+
+                &:hover {
+                    background-color: $color-accent;
+                    color: $color-light;
+                    box-shadow: darken($color-primary, 20%) 5px 5px 10px;
+                }
             }
         }
     }

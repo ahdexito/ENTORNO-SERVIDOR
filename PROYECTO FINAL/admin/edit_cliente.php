@@ -59,13 +59,19 @@
                 <a href="gestion_clientes.php"><i class="fa-regular fa-circle-left icono-accion"></i></a>
                 <p>Atrás</p>
             </div>
-            <div class="inicio">
-                <a href="../index.php"><i class="fa-regular fa-house icono-accion"></i></a>
-                <p>Inicio</p>
+            <div class="panel">
+                <a href="panel_admin.php"><i class="fa-solid fa-bars-progress icono-accion"></i></a>
+                <p>Panel</p>
             </div>
-            <div class="desconectar">
-                <a href="desconectar_admin.php"><i class="fa-solid fa-arrow-right-from-bracket icono-accion"></i></a>
-                <p>Logout</p>
+            <div class="usuario dropdown">
+                <i class="fa-solid fa-user icono-usuario dropdown-btn icono-accion" id="dropdown-btn"></i>
+                <?php echo "<p>" . $_SESSION["nombre"] . "</p>"?>
+
+                <div class="dropdown-content">
+                    <a href="#"><i class="fa-solid fa-gear icono-dropdown"></i>Ajustes</a>
+                    <hr>
+                    <a href="desconectar_admin.php"><i class="fa-solid fa-arrow-right-from-bracket icono-dropdown"></i>Cerrar sesión</a>
+                </div>
             </div>
         </div>
     </header>
@@ -160,7 +166,7 @@
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="guardar">Actualizar cliente</button>
+                <button type="submit" class="guardar"><i class="fa-solid fa-floppy-disk"></i> Actualizar cliente</button>
             </form>
         </section>
     </main>
@@ -173,6 +179,7 @@
                 <p>Ángel García, 2026.</p>
             </div>
         </div>
+        <script src="../js/dropdown.js"></script>
     </footer>
 </body>
 </html>

@@ -39,7 +39,7 @@
 
                     <div class="dropdown-content">
                         <?php if (isset($_SESSION["rol"])) {
-                            echo "<a href='admin/panel_admin.php'><i class='fa-solid fa-bars-progress icono-dropdown'></i>Panel admin</a>";
+                            echo "<a href='admin/panel_admin.php'><i class='fa-solid fa-bars-progress icono-dropdown'></i>Panel de control</a>";
                             echo "<hr>";
                         }?>
                         <a href="#"><i class="fa-solid fa-gear icono-dropdown"></i>Ajustes</a>
@@ -93,7 +93,7 @@
 
             <hr>
 
-            <p>- - - <a href="nuevos.php">Ver todo</a> - - -</p>
+            <p><i class="fa-solid fa-ellipsis"></i><a href="nuevos.php">Ver todo</a><i class="fa-solid fa-ellipsis"></i></p>
         </section>
     </main>
 

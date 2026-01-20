@@ -3,9 +3,9 @@ const caja = document.getElementById("check-background");
 
 check.addEventListener("change", () => {
     if (check.checked) {
-        caja.style.backgroundColor = "#56ee50";
+        caja.style.backgroundColor = "#0078d4";
     }
     else {
-        caja.style.backgroundColor = "#c42f2f";
+        caja.style.backgroundColor = "#fff";
     }
 });

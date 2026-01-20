@@ -86,13 +86,19 @@
                 <a href="gestion_productos.php"><i class="fa-regular fa-circle-left icono-accion"></i></a>
                 <p>Atrás</p>
             </div>
-            <div class="inicio">
-                <a href="../index.php"><i class="fa-regular fa-house icono-accion"></i></a>
-                <p>Inicio</p>
+            <div class="panel">
+                <a href=".panel_admin.php"><i class="fa-solid fa-bars-progress icono-accion"></i></a>
+                <p>Panel</p>
             </div>
-            <div class="desconectar">
-                <a href="desconectar_admin.php"><i class="fa-solid fa-arrow-right-from-bracket icono-accion"></i></a>
-                <p>Logout</p>
+            <div class="usuario dropdown">
+                <i class="fa-solid fa-user icono-usuario dropdown-btn icono-accion" id="dropdown-btn"></i>
+                <?php echo "<p>" . $_SESSION["nombre"] . "</p>"?>
+
+                <div class="dropdown-content">
+                    <a href="#"><i class="fa-solid fa-gear icono-dropdown"></i>Ajustes</a>
+                    <hr>
+                    <a href="desconectar_admin.php"><i class="fa-solid fa-arrow-right-from-bracket icono-dropdown"></i>Cerrar sesión</a>
+                </div>
             </div>
         </div>
     </header>
@@ -171,7 +177,7 @@
                     <input type="hidden" name="imagen_actual" value="<?= htmlspecialchars($producto['imagen']) ?>">
                 </div>
             </div>
-            <button type="submit" class="guardar">Actualizar producto</button>
+            <button type="submit" class="guardar"><i class="fa-solid fa-floppy-disk"></i> Actualizar producto</button>
         </form>
     </section>
     </main>
@@ -185,6 +191,7 @@
             </div>
         </div>
         <script src="../js/check-activo.js"></script>
+        <script src="../js/dropdown.js"></script>
     </footer>
 </body>
 </html>

@@ -19,7 +19,7 @@ nav {
 
     ul {
         list-style-type: none;
-        gap: 0px;
+        gap: 3px;
         display: none;
         border-bottom: 1px solid $color-light;
         @include respond-to(large) {
@@ -32,11 +32,12 @@ nav {
             color: $color-dark;
             font-weight: bold;
             padding: 10px 20px;
+            border-radius: 30px;
             transition: 0.2s ease-out;
 
             &:hover {
                 color: $color-light;
-                background-color: darken($color-primary, $amount: 10);
+                background-color: $color-accent;
             }
         }
     }
@@ -79,9 +80,15 @@ main {
 
         p {
             color: $color-light;
-            padding: 40px 0 20px;
             font-size: 2em;
             margin: auto;
+            padding-top: 20px;
+            display: flex;
+            align-items: center;
+
+            i {
+                font-size: 2em;
+            }
         
             a {
                 color: $color-primary;
@@ -90,12 +97,13 @@ main {
                 background-color: $color-light;
                 border-radius: 10px;
                 font-weight: bold;
-            }
+                transition: 0.2s ease;
 
-            a:hover {
-                background-color: darken($color-primary, $amount: 15);
-                color: $color-light;
-                box-shadow: darken($color-primary, $amount: 20) 5px 5px 10px;
+                &:hover {
+                    background-color: $color-accent;
+                    color: $color-light;
+                    box-shadow: darken($color-primary, $amount: 20) 5px 5px 10px;
+                }
             }
         }
     }
