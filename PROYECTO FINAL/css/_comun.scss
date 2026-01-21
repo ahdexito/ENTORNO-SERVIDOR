@@ -95,3 +95,91 @@ hr { border: 1px solid $color-light; }
         box-shadow: darken($color-primary, 20%) 5px 5px 10px;
     }
 }
+
+.p-card {
+    background-color: darken($color-primary, $amount: 15);
+    box-shadow: darken($color-primary, $amount: 20) 0px 0px 10px 5px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+
+    .dropdown-btn {
+        width: 180px;
+        border-radius: 8px;
+        margin: 5px;
+        cursor: pointer;
+        transition: 0.2s ease;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    .dropdown-content {
+        display: none;
+        flex-direction: column;
+        box-shadow: #000 0px 0px 15px 5px;
+        border: 2px solid darken($color-accent, $amount: 10);
+
+        &.show {
+            display: flex !important;
+        }
+    
+        p {
+            color: $color-light;
+            text-decoration: none;
+            text-shadow: darken($color-accent, $amount: 35) 2px 2px 0px;
+            background: $color-accent;
+            width: 100%;
+            padding: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: 0.2s ease;
+
+            &:hover { background-color: lighten($color-accent, $amount: 20); }
+        }
+
+        hr { border: 1px solid darken($color-accent, $amount: 10); }
+    }   
+
+    p {
+        color: $color-light;
+        padding: 5px;
+    }
+
+    .prod-nombre {
+        font-weight: bold;
+        font-style: italic;
+    }
+
+    .prod-precio {
+        font-size: 1.2em;
+    }
+
+    .btn-agregar-carrito {
+        background-color: $color-accent;
+        padding: 10px;
+        margin: 5px;
+        border-radius: 10px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: $color-light;
+        transition: 0.2s ease;
+
+        &:hover {
+            transform: scale(1.05);
+            background-color: lighten($color-accent, $amount: 10);
+        }
+
+        p {
+            font-weight: bold;
+        }
+    }
+}

@@ -72,19 +72,6 @@ VALUES
     'Brazo:62cm; Hombros:48cm; Sisa:54cm; Espalda:66cm; Interior:78cm; Exterior:104cm; Cadera:98cm; Cintura:84cm',
     'unisex', 'mono', '../img/mono.png'),
 
--- GUANTES
-('Guantes Carbon 4', 149.99, 1, 'Dainese', 'piel', 'M',
-    'Palma reforzada; Nudillos carbono', 'hombre', 'guantes', '../img/guantes.png'),
-
-('Guantes GP Pro', 169.95, 1, 'Alpinestars', 'piel', 'L',
-    'Protecciones TPU; Palma perforada', 'hombre', 'guantes', '../img/guantes.png'),
-
-('Guantes Mosca', 89.90, 1, 'Revit', 'cordura', 'M',
-    'Ventilados; Palma antideslizante', 'unisex', 'guantes', '../img/guantes.png'),
-
-('Guantes Mujer Stella', 99.00, 1, 'Alpinestars', 'piel', 'S',
-    'Diseño ergonómico femenino', 'mujer', 'guantes', '../img/guantes.png'),
-
 -- BOTAS
 ('Botas Torque 3', 379.99, 1, 'Dainese', 'piel', '43',
     'Protección tibia; Suela racing', 'hombre', 'botas', '../img/botas.png'),

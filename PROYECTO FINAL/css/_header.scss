@@ -89,9 +89,7 @@ header {
                 flex-direction: column;
                 box-shadow: #000 0px 0px 15px 5px;
                 border: 2px solid darken($color-accent, $amount: 10);
-            }
-
-            .dropdown-content {
+                
                 a {
                     color: $color-light;
                     text-decoration: none;

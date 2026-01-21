@@ -99,6 +99,85 @@ hr {
   box-shadow: rgb(4.5275590551, 20.4724409449, 15.157480315) 5px 5px 10px;
 }
 
+.p-card {
+  background-color: rgb(9.1456692913, 41.3543307087, 30.6181102362);
+  box-shadow: rgb(4.5275590551, 20.4724409449, 15.157480315) 0px 0px 10px 5px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.p-card .dropdown-btn {
+  width: 180px;
+  border-radius: 8px;
+  margin: 5px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.p-card .dropdown-btn:hover {
+  transform: scale(1.05);
+}
+.p-card .dropdown-content {
+  display: none;
+  flex-direction: column;
+  box-shadow: #000 0px 0px 15px 5px;
+  border: 2px solid rgb(199, 96.316, 0);
+}
+.p-card .dropdown-content.show {
+  display: flex !important;
+}
+.p-card .dropdown-content p {
+  color: #fff;
+  text-decoration: none;
+  text-shadow: rgb(71.5, 34.606, 0) 2px 2px 0px;
+  background: #fa7900;
+  width: 100%;
+  padding: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.2s ease;
+}
+.p-card .dropdown-content p:hover {
+  background-color: rgb(255, 173.472, 97);
+}
+.p-card .dropdown-content hr {
+  border: 1px solid rgb(199, 96.316, 0);
+}
+.p-card p {
+  color: #fff;
+  padding: 5px;
+}
+.p-card .prod-nombre {
+  font-weight: bold;
+  font-style: italic;
+}
+.p-card .prod-precio {
+  font-size: 1.2em;
+}
+.p-card .btn-agregar-carrito {
+  background-color: #fa7900;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #fff;
+  transition: 0.2s ease;
+}
+.p-card .btn-agregar-carrito:hover {
+  transform: scale(1.05);
+  background-color: rgb(255, 147.156, 46);
+}
+.p-card .btn-agregar-carrito p {
+  font-weight: bold;
+}
+
 header {
   position: fixed;
   z-index: 10;

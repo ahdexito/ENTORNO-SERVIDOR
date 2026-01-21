@@ -48,7 +48,7 @@ main {
         margin-top: 0;
     }
 
-    .novedades {
+    section {
         background-color: $color-primary;
         box-shadow: #000 0px 0px 15px 5px;
         border-radius: 5px;
@@ -65,19 +65,6 @@ main {
             gap: 20px;
             text-shadow: darken($color-primary, $amount: 15) 5px 5px 0px;
             color: $color-light;
-
-            .icono-fuego {
-                font-size: 3em;
-                margin: 5px 0px;
-            }
-
-            h2 {
-                font-size: 2.5em;
-            }
-        }
-
-        hr {
-            border: 1px solid $color-light;
         }
 
         article {

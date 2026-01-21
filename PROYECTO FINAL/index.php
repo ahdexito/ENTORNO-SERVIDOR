@@ -1,5 +1,15 @@
 <?php
     session_start();
+
+    include("db/db.inc");
+
+    // OBTENER PRODUCTOS
+    $resultado = $conn->query(
+        "SELECT * FROM productos 
+        ORDER BY id DESC
+        LIMIT 8"
+    );
+    $productos = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -35,8 +45,7 @@
             <?php
                 if (isset($_SESSION["nombre"])) {
                     ?>
-                    <i class="fa-solid fa-user icono-usuario dropdown-btn icono-accion" id="dropdown-btn"></i>
-
+                    <i class="fa-solid fa-user icono-usuario dropdown-btn icono-accion"></i>
                     <div class="dropdown-content">
                         <?php if (isset($_SESSION["rol"])) {
                             echo "<a href='admin/panel_admin.php'><i class='fa-solid fa-bars-progress icono-dropdown'></i>Panel de control</a>";
@@ -81,19 +90,28 @@
             <hr>
 
             <article>
-                <a href="#"><img src="img/chaqueta.png" alt=""></a>
-                <a href="#"><img src="img/pantalon.png" alt=""></a>
-                <a href="#"><img src="img/botas.png" alt=""></a>
-                <a href="#"><img src="img/pantalon.png" alt=""></a>
-                <a href="#"><img src="img/chaqueta.png" alt=""></a>
-                <a href="#"><img src="img/chaqueta.png" alt=""></a>
-                <a href="#"><img src="img/botas.png" alt=""></a>
-                <a href="#"><img src="img/pantalon.png" alt=""></a>
+                <?php foreach ($productos as $p): ?>
+                    <div class="p-card">
+                        <img src="img/<?= htmlspecialchars($p['imagen']) ?>" alt="imagen producto" class="dropdown-btn">
+                        <div class="dropdown-content">
+                            <p>info</p>
+                            <p>info</p>
+                        </div>
+
+                        <p class="prod-nombre"><?= htmlspecialchars($p['nombre']) ?></p>
+                        <p class="prod-talla">Talla <?= htmlspecialchars($p['talla']) ?></p>
+                        <p class="prod-precio"><?= htmlspecialchars($p['precio']) ?> €</p>
+                        <a href="#" class="btn-agregar-carrito">
+                            <i class="fa-solid fa-cart-arrow-down"></i> 
+                            <p> Añadir</p>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
             </article>
 
             <hr>
 
-            <p><i class="fa-solid fa-ellipsis"></i><a href="nuevos.php">Ver todo</a><i class="fa-solid fa-ellipsis"></i></p>
+            <p class="boton-todo"><i class="fa-solid fa-ellipsis"></i><a href="nuevos.php">Ver todo</a><i class="fa-solid fa-ellipsis"></i></p>
         </section>
     </main>
 

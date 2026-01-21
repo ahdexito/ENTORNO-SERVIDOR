@@ -69,16 +69,11 @@ main {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
+            gap: 15px;
             width: 100%;
-
-            img {
-                width: 200px;
-                border-radius: 5px;
-                margin: 5px;
-            }
         }
 
-        p {
+        .boton-todo {
             color: $color-light;
             font-size: 2em;
             margin: auto;
