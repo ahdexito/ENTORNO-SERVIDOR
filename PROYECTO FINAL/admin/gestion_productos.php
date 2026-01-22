@@ -138,12 +138,14 @@
                             <th>Nombre</th>
                             <th>Precio</th>
                             <th>Activo</th>
+                            <th>Estado</th>
                             <th>Marca</th>
                             <th>Material</th>
                             <th>Talla</th>
                             <th>Género</th>
                             <th>Tipo</th>
                             <th class="medidas">Medidas</th>
+                            <th class="detalles">Detalles</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -170,12 +172,35 @@
                                 else echo '<i class="fa-solid fa-x"></i>';
                                 ?>
                             </td>
+                            <td>
+                                <?php
+                                    $estado = $p['estado'];
+                                    switch ($estado) {
+                                    case 0:
+                                        echo "<p>A estrenar</p>";
+                                        break;
+                                    case 1:
+                                        echo "<p>Como nuevo</p>";
+                                        break;
+                                    case 2:
+                                        echo "<p>Aceptable</p>";
+                                        break;
+                                    case 3:
+                                        echo "<p>Bastante usado</p>";
+                                        break;
+                                    default:
+                                        echo "<p>Estado desconocido</p>";
+                                        break;
+                                    }
+                                ?>
+                            </td>
                             <td><?= htmlspecialchars($p['marca']) ?></td>
                             <td><?= htmlspecialchars($p['material']) ?></td>
                             <td><?= htmlspecialchars($p['talla']) ?></td>
                             <td><?= $p['genero'] ?></td>
                             <td><?= $p['tipo'] ?></td>
-                            <td><?= htmlspecialchars($p['medidas']) ?></td>
+                            <td class="text-area"><?= htmlspecialchars($p['medidas']) ?></td>
+                            <td class="text-area"><?= htmlspecialchars($p['detalles']) ?></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

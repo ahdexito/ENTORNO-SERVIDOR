@@ -26,10 +26,12 @@
         $nombre = htmlspecialchars($_POST['nombre']);
         $precio = floatval($_POST['precio']);
         $activo = isset($_POST['activo']) ? 1 : 0;
+        $estado = intval($_POST['estado']);
         $marca = htmlspecialchars($_POST['marca']);
         $material = htmlspecialchars($_POST['material']);
         $talla = htmlspecialchars($_POST['talla']);
         $medidas = htmlspecialchars($_POST['medidas']);
+        $detalles = htmlspecialchars($_POST['detalles']);
         $genero = $_POST['genero'];
         $tipo = $_POST['tipo'];
 
@@ -51,8 +53,8 @@
         }
 
         $sql_update = "UPDATE productos SET 
-            nombre='$nombre', precio=$precio, activo=$activo, marca='$marca', material='$material', 
-            talla='$talla', medidas='$medidas', genero='$genero', tipo='$tipo', imagen='$ruta_destino'
+            nombre='$nombre', precio=$precio, activo=$activo, estado=$estado, marca='$marca', material='$material', 
+            talla='$talla', medidas='$medidas', detalles='$detalles', genero='$genero', tipo='$tipo', imagen='$ruta_destino'
             WHERE id=$id";
 
         if(mysqli_query($conn, $sql_update)) {
@@ -143,6 +145,11 @@
                 </div>
 
                 <div class="casilla">
+                    <label for="detalles">Detalles</label>
+                    <textarea name="detalles" class="area-texto"><?= htmlspecialchars($producto['detalles']) ?></textarea>
+                </div>
+
+                <div class="casilla">
                     <label for="genero">Género</label>
                     <select name="genero" class="seleccion" required>
                         <option value="default" disabled>Género</option>
@@ -170,6 +177,30 @@
                         <span for="checkbox" class="checkbox-info" id="checkbox-info">Activado</span>
                         <input type="checkbox" name="activo" id="checkbox" class="checkbox" <?= $producto['activo']?'checked':'' ?> >
                     </div>
+                </div>
+
+                <?php
+                    $estados = [
+                        1 => "A estrenar",
+                        2 => "Como nuevo",
+                        3 => "Buen estado",
+                        4 => "Aceptable",
+                        5 => "Bastante usuado"
+                    ];
+                ?>
+
+                <div class="casilla">
+                    <label for="estado">Estado</label>
+                    <select name="estado" class="seleccion" required>
+                        <option value="default" disabled>Estado del producto</option>
+                        
+                        <?php foreach ($estados as $valor => $texto): ?>
+                            <option value="<?= $valor ?>" <?= $producto['estado'] == $valor ? 'selected' : '' ?>>
+                                <?= $texto ?>
+                            </option>
+                        <?php endforeach; ?>
+                        
+                    </select>
                 </div>
 
                 <div class="casilla">

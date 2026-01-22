@@ -8,17 +8,18 @@
     include("../db/db.inc");
 
     if (
-        isset($_POST["nombre"], $_POST["precio"], $_POST["tipo"], $_POST["genero"]) &&
-        $_POST["tipo"] !== "default" &&
-        $_POST["genero"] !== "default"
+        isset($_POST["nombre"], $_POST["precio"], $_POST["tipo"], $_POST['estado'], $_POST["genero"]) &&
+        $_POST["tipo"] !== "default" && $_POST["genero"] !== "default" && $_POST['estado'] !== "default"
     ) {
         $nombre = htmlspecialchars($_POST["nombre"]);
         $precio = floatval($_POST["precio"]);
         $activo = isset($_POST["activo"]) ? 1 : 0;
+        $estado = intval($_POST['estado']);
         $marca = htmlspecialchars($_POST["marca"]);
         $material = htmlspecialchars($_POST["material"]);
         $talla = htmlspecialchars($_POST["talla"]);
         $medidas = htmlspecialchars($_POST["medidas"]);
+        $detalles = htmlspecialchars($_POST['detalles']);
         $genero = $_POST["genero"];
         $tipo = $_POST["tipo"];
 
@@ -32,8 +33,8 @@
         $ruta_destino = "../imagenes_productos/" . $nombre_imagen;
 
         if (move_uploaded_file($imagen_tmp, $ruta_destino)) {
-            $sql = "INSERT INTO productos (nombre, precio, activo, marca, material, talla, medidas, genero, tipo, imagen)
-                VALUES ('$nombre', $precio, $activo, '$marca', '$material', '$talla', '$medidas', '$genero', '$tipo', '$ruta_destino')";
+            $sql = "INSERT INTO productos (nombre, precio, activo, estado, marca, material, talla, medidas, detalles, genero, tipo, imagen)
+                VALUES ('$nombre', $precio, $activo, $estado, '$marca', '$material', '$talla', '$medidas', '$detalles', '$genero', '$tipo', '$ruta_destino')";
 
             if (mysqli_query($conn, $sql)) {
                 header("location:gestion_productos.php?prod=0");// producto insertado correctamente
@@ -129,6 +130,11 @@
                     </div>
 
                     <div class="casilla">
+                        <label for="detalles">Detalles</label>
+                        <textarea name="detalles" class="area-texto" placeholder="Área de texto"></textarea>
+                    </div>
+
+                    <div class="casilla">
                         <label for="genero">Género</label>
                         <select name="genero" id="genero" class="seleccion" required>
                             <option value="default" selected disabled>Selecciona...</option>
@@ -156,6 +162,18 @@
                             <span class="checkbox-info" id="checkbox-info">Activado</span>
                             <input type="checkbox" name="activo" id="checkbox" class="checkbox" checked>
                         </div>
+                    </div>
+
+                    <div class="casilla">
+                        <label for="estado">Estado</label>
+                        <select name="estado" id="estado" class="seleccion" required>
+                            <option value="default" selected disabled>Selecciona...</option>
+                            <option value="1">A estrenar</option>
+                            <option value="2">Como nuevo</option>
+                            <option value="3">Buen estado</option>
+                            <option value="4">Aceptable</option>
+                            <option value="5">Bastante usado</option>
+                        </select>
                     </div>
 
                     <div class="casilla">

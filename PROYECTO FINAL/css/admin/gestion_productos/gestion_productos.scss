@@ -100,6 +100,13 @@ main {
                 }
 
                 th:last-child, td:last-child { text-align: left; }
+
+                td.text-area {
+                    font-size: 1em;
+                    min-width: 25ch;
+                    white-space: pre-line;
+                    word-break: break-word;
+                }
             }
         }
     }

@@ -412,4 +412,10 @@ main .panel-control .caja-overflow table td:not(:first-child) {
 }
 main .panel-control .caja-overflow table th:last-child, main .panel-control .caja-overflow table td:last-child {
   text-align: left;
+}
+main .panel-control .caja-overflow table td.text-area {
+  font-size: 1em;
+  min-width: 25ch;
+  white-space: pre-line;
+  word-break: break-word;
 }/*# sourceMappingURL=gestion_productos.css.map */
