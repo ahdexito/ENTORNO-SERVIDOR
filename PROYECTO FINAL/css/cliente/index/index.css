@@ -1,8 +1,7 @@
 /* ===========================
     IMPORTS
 =========================== */
-@import url("https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Inter:wght@100..900&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -25,6 +24,12 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+.btn-agregar-carrito, .p-card .dropdown-content, .paginador a, .paginador {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .section-header {
   display: flex;
   align-items: center;
@@ -41,14 +46,11 @@ body::-webkit-scrollbar {
 }
 
 hr {
-  border: 1px solid #fff;
+  border: none;
+  border-top: 1px solid #fff;
 }
 
 .paginador {
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 10px;
   margin-top: 20px;
 }
@@ -61,9 +63,6 @@ hr {
   color: #fff;
   font-size: 1.5em;
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: 0.2s ease;
 }
 .paginador a:hover:not(.activo) {
@@ -81,6 +80,7 @@ hr {
 }
 
 .boton-insertar {
+  display: block;
   width: 100%;
   margin: 20px auto 0;
   padding: 10px;
@@ -100,15 +100,19 @@ hr {
 }
 
 .p-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   background-color: rgb(9.1456692913, 41.3543307087, 30.6181102362);
   box-shadow: rgb(4.5275590551, 20.4724409449, 15.157480315) 0px 0px 10px 5px;
   border-radius: 10px;
   margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
 }
 .p-card .dropdown-btn {
-  width: 180px;
+  width: 380px;
+  aspect-ratio: 3/4;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 8px;
   margin: 5px;
   cursor: pointer;
@@ -118,33 +122,73 @@ hr {
   transform: scale(1.05);
 }
 .p-card .dropdown-content {
-  display: none;
-  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 150;
+  width: 90%;
+  max-width: 900px;
+  max-height: 0;
+  padding: 10px;
+  background-color: #181818;
+  border-radius: 10px;
   box-shadow: #000 0px 0px 15px 5px;
-  border: 2px solid rgb(199, 96.316, 0);
+  overflow: hidden;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+  transition: all 0.3s ease-in-out;
 }
 .p-card .dropdown-content.show {
-  display: flex !important;
+  max-height: 90vh;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }
-.p-card .dropdown-content p {
-  color: #fff;
-  text-decoration: none;
-  text-shadow: rgb(71.5, 34.606, 0) 2px 2px 0px;
-  background: #fa7900;
-  width: 100%;
-  padding: 20px;
-  font-size: 1.2em;
-  font-weight: bold;
+@media (max-width: 670px) {
+  .p-card .dropdown-content {
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+  }
+  .p-card .dropdown-content::-webkit-scrollbar {
+    display: none;
+  }
+}
+.p-card .dropdown-content .dropdown-content-info {
+  width: 90%;
+  margin-left: 10px;
+  padding: 10px;
+  background-color: rgb(62.25, 62.25, 62.25);
+  border-radius: 10px;
+}
+.p-card .dropdown-content .dropdown-content-info p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: 0.2s ease;
+  width: 100%;
+  padding: 10px;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-shadow: rgb(71.5, 34.606, 0) 2px 2px 0px;
 }
-.p-card .dropdown-content p:hover {
-  background-color: rgb(255, 173.472, 97);
+.p-card .dropdown-content .dropdown-content-info .prod-nombre {
+  font-size: 2em;
 }
-.p-card .dropdown-content hr {
-  border: 1px solid rgb(199, 96.316, 0);
+.p-card .dropdown-content .dropdown-content-info ul {
+  list-style: none;
+}
+.p-card .dropdown-content .dropdown-content-info ul li {
+  padding-left: 20px;
+  border-top: 1px solid #fff;
+}
+.p-card .dropdown-content .imagen-dropdown {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .p-card p {
   color: #fff;
@@ -153,29 +197,25 @@ hr {
 .p-card .prod-nombre {
   font-weight: bold;
   font-style: italic;
+  font-size: 1.5em;
 }
 .p-card .prod-precio {
-  font-size: 1.2em;
+  font-size: 1.3em;
 }
-.p-card .btn-agregar-carrito {
-  background-color: #fa7900;
+
+.btn-agregar-carrito {
   padding: 10px;
   margin: 5px;
-  border-radius: 10px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
+  background-color: #fa7900;
   color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 10px;
   transition: 0.2s ease;
 }
-.p-card .btn-agregar-carrito:hover {
+.btn-agregar-carrito:hover {
   transform: scale(1.05);
   background-color: rgb(255, 147.156, 46);
-}
-.p-card .btn-agregar-carrito p {
-  font-weight: bold;
 }
 
 footer {
@@ -198,7 +238,7 @@ footer .copy p {
 
 header {
   position: fixed;
-  z-index: 10;
+  z-index: 100;
   top: 0;
   width: 100%;
   height: 120px;
@@ -324,7 +364,7 @@ nav {
   width: 100%;
   border-bottom: 2px solid #fff;
 }
-@media (max-width: 1200px) {
+@media (max-width: 670px) {
   nav {
     display: none;
   }
@@ -335,7 +375,7 @@ nav ul {
   display: none;
   border-bottom: 1px solid #fff;
 }
-@media (min-width: 1201px) {
+@media (min-width: 671px) {
   nav ul {
     display: flex;
     justify-content: center;

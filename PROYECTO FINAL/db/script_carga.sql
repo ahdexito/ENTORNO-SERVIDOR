@@ -25,3 +25,12 @@ INSERT INTO `clientes` (`nombre`, `apellidos`, `genero`, `direccion`, `codpostal
     ('Marta', 'Heredia Ferrer', 'M', 'Calle del Río 55', '14001', 'Córdoba', 'Córdoba', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'marta_h@gmail.com'),
     ('Adrián', 'Crespo Prieto', 'H', 'Calle Pintor 4', '33001', 'Oviedo', 'Asturias', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'adrian_crespo@gmail.com'),
     ('Irene', 'Vega Esteban', 'M', 'Calle Mayor 80', '24001', 'León', 'León', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'irene.vega@gmail.com');
+
+INSERT INTO `productos` (`nombre`, `precio`, `activo`, `estado`, `marca`, `material`, `talla`, `medidas`, `detalles`, `genero`, `tipo`, `imagen`) VALUES
+    ('Chaqueta Nickelson', 35, 1, 4, 'Nickelson', 'Cuero', 'XL', 
+        'Alto de espalda: 73 cm; Ancho de espalda: 61 cm; Ancho de hombros: 52 cm; Largo de brazo: 48 cm', 
+        'Forro interior sucio y algunos roces. Necesita una limpieza profesional, de ahí su bajo precio. Exterior perfecto, así también como las cremalleras. Un cosido y nueva!', 
+        'hombre', 'chaqueta', '../imagenes_productos/chaqueta_Nickelson_1769159312.JPG'),
+    ('Botas Forma Revenger', 55, 1, 3, 'Forma', 'Cuero', '44', '', 
+        'Botas de moto Forma Revenger. Diseñadas para ofrecer protección y comodidad en la carretera. - Cierre con cremallera y velcro. - Protecciones en tobillo y espinilla. - Suela antideslizante.',
+        'unisex', 'botas', '../imagenes_productos/botas_Forma_1769160295.JPG')

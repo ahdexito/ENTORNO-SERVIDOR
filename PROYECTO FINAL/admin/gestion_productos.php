@@ -176,20 +176,23 @@
                                 <?php
                                     $estado = $p['estado'];
                                     switch ($estado) {
-                                    case 0:
+                                    case 1:
                                         echo "<p>A estrenar</p>";
                                         break;
-                                    case 1:
+                                    case 2:
                                         echo "<p>Como nuevo</p>";
                                         break;
-                                    case 2:
+                                    case 3:
+                                        echo "<p>Buen estado</p>";
+                                        break;
+                                    case 4:
                                         echo "<p>Aceptable</p>";
                                         break;
-                                    case 3:
+                                    case 5:
                                         echo "<p>Bastante usado</p>";
                                         break;
                                     default:
-                                        echo "<p>Estado desconocido</p>";
+                                        echo "<p>Desconocido</p>";
                                         break;
                                     }
                                 ?>

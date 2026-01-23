@@ -100,6 +100,7 @@ hr {
 }
 
 .p-card {
+  position: relative;
   background-color: rgb(9.1456692913, 41.3543307087, 30.6181102362);
   box-shadow: rgb(4.5275590551, 20.4724409449, 15.157480315) 0px 0px 10px 5px;
   border-radius: 10px;
@@ -118,33 +119,72 @@ hr {
   transform: scale(1.05);
 }
 .p-card .dropdown-content {
-  display: none;
-  flex-direction: column;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #181818;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform-origin: top left;
+  transition: all 0.3s ease-in-out;
+  transform: translate(-50%, -50%) scale(0.8);
+  z-index: 150;
+  width: 90%;
+  max-width: 900px;
+  margin-bottom: 10px;
   box-shadow: #000 0px 0px 15px 5px;
-  border: 2px solid rgb(199, 96.316, 0);
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
 }
 .p-card .dropdown-content.show {
-  display: flex !important;
+  max-height: 90vh;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }
-.p-card .dropdown-content p {
+.p-card .dropdown-content .dropdown-content-info {
+  background-color: rgb(62.25, 62.25, 62.25);
+  padding: 10px;
+  margin-left: 10px;
+  width: 90%;
+  border-radius: 10px;
+}
+.p-card .dropdown-content .dropdown-content-info p {
   color: #fff;
   text-decoration: none;
   text-shadow: rgb(71.5, 34.606, 0) 2px 2px 0px;
-  background: #fa7900;
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   font-size: 1.2em;
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: 0.2s ease;
 }
-.p-card .dropdown-content p:hover {
-  background-color: rgb(255, 173.472, 97);
+.p-card .dropdown-content .dropdown-content-info .prod-nombre {
+  font-size: 2em;
 }
-.p-card .dropdown-content hr {
-  border: 1px solid rgb(199, 96.316, 0);
+.p-card .dropdown-content .dropdown-content-info ul {
+  list-style: none;
+}
+.p-card .dropdown-content .dropdown-content-info ul li {
+  padding-left: 20px;
+  border-top: 1px solid #fff;
+}
+.p-card .dropdown-content .imagen-dropdown {
+  width: 100%;
+  border-radius: 10px;
+  max-width: 350px;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .p-card p {
   color: #fff;
@@ -157,7 +197,8 @@ hr {
 .p-card .prod-precio {
   font-size: 1.2em;
 }
-.p-card .btn-agregar-carrito {
+
+.btn-agregar-carrito {
   background-color: #fa7900;
   padding: 10px;
   margin: 5px;
@@ -167,20 +208,18 @@ hr {
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  font-weight: bold;
   color: #fff;
   transition: 0.2s ease;
 }
-.p-card .btn-agregar-carrito:hover {
+.btn-agregar-carrito:hover {
   transform: scale(1.05);
   background-color: rgb(255, 147.156, 46);
-}
-.p-card .btn-agregar-carrito p {
-  font-weight: bold;
 }
 
 header {
   position: fixed;
-  z-index: 10;
+  z-index: 100;
   top: 0;
   width: 100%;
   height: 120px;

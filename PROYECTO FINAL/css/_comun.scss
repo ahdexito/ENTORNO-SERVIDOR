@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Inter:wght@100..900&display=swap');
 @import 'variables';
 
+// --- BASE ---
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +9,9 @@
     font-family: 'Jura', sans-serif;
 }
 
-html, body { height: 100%; }
+html, body { 
+    height: 100%; 
+}
 
 body {
     padding-top: 120px;
@@ -18,9 +20,19 @@ body {
     display: flex;
     flex-direction: column;
 
-    &::-webkit-scrollbar { display: none; }
+    &::-webkit-scrollbar { 
+        display: none; 
+    }
 }
 
+// --- MIXINS ---
+%flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// --- COMPONENTES ---
 .section-header {
     display: flex;
     align-items: center;
@@ -30,32 +42,29 @@ body {
     text-shadow: darken($color-primary, 15%) 5px 5px 0;
 
     .icono-header { font-size: 3em; }
-
     h2 { font-size: 2.5em; }
 }
 
-hr { border: 1px solid $color-light; }
+hr { 
+    border: none;
+    border-top: 1px solid $color-light; 
+}
 
 .paginador {
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @extend %flex-center;
     gap: 10px;
     margin-top: 20px;
 
     a {
+        @extend %flex-center;
         width: 40px;
         height: 40px;
         padding: 20px;
-        background-color: darken($color: $color-primary, $amount: 10);
+        background-color: darken($color-primary, 10%);
         border-radius: 10px;
         color: $color-light;
         font-size: 1.5em;
         text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         transition: 0.2s ease;
 
         &:hover:not(.activo) {
@@ -65,7 +74,7 @@ hr { border: 1px solid $color-light; }
     }
 
     .activo {
-        background-color: darken($color-primary, $amount: 20);
+        background-color: darken($color-primary, 20%);
         color: $color-primary;
         font-weight: bold;
     }
@@ -77,6 +86,7 @@ hr { border: 1px solid $color-light; }
 }
 
 .boton-insertar {
+    display: block;
     width: 100%;
     margin: 20px auto 0;
     padding: 10px;
@@ -96,54 +106,97 @@ hr { border: 1px solid $color-light; }
     }
 }
 
+// --- PRODUCT CARD ---
 .p-card {
-    background-color: darken($color-primary, $amount: 15);
-    box-shadow: darken($color-primary, $amount: 20) 0px 0px 10px 5px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    position: relative;
     display: flex;
     flex-direction: column;
+    background-color: darken($color-primary, 15%);
+    box-shadow: darken($color-primary, 20%) 0px 0px 10px 5px;
+    border-radius: 10px;
+    margin-bottom: 20px;
 
     .dropdown-btn {
-        width: 180px;
+        width: 380px;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
         border-radius: 8px;
         margin: 5px;
         cursor: pointer;
         transition: 0.2s ease;
 
-        &:hover {
-            transform: scale(1.05);
-        }
+        &:hover { transform: scale(1.05); }
     }
 
     .dropdown-content {
-        display: none;
-        flex-direction: column;
+        @extend %flex-center;
+        justify-content: space-between;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        z-index: 150;
+        width: 90%;
+        max-width: 900px;
+        max-height: 0;
+        padding: 10px;
+        background-color: $color-dark;
+        border-radius: 10px;
         box-shadow: #000 0px 0px 15px 5px;
-        border: 2px solid darken($color-accent, $amount: 10);
+        overflow: hidden;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+        transition: all 0.3s ease-in-out;
 
         &.show {
-            display: flex !important;
+            max-height: 90vh;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
         }
-    
-        p {
-            color: $color-light;
-            text-decoration: none;
-            text-shadow: darken($color-accent, $amount: 35) 2px 2px 0px;
-            background: $color-accent;
+
+        @include respond-to(small) {
+            flex-direction: column;
+            gap: 20px;
+            overflow-y: auto;
+            &::-webkit-scrollbar { display: none; }
+        }
+
+        .dropdown-content-info {
+            width: 90%;
+            margin-left: 10px;
+            padding: 10px;
+            background-color: lighten($color-dark, 15%);
+            border-radius: 10px;
+
+            p {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                padding: 10px;
+                color: $color-light;
+                font-size: 1.2em;
+                font-weight: bold;
+                text-shadow: darken($color-accent, 35%) 2px 2px 0px;
+            }
+
+            .prod-nombre { font-size: 2em; }
+            
+            ul {
+                list-style: none;
+                li { 
+                    padding-left: 20px; 
+                    border-top: 1px solid $color-light;
+                }
+            } 
+        }
+        
+        .imagen-dropdown {
             width: 100%;
-            padding: 20px;
-            font-size: 1.2em;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: 0.2s ease;
-
-            &:hover { background-color: lighten($color-accent, $amount: 20); }
+            max-width: 350px;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
         }
-
-        hr { border: 1px solid darken($color-accent, $amount: 10); }
     }   
 
     p {
@@ -154,32 +207,25 @@ hr { border: 1px solid $color-light; }
     .prod-nombre {
         font-weight: bold;
         font-style: italic;
+        font-size: 1.5em;
     }
 
-    .prod-precio {
-        font-size: 1.2em;
-    }
+    .prod-precio { font-size: 1.3em; }
+}
 
-    .btn-agregar-carrito {
-        background-color: $color-accent;
-        padding: 10px;
-        margin: 5px;
-        border-radius: 10px;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        color: $color-light;
-        transition: 0.2s ease;
+.btn-agregar-carrito {
+    @extend %flex-center;
+    padding: 10px;
+    margin: 5px;
+    background-color: $color-accent;
+    color: $color-light;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: 0.2s ease;
 
-        &:hover {
-            transform: scale(1.05);
-            background-color: lighten($color-accent, $amount: 10);
-        }
-
-        p {
-            font-weight: bold;
-        }
+    &:hover {
+        transform: scale(1.05);
+        background-color: lighten($color-accent, 10%);
     }
 }

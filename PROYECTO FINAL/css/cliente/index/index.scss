@@ -13,16 +13,14 @@ nav {
     padding: 10px;
     width: 100%;
     border-bottom: 2px solid $color-light;
-    @include respond-to(small_medium) {
-        display: none;
-    }
+    @include respond-to(small) { display: none; }
 
     ul {
         list-style-type: none;
         gap: 3px;
         display: none;
         border-bottom: 1px solid $color-light;
-        @include respond-to(large) {
+        @include respond-to(medium_large) {
             display: flex;
             justify-content: center;
         }
