@@ -33,4 +33,12 @@ INSERT INTO `productos` (`nombre`, `precio`, `activo`, `estado`, `marca`, `mater
         'hombre', 'chaqueta', '../imagenes_productos/chaqueta_Nickelson_1769159312.JPG'),
     ('Botas Forma Revenger', 55, 1, 3, 'Forma', 'Cuero', '44', '', 
         'Botas de moto Forma Revenger. Diseñadas para ofrecer protección y comodidad en la carretera. - Cierre con cremallera y velcro. - Protecciones en tobillo y espinilla. - Suela antideslizante.',
-        'unisex', 'botas', '../imagenes_productos/botas_Forma_1769160295.JPG')
+        'unisex', 'botas', '../imagenes_productos/botas_Forma_1769160295.JPG'),
+    ('Pantalón Skinz', 20, 1, 3, 'Skinz', 'Cuero', '38',
+        'Ancho de cintura: 38 cm; Ancho de cadera: 50cm; Largo exterior: 103 cm; Largo interior: 76cm',
+        'Fácil arreglo de bajos, solo cortar.',
+        'mujer', 'pantalon', '../imagenes_productos/pantalon_Skinz_1769168993.JPG'),
+    ('Mono FLM', 230, 1, 2, 'FLM', 'Cuero', '50 / 56',
+        'PANTALÓN: Ancho de cintura: 42 cm; Ancho de cadera: 49 cm; Largo exterior: 108 cm; Largo interior: 82 cm; CHAQUETA: Alto de espalda: 60 cm; Ancho de espalda: 54 cm; Ancho de hombros: 51 cm; Largo de brazo: 49 cm.',
+        'Está prácticamente nuevo, sin alguna marca de uso. Una autentica ganga! Costó 500€ en tienda. La chaqueta es talla L y el pantalón talla M.',
+        'hombre', 'mono', '../imagenes_productos/mono_FLM_1769170944.JPG');

@@ -111,13 +111,13 @@ hr {
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: darken($color-primary, 15%);
-    box-shadow: darken($color-primary, 20%) 0px 0px 10px 5px;
+    background-color: $color-dark;
+    box-shadow: #000 0px 0px 10px 5px;
     border-radius: 10px;
-    margin-bottom: 20px;
+    padding: 10px;
 
     .dropdown-btn {
-        width: 380px;
+        width: 370px;
         aspect-ratio: 3 / 4;
         object-fit: cover;
         border-radius: 8px;
@@ -130,16 +130,18 @@ hr {
 
     .dropdown-content {
         @extend %flex-center;
+        gap: 30px;
         justify-content: space-between;
         position: fixed;
         top: 50%;
         left: 50%;
         z-index: 150;
         width: 90%;
-        max-width: 900px;
+        max-width: 1300px;
         max-height: 0;
-        padding: 10px;
+        padding: 20px;
         background-color: $color-dark;
+        border: 5px solid $color-accent;
         border-radius: 10px;
         box-shadow: #000 0px 0px 15px 5px;
         overflow: hidden;
@@ -153,16 +155,14 @@ hr {
             transform: translate(-50%, -50%) scale(1);
         }
 
-        @include respond-to(small) {
+        @include respond-to(small_medium) {
             flex-direction: column;
-            gap: 20px;
             overflow-y: auto;
             &::-webkit-scrollbar { display: none; }
         }
 
         .dropdown-content-info {
             width: 90%;
-            margin-left: 10px;
             padding: 10px;
             background-color: lighten($color-dark, 15%);
             border-radius: 10px;
@@ -175,8 +175,7 @@ hr {
                 padding: 10px;
                 color: $color-light;
                 font-size: 1.2em;
-                font-weight: bold;
-                text-shadow: darken($color-accent, 35%) 2px 2px 0px;
+                font-family: 'Inter';
             }
 
             .prod-nombre { font-size: 2em; }
@@ -192,9 +191,9 @@ hr {
         
         .imagen-dropdown {
             width: 100%;
-            max-width: 350px;
+            max-width: 400px;
             height: auto;
-            border-radius: 10px;
+            border-radius: 5px;
             object-fit: cover;
         }
     }   
@@ -215,11 +214,12 @@ hr {
 
 .btn-agregar-carrito {
     @extend %flex-center;
-    padding: 10px;
+    padding: 15px;
     margin: 5px;
     background-color: $color-accent;
     color: $color-light;
     text-decoration: none;
+    font-size: 1.6em;
     font-weight: bold;
     border-radius: 10px;
     transition: 0.2s ease;

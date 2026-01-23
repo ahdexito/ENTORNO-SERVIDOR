@@ -16,8 +16,8 @@ function getEstadoTexto($estado) {
     return $estados[$estado] ?? "Desconocido";
 }
 
-// OBTENER PRODUCTOS (Limitado a 8 para novedades)
-$resultado = $conn->query("SELECT * FROM productos ORDER BY id DESC LIMIT 8");
+// OBTENER PRODUCTOS (Limitado a 4 para novedades)
+$resultado = $conn->query("SELECT * FROM productos ORDER BY id DESC LIMIT 4");
 $productos = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
 
@@ -99,18 +99,18 @@ $productos = $resultado->fetch_all(MYSQLI_ASSOC);
                             <div class="dropdown-content-info">
                                 <p class="prod-nombre"><?= htmlspecialchars($p['nombre']) ?></p>
                                 <ul>
-                                    <li><p>Talla: <?= htmlspecialchars($p['talla']) ?></p></li>
-                                    <li><p style="text-transform: capitalize;">Género: <?= htmlspecialchars($p['genero']) ?></p></li>
-                                    <li><p style="text-transform: capitalize;">Material: <?= htmlspecialchars($p['material']) ?></p></li>
-                                    <li><p class="prod-precio"><?= htmlspecialchars($p['precio']) ?> €</p></li>
-                                    <li><p>Estado: <?= getEstadoTexto($p['estado']) ?></p></li>
+                                    <li><p>TALLA: <?= htmlspecialchars($p['talla']) ?></p></li>
+                                    <li><p style="text-transform: capitalize;">GÉNERO: <?= htmlspecialchars($p['genero']) ?></p></li>
+                                    <li><p style="text-transform: capitalize;">MATERIAL: <?= htmlspecialchars($p['material']) ?></p></li>
+                                    <li><p class="prod-precio">PRECIO: <?= htmlspecialchars($p['precio']) ?> €</p></li>
+                                    <li><p>ESTADO: <?= getEstadoTexto($p['estado']) ?></p></li>
                                     
                                     <?php if (!empty($p['detalles'])): ?>
-                                        <li><p class='prod-detalles'>Detalles: <?= htmlspecialchars($p['detalles']) ?></p></li>
+                                        <li><p class='prod-detalles'>DETALLES: <?= htmlspecialchars($p['detalles']) ?></p></li>
                                     <?php endif; ?>
                                     
                                     <?php if (!empty($p['medidas'])): ?>
-                                        <li><p class='prod-medidas'>Medidas: <?= htmlspecialchars($p['medidas']) ?></p></li>
+                                        <li><p class='prod-medidas'>MEDIDAS: <?= htmlspecialchars($p['medidas']) ?></p></li>
                                     <?php endif; ?>
                                 </ul>
                                 
@@ -143,7 +143,8 @@ $productos = $resultado->fetch_all(MYSQLI_ASSOC);
         <div class="copy">
             <i class="fa-regular fa-copyright" style="color: #63E6BE;"></i>
             <div>   
-                <p>Todos los derechos reservados. Ángel García, 2026.</p>
+                <p>Todos los derechos reservados.</p><br>
+                <p>Ángel García, 2026.</p>
             </div>
         </div>
         <script src="js/dropdown.js"></script>
