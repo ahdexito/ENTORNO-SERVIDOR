@@ -388,94 +388,86 @@ header .actions .dropdown .show {
   display: flex;
 }
 
-nav {
-  background-color: #fff;
-  padding: 10px;
-  width: 100%;
-  border-bottom: 2px solid #fff;
-}
-@media (max-width: 670px) {
-  nav {
-    display: none;
-  }
-}
-nav ul {
-  list-style-type: none;
-  gap: 3px;
-  display: none;
-  border-bottom: 1px solid #fff;
-}
-@media (min-width: 671px) {
-  nav ul {
-    display: flex;
-    justify-content: center;
-  }
-}
-nav ul a {
-  text-decoration: none;
-  color: #181818;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 30px;
-  transition: 0.2s ease-out;
-}
-nav ul a:hover {
-  color: #fff;
-  background-color: #fa7900;
+.carrito i {
+  color: #fa7900 !important;
 }
 
 main {
   flex: 1;
   padding: 20px;
 }
-@media (min-width: 1201px) {
-  main {
-    margin-top: 0;
-  }
-}
-main .novedades {
-  background-color: #17684d;
-  box-shadow: #000 0px 0px 15px 5px;
-  border-radius: 5px;
-  min-width: 450px;
-  padding: 20px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-}
-main .novedades article {
+
+section {
   margin: 20px 0;
   padding: 10px;
   border-radius: 5px;
-  background-color: rgb(13.7637795276, 62.2362204724, 46.0787401575);
+  background-color: #fff;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 15px;
   width: 100%;
 }
-main .novedades .boton-todo {
-  color: #fff;
-  font-size: 2em;
-  margin: auto;
-  padding-top: 20px;
-  display: flex;
-  align-items: center;
+section .caja-overflow {
+  margin-top: 20px;
+  overflow-x: auto;
+  border: 3px solid #fff;
 }
-main .novedades .boton-todo i {
-  font-size: 2em;
-}
-main .novedades .boton-todo a {
-  color: #17684d;
-  padding: 10px;
-  text-decoration: none;
+section .caja-overflow table {
+  width: 100%;
+  border-collapse: collapse;
   background-color: #fff;
-  border-radius: 10px;
-  font-weight: bold;
-  transition: 0.2s ease;
+  text-align: center;
 }
-main .novedades .boton-todo a:hover {
-  background-color: #fa7900;
+section .caja-overflow table thead {
+  height: 80px;
+  background-color: #131313;
   color: #fff;
-  box-shadow: rgb(4.5275590551, 20.4724409449, 15.157480315) 5px 5px 10px;
-}/*# sourceMappingURL=index.css.map */
+}
+section .caja-overflow table tbody tr:nth-child(odd) {
+  background-color: #acacac;
+  color: #000;
+}
+section .caja-overflow table tbody tr:nth-child(odd) i {
+  color: #000;
+}
+section .caja-overflow table tbody tr:nth-child(even) {
+  background-color: #464646;
+  color: #fff;
+}
+section .caja-overflow table tbody tr:nth-child(even) i {
+  color: #fff;
+}
+section .caja-overflow table th, section .caja-overflow table td {
+  padding: 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.2em;
+  border: 1px solid #000;
+}
+section .caja-overflow table th a, section .caja-overflow table td a {
+  text-decoration: none;
+}
+section .caja-overflow table th a i, section .caja-overflow table td a i {
+  font-size: 1.5em;
+}
+section .caja-overflow table th img, section .caja-overflow table td img {
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 150px;
+  border-radius: 10px;
+  box-shadow: #000 0px 0px 15px 3px;
+}
+section .caja-overflow table td:not(:first-child) {
+  height: 170px;
+  font-size: 1.5em;
+}
+section .caja-overflow table th:last-child, section .caja-overflow table td:last-child {
+  text-align: left;
+}
+section .caja-overflow table td.text-area {
+  font-size: 1em;
+  min-width: 25ch;
+  white-space: pre-line;
+  word-break: break-word;
+}/*# sourceMappingURL=carrito.css.map */

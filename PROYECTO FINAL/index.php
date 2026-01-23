@@ -2,6 +2,12 @@
 session_start();
 include("db/db.inc");
 
+if (!isset($_SESSION['carrito'])) {
+    $_SESSION['carrito'] = [];
+}
+
+else { $total_carrito = count($_SESSION['carrito']); }
+
 /**
  * Función auxiliar para obtener el texto del estado del producto
  */
@@ -46,7 +52,14 @@ $productos = $resultado->fetch_all(MYSQLI_ASSOC);
             </div>
 
             <div class="carrito">
-                <a href="#"><i class="fa-solid fa-cart-shopping icono-accion"></i></a>
+                <?php 
+                    if (isset($total_carrito)) {
+                        if  ($total_carrito > 0) {
+                            echo "<div class='num-articulos'>" . $total_carrito . "</div>";
+                        }
+                    }
+                ?>
+                <a href="carrito.php"><i class="fa-solid fa-cart-shopping icono-accion"></i></a>
                 <p>Carrito</p>
             </div>
 
@@ -114,9 +127,18 @@ $productos = $resultado->fetch_all(MYSQLI_ASSOC);
                                     <?php endif; ?>
                                 </ul>
                                 
-                                <a href="#" class="btn-agregar-carrito">
-                                    <i class="fa-solid fa-cart-arrow-down"></i> Añadir
-                                </a>
+                                <form action="agregar_carrito.php" method="POST">
+                                    <input type="hidden" name="id_producto" value= <?= $p['id'] ?> >
+                                    <?php if (isset($_SESSION['carrito'][$p['id']])): ?>
+                                        <button type="button" class="btn-agregar-carrito disabled" disabled>
+                                            <i class="fa-solid fa-cart-arrow-down"></i> Ya en el carrito
+                                        </button>
+                                    <?php else: ?>
+                                        <button type="submit" class="btn-agregar-carrito">
+                                            <i class="fa-solid fa-cart-plus"></i> Añadir
+                                        </button>
+                                    <?php endif; ?>
+                                </form>
                             </div>
                         </div>
 

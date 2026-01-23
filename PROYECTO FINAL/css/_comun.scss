@@ -146,12 +146,16 @@ hr {
         box-shadow: #000 0px 0px 15px 5px;
         overflow: hidden;
         opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
         transform: translate(-50%, -50%) scale(0.8);
         transition: all 0.3s ease-in-out;
 
         &.show {
             max-height: 90vh;
             opacity: 1;
+            pointer-events: auto;
+            visibility: visible;
             transform: translate(-50%, -50%) scale(1);
         }
 
@@ -166,6 +170,7 @@ hr {
             padding: 10px;
             background-color: lighten($color-dark, 15%);
             border-radius: 10px;
+            box-shadow: #000 0px 0px 15px 5px;
 
             p {
                 display: flex;
@@ -195,6 +200,7 @@ hr {
             height: auto;
             border-radius: 5px;
             object-fit: cover;
+            box-shadow: #000 0px 0px 15px 10px;
         }
     }   
 
@@ -228,4 +234,15 @@ hr {
         transform: scale(1.05);
         background-color: lighten($color-accent, 10%);
     }
+}
+
+.dropdown-btn,
+.imagen-dropdown,
+.boton-insertar,
+.btn-agregar-carrito,
+.paginador a {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
