@@ -110,13 +110,13 @@ $productos = $resultado->fetch_all(MYSQLI_ASSOC);
                         <div class="dropdown-content">
                             <img src="img/<?= htmlspecialchars($p['imagen']) ?>" alt="Detalle" class="imagen-dropdown">
                             <div class="dropdown-content-info">
-                                <p class="prod-nombre"><?= htmlspecialchars($p['nombre']) ?></p>
+                                <h1 class="prod-nombre"><?= htmlspecialchars($p['nombre']) ?></h1>
                                 <ul>
-                                    <li><p>TALLA: <?= htmlspecialchars($p['talla']) ?></p></li>
-                                    <li><p style="text-transform: capitalize;">GÉNERO: <?= htmlspecialchars($p['genero']) ?></p></li>
-                                    <li><p style="text-transform: capitalize;">MATERIAL: <?= htmlspecialchars($p['material']) ?></p></li>
+                                    <li><p class="prod-talla">TALLA: <?= htmlspecialchars($p['talla']) ?></p></li>
+                                    <li><p class="prod-genero" style="text-transform: capitalize;">GÉNERO: <?= htmlspecialchars($p['genero']) ?></p></li>
+                                    <li><p class="prod-material" style="text-transform: capitalize;">MATERIAL: <?= htmlspecialchars($p['material']) ?></p></li>
                                     <li><p class="prod-precio">PRECIO: <?= htmlspecialchars($p['precio']) ?> €</p></li>
-                                    <li><p>ESTADO: <?= getEstadoTexto($p['estado']) ?></p></li>
+                                    <li><p class="prod-estado">ESTADO: <?= getEstadoTexto($p['estado']) ?></p></li>
                                     
                                     <?php if (!empty($p['detalles'])): ?>
                                         <li><p class='prod-detalles'>DETALLES: <?= htmlspecialchars($p['detalles']) ?></p></li>
@@ -126,28 +126,24 @@ $productos = $resultado->fetch_all(MYSQLI_ASSOC);
                                         <li><p class='prod-medidas'>MEDIDAS: <?= htmlspecialchars($p['medidas']) ?></p></li>
                                     <?php endif; ?>
                                 </ul>
-                                
-                                <form action="agregar_carrito.php" method="POST">
-                                    <input type="hidden" name="id_producto" value= <?= $p['id'] ?> >
-                                    <?php if (isset($_SESSION['carrito'][$p['id']])): ?>
-                                        <button type="button" class="btn-agregar-carrito disabled" disabled>
-                                            <i class="fa-solid fa-cart-arrow-down"></i> Ya en el carrito
-                                        </button>
-                                    <?php else: ?>
-                                        <button type="submit" class="btn-agregar-carrito">
-                                            <i class="fa-solid fa-cart-plus"></i> Añadir
-                                        </button>
-                                    <?php endif; ?>
-                                </form>
                             </div>
                         </div>
 
-                        <p class="prod-nombre"><?= htmlspecialchars($p['nombre']) ?></p>
+                        <p class="prod-nombre"><u><?= htmlspecialchars($p['nombre']) ?></u></p>
                         <p class="prod-talla">Talla <?= htmlspecialchars($p['talla']) ?></p>
                         <p class="prod-precio"><?= htmlspecialchars($p['precio']) ?> €</p>
-                        <a href="#" class="btn-agregar-carrito">
-                            <i class="fa-solid fa-cart-arrow-down"></i> Añadir
-                        </a>
+                        <form action="agregar_carrito.php" method="POST">
+                            <input type="hidden" name="id_producto" value= <?= $p['id'] ?> >
+                            <?php if (isset($_SESSION['carrito'][$p['id']])): ?>
+                                <button type="button" class="btn-agregar-carrito disabled" disabled>
+                                    <i class="fa-solid fa-cart-arrow-down"></i>Ya en el carrito
+                                </button>
+                            <?php else: ?>
+                                <button type="submit" class="btn-agregar-carrito">
+                                    <i class="fa-solid fa-cart-plus"></i>Añadir
+                                </button>
+                            <?php endif; ?>
+                        </form>
                     </div>
                 <?php endforeach; ?>
             </article>

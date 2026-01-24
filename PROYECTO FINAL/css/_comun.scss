@@ -1,7 +1,30 @@
+// ==========================================================================
+// 1. CONFIGURACIÓN Y RECURSOS
+// ==========================================================================
 @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Inter:wght@100..900&display=swap');
 @import 'variables';
 
-// --- BASE ---
+// --- MIXINS & PLACEHOLDERS ---
+%flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin no-select {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+@mixin transition-fast {
+    transition: 0.2s ease;
+}
+
+// ==========================================================================
+// 2. BASE
+// ==========================================================================
 * {
     margin: 0;
     padding: 0;
@@ -25,14 +48,16 @@ body {
     }
 }
 
-// --- MIXINS ---
-%flex-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+hr { 
+    border: none;
+    border-top: 1px solid $color-light; 
 }
 
-// --- COMPONENTES ---
+// ==========================================================================
+// 3. COMPONENTES
+// ==========================================================================
+
+// --- Section Header ---
 .section-header {
     display: flex;
     align-items: center;
@@ -45,11 +70,7 @@ body {
     h2 { font-size: 2.5em; }
 }
 
-hr { 
-    border: none;
-    border-top: 1px solid $color-light; 
-}
-
+// --- Paginador ---
 .paginador {
     @extend %flex-center;
     gap: 10px;
@@ -57,6 +78,8 @@ hr {
 
     a {
         @extend %flex-center;
+        @include no-select;
+        @include transition-fast;
         width: 40px;
         height: 40px;
         padding: 20px;
@@ -65,7 +88,6 @@ hr {
         color: $color-light;
         font-size: 1.5em;
         text-decoration: none;
-        transition: 0.2s ease;
 
         &:hover:not(.activo) {
             background-color: $color-accent;
@@ -85,7 +107,10 @@ hr {
     }
 }
 
+// --- Botón Insertar ---
 .boton-insertar {
+    @include no-select;
+    @include transition-fast;
     display: block;
     width: 100%;
     margin: 20px auto 0;
@@ -97,7 +122,6 @@ hr {
     border-radius: 10px;
     background-color: $color-light;
     color: $color-primary;
-    transition: 0.2s ease;
 
     &:hover {
         background-color: $color-accent;
@@ -106,24 +130,45 @@ hr {
     }
 }
 
-// --- PRODUCT CARD ---
+// ==========================================================================
+// 4. PRODUCT CARD
+// ==========================================================================
 .p-card {
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: $color-dark;
+    background-image: url('../../../img/fondo-huellas.jpg');
+    background-size: cover;
+    background-position: center;
     box-shadow: #000 0px 0px 10px 5px;
     border-radius: 10px;
     padding: 10px;
 
+    p {
+        color: $color-light;
+        padding: 5px;
+    }
+
+    .prod-nombre {
+        font-weight: bold;
+        font-style: italic;
+        font-size: 1.5em;
+    }
+
+    .prod-precio { font-size: 1.3em; }
+
+    // --- Dropdown Interno ---
     .dropdown-btn {
+        @include no-select;
+        @include transition-fast;
         width: 370px;
         aspect-ratio: 3 / 4;
         object-fit: cover;
         border-radius: 8px;
         margin: 5px;
+        margin-bottom: 50px;
+        box-shadow: #000 0 0 20px 10px;
         cursor: pointer;
-        transition: 0.2s ease;
 
         &:hover { transform: scale(1.05); }
     }
@@ -140,9 +185,11 @@ hr {
         max-width: 1300px;
         max-height: 0;
         padding: 20px;
-        background-color: $color-dark;
-        border: 5px solid $color-accent;
-        border-radius: 10px;
+        background-image: url('../../../img/fondo-huellas.jpg');
+        background-size: cover;
+        background-position: center;
+        border: 2px solid $color-light;
+        border-radius: 5px;
         box-shadow: #000 0px 0px 15px 5px;
         overflow: hidden;
         opacity: 0;
@@ -168,11 +215,11 @@ hr {
         .dropdown-content-info {
             width: 90%;
             padding: 10px;
-            background-color: lighten($color-dark, 15%);
+            background-color: #ffffff2c;
             border-radius: 10px;
             box-shadow: #000 0px 0px 15px 5px;
 
-            p {
+            p, h1 {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -180,21 +227,26 @@ hr {
                 padding: 10px;
                 color: $color-light;
                 font-size: 1.2em;
-                font-family: 'Inter';
+                font-family: 'Inter', sans-serif;
+                text-shadow: #000 4px 4px 0;
             }
 
             .prod-nombre { font-size: 2em; }
             
             ul {
                 list-style: none;
+                border-radius: 10px;
+                background-color: #000000a1;
+
                 li { 
-                    padding-left: 20px; 
-                    border-top: 1px solid $color-light;
+                    width: 95%;
+                    margin: auto;
                 }
             } 
         }
         
         .imagen-dropdown {
+            @include no-select;
             width: 100%;
             max-width: 400px;
             height: auto;
@@ -202,47 +254,29 @@ hr {
             object-fit: cover;
             box-shadow: #000 0px 0px 15px 10px;
         }
-    }   
-
-    p {
-        color: $color-light;
-        padding: 5px;
-    }
-
-    .prod-nombre {
-        font-weight: bold;
-        font-style: italic;
-        font-size: 1.5em;
-    }
-
-    .prod-precio { font-size: 1.3em; }
+    } 
 }
 
+// --- Botón Carrito ---
 .btn-agregar-carrito {
     @extend %flex-center;
+    @include no-select;
+    @include transition-fast;
+    width: 100%;
     padding: 15px;
-    margin: 5px;
+    margin: auto;
+    margin-top: 50px;
+    gap: 10px;
     background-color: $color-accent;
     color: $color-light;
     text-decoration: none;
     font-size: 1.6em;
     font-weight: bold;
+    border: none;
     border-radius: 10px;
-    transition: 0.2s ease;
 
     &:hover {
         transform: scale(1.05);
         background-color: lighten($color-accent, 10%);
     }
-}
-
-.dropdown-btn,
-.imagen-dropdown,
-.boton-insertar,
-.btn-agregar-carrito,
-.paginador a {
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
 }

@@ -15,83 +15,56 @@ main {
 }
 
 section {
-    margin: 20px 0;
-    padding: 10px;
+    background-color: $color-primary;
+    box-shadow: #000 0px 0px 15px 5px;
     border-radius: 5px;
-    background-color: $color-light;
+    min-width: 450px;
+    padding: 20px;
+    margin: auto;
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 15px;
-    width: 100%;
+    flex-direction: column;
 
+    article {
+        margin: 20px 0;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: darken($color-primary, $amount: 10);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
 
-    .caja-overflow {
-        margin-top: 20px;
-        overflow-x: auto;
-        border: 3px solid $color-light;
-
-        table {
+        .linea-pedido {
+            background-color: $color-dark;
+            padding: 10px;
+            margin: auto;
             width: 100%;
-            border-collapse: collapse;
-            background-color: $color-light;
-            text-align: center;
+            max-width: 1000px;
+            color: $color-light;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 20px;
+            font-size: 2em;
 
-            thead {
-                height: 80px;
-                background-color: #131313;
-                color: $color-light;
+            img {
+                width: 100px;
+                aspect-ratio: 1 / 1;
+                object-fit: cover;
             }
 
-            tbody {
-                tr:nth-child(odd) {
-                    background-color: #acacac;
-                    color: #000;
-
-                    i { color: #000; }
-                }
-
-                tr:nth-child(even) {
-                    background-color: #464646;
-                    color: $color-light;
-
-                    i { color: $color-light; }
-                }
+            .prod-nombre {
+                align-self: flex-start;
             }
 
-            th, td {
-                padding: 10px;
-                font-family: 'Inter', sans-serif;
-                font-size: 1.2em;
-                border: 1px solid #000;
-
-                a {
-                    text-decoration: none;
-
-                    i { font-size: 1.5em; }
-                }
-
-                img {
-                    aspect-ratio: 1 / 1;
-                    object-fit: cover;
-                    width: 150px;
-                    border-radius: 10px;
-                    box-shadow: #000 0px 0px 15px 3px;
-                }
+            .prod-precio {
+                margin-left: auto;
+                text-wrap: nowrap;
+                align-self: flex-end;
             }
 
-            td:not(:first-child) { 
-                height: 170px; 
-                font-size: 1.5em;
-            }
-
-            th:last-child, td:last-child { text-align: left; }
-
-            td.text-area {
-                font-size: 1em;
-                min-width: 25ch;
-                white-space: pre-line;
-                word-break: break-word;
+            a {
+                align-self: flex-end;
             }
         }
     }

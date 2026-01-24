@@ -21,6 +21,18 @@
             $productos_carrito[] = $fila;
         }
     }
+
+    // ELIMINAR LINEA PRODUCTO
+    if (isset($_GET["eliminar"])) {
+        $id_producto = intval($_GET["eliminar"]);
+
+        if (isset($_SESSION['carrito'][$id_producto])) {
+            unset($_SESSION['carrito'][$id_producto]);
+        }
+
+        header("location:carrito.php");
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -83,26 +95,28 @@
 
     <main>
         <section>
-            <h1>Resumen de artículos</h1>
-
-
-            <div class="caja-overflow">
-                <table>
-                    <tbody>
-                        <?php 
-                        $total = 0;
-                        foreach ($productos_carrito as $p): 
-                            $total += $p['precio'];
-                        ?>
-                            <tr>
-                                <td><img src="imagenes_productos/<?= htmlspecialchars($p['imagen']) ?>" alt="imagen producto"></td>
-                                <td> <?= $p['nombre'] ?> </td>
-                                <td> <?= $p['precio'] ?> €</td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+            <div class="section-header">
+                <i class="fa-solid fa-cart-shopping icono-header"></i>
+                <h2>Resumen de artículos</h2>
             </div>
+            <hr>
+
+            <article>
+                <?php 
+                    $total = 0;
+                    foreach ($productos_carrito as $p): 
+                        $total += $p['precio']; ?>
+
+                    <div class="linea-pedido">
+                        <img src="imagenes_productos/<?= htmlspecialchars($p['imagen']) ?>" alt="imagen producto">
+                        <p class="prod-nombre"> <?= $p['nombre'] . " " . $p['talla'] ?> </p>
+                        <p class="prod-precio"> <?= $p['precio'] ?> €</p>
+                        <a href="?eliminar=<?= $p['id'] ?>">
+                            <i class="fa-regular fa-trash-can icono-papelera"></i>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </article>
         </section>
     </main>
 
