@@ -137,10 +137,9 @@ hr {
     position: relative;
     display: flex;
     flex-direction: column;
-    background-image: url('../../../img/fondo-huellas.jpg');
-    background-size: cover;
-    background-position: center;
-    box-shadow: #000 0px 0px 10px 5px;
+    justify-content: space-between;
+    background: linear-gradient(#000 0%, #2b2b2b 50%, #000 100%);
+    box-shadow: darken($color-primary, $amount: 15) 7px 7px 0 0;
     border-radius: 10px;
     padding: 10px;
 
@@ -161,12 +160,13 @@ hr {
     .dropdown-btn {
         @include no-select;
         @include transition-fast;
+        align-self: center;
         width: 370px;
         aspect-ratio: 3 / 4;
         object-fit: cover;
         border-radius: 8px;
         margin: 5px;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
         box-shadow: #000 0 0 20px 10px;
         cursor: pointer;
 
@@ -232,6 +232,8 @@ hr {
             }
 
             .prod-nombre { font-size: 2em; }
+
+            .prod-talla { justify-self: flex-start; }
             
             ul {
                 list-style: none;
@@ -258,14 +260,15 @@ hr {
 }
 
 // --- Botón Carrito ---
-.btn-agregar-carrito {
+.btn-1 {
     @extend %flex-center;
     @include no-select;
     @include transition-fast;
     width: 100%;
+    max-width: 1000px;
     padding: 15px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 20px;
     gap: 10px;
     background-color: $color-accent;
     color: $color-light;
@@ -274,9 +277,14 @@ hr {
     font-weight: bold;
     border: none;
     border-radius: 10px;
+    cursor: pointer;
 
     &:hover {
-        transform: scale(1.05);
-        background-color: lighten($color-accent, 10%);
+        background-color: lighten($color-accent, 15%);
     }
+}
+
+.btn-1.disabled {
+    background-color: #5a5a5a;
+    cursor: default;
 }

@@ -2,7 +2,7 @@
     IMPORTS
 =========================== */
 @import url("https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Inter:wght@100..900&display=swap");
-.btn-agregar-carrito, .p-card .dropdown-content, .paginador a, .paginador {
+.btn-1, .p-card .dropdown-content, .paginador a, .paginador {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,10 +111,9 @@ hr {
   position: relative;
   display: flex;
   flex-direction: column;
-  background-image: url("../../../img/fondo-huellas.jpg");
-  background-size: cover;
-  background-position: center;
-  box-shadow: #000 0px 0px 10px 5px;
+  justify-content: space-between;
+  background: linear-gradient(#000 0%, #2b2b2b 50%, #000 100%);
+  box-shadow: rgb(9.1456692913, 41.3543307087, 30.6181102362) 7px 7px 0 0;
   border-radius: 10px;
   padding: 10px;
 }
@@ -136,13 +135,14 @@ hr {
        user-select: none;
   -webkit-touch-callout: none;
   transition: 0.2s ease;
+  align-self: center;
   width: 370px;
   aspect-ratio: 3/4;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 8px;
   margin: 5px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   box-shadow: #000 0 0 20px 10px;
   cursor: pointer;
 }
@@ -210,6 +210,9 @@ hr {
 .p-card .dropdown-content .dropdown-content-info .prod-nombre {
   font-size: 2em;
 }
+.p-card .dropdown-content .dropdown-content-info .prod-talla {
+  justify-self: flex-start;
+}
 .p-card .dropdown-content .dropdown-content-info ul {
   list-style: none;
   border-radius: 10px;
@@ -233,16 +236,17 @@ hr {
   box-shadow: #000 0px 0px 15px 10px;
 }
 
-.btn-agregar-carrito {
+.btn-1 {
   -webkit-user-select: none;
   -moz-user-select: none;
        user-select: none;
   -webkit-touch-callout: none;
   transition: 0.2s ease;
   width: 100%;
+  max-width: 1000px;
   padding: 15px;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 20px;
   gap: 10px;
   background-color: #fa7900;
   color: #fff;
@@ -251,10 +255,15 @@ hr {
   font-weight: bold;
   border: none;
   border-radius: 10px;
+  cursor: pointer;
 }
-.btn-agregar-carrito:hover {
-  transform: scale(1.05);
-  background-color: rgb(255, 147.156, 46);
+.btn-1:hover {
+  background-color: rgb(255, 160.314, 71.5);
+}
+
+.btn-1.disabled {
+  background-color: #5a5a5a;
+  cursor: default;
 }
 
 footer {
@@ -335,21 +344,13 @@ header .actions .icono-accion {
   font-size: 2.5em;
   margin-bottom: 5px;
   transition: 0.2s ease;
-}
-@keyframes salto-breve {
-  0% {
-    transform: translateY(0);
-  }
-  30% {
-    transform: translateY(-7px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+  display: inline-block;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backface-visibility: hidden;
 }
 header .actions .icono-accion:hover {
   color: #fa7900;
-  animation: salto-breve 0.3s ease-out forwards;
+  transform: translateY(-5px) scale(1.25);
   text-shadow: #fff 4px 4px 0;
 }
 header .actions .icono-accion.is-active {
@@ -471,7 +472,7 @@ main section article {
   border-radius: 5px;
   background-color: rgb(13.7637795276, 62.2362204724, 46.0787401575);
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 15px;
   width: 100%;

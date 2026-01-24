@@ -73,13 +73,14 @@
             </div>
             <div class="usuario dropdown">
                 <i class="fa-solid fa-user icono-usuario dropdown-btn icono-accion" id="dropdown-btn"></i>
-                <?php echo "<p>" . $_SESSION["nombre"] . "</p>"?>
-
+                
                 <div class="dropdown-content">
                     <a href="#"><i class="fa-solid fa-gear icono-dropdown"></i>Ajustes</a>
                     <hr>
                     <a href="desconectar_admin.php"><i class="fa-solid fa-arrow-right-from-bracket icono-dropdown"></i>Cerrar sesión</a>
                 </div>
+
+                <?php echo "<p>" . $_SESSION["nombre"] . "</p>"?>
             </div>
         </div>
     </header>
@@ -133,7 +134,7 @@
                     <thead>
                         <tr>
                             <th>Acciones</th>
-                            <th>ID</th>
+                            <th>ID Cliente</th>
                             <th>Nombre</th>
                             <th>Apellidos</th>
                             <th>Email</th>
@@ -156,7 +157,7 @@
                                     <i class="fa-regular fa-trash-can"></i>
                                 </a>
                             </td>
-                            <td><?= $c['id'] ?></td>
+                            <td>#<?= $c['id'] ?></td>
                             <td><?= htmlspecialchars($c['nombre']) ?></td>
                             <td><?= htmlspecialchars($c['apellidos']) ?></td>
                             <td><?= htmlspecialchars($c['email']) ?></td>

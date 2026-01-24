@@ -22,7 +22,7 @@
     // OBTENER PRODUCTOS
     $resultado = $conn->query(
         "SELECT * FROM productos 
-        ORDER BY id DESC 
+        ORDER BY activo DESC, id ASC
         LIMIT $num_lineas OFFSET $offset"
     );
     $productos = $resultado->fetch_all(MYSQLI_ASSOC);
@@ -73,13 +73,14 @@
             </div>
             <div class="usuario dropdown">
                 <i class="fa-solid fa-user icono-usuario dropdown-btn icono-accion" id="dropdown-btn"></i>
-                <?php echo "<p>" . $_SESSION["nombre"] . "</p>"?>
 
                 <div class="dropdown-content">
                     <a href="#"><i class="fa-solid fa-gear icono-dropdown"></i>Ajustes</a>
                     <hr>
                     <a href="desconectar_admin.php"><i class="fa-solid fa-arrow-right-from-bracket icono-dropdown"></i>Cerrar sesión</a>
                 </div>
+
+                <?php echo "<p>" . $_SESSION["nombre"] . "</p>"?>
             </div>
         </div>
     </header>
@@ -134,7 +135,7 @@
                         <tr>
                             <th>Acciones</th>
                             <th>Imagen</th>
-                            <th>ID</th>
+                            <th>ID Producto</th>
                             <th>Nombre</th>
                             <th>Precio</th>
                             <th>Activo</th>
@@ -163,13 +164,14 @@
                             <td>
                                 <img src="../img/<?= htmlspecialchars($p['imagen']) ?>" alt="imagen producto">
                             </td>
-                            <td><?= $p['id'] ?></td>
+                            <td>#<?= $p['id'] ?></td>
                             <td><?= htmlspecialchars($p['nombre']) ?></td>
                             <td><?= number_format($p['precio'], 2) ?> €</td>
                             <td>
-                                <?php 
-                                if ($p['activo']) echo '<i class="fa-solid fa-check"></i>';
-                                else echo '<i class="fa-solid fa-x"></i>';
+                                <?php
+                                if ($p['activo'] == 0) echo '<i class="fa-solid fa-x"></i>'; 
+                                elseif ($p['activo'] == 1) echo '<i class="fa-solid fa-check"></i>';
+                                elseif ($p['activo'] == 2) echo '<i class="fa-regular fa-bookmark"></i>';
                                 ?>
                             </td>
                             <td>

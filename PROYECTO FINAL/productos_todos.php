@@ -16,11 +16,36 @@
     }
     else { $total_carrito = count($_SESSION['carrito']); }
 
+    $filtro = $_GET['f'] ?? null;
+    $where = "WHERE estado > 0";
+
+    if ($filtro) {
+        $f = $conn->real_escape_string($filtro);
+
+        if ($f == 'mujer')
+            $where .= " AND genero = 'mujer'";
+        else
+            $where .= " AND tipo = '$f'";
+    }
+
+    // PAGINADOR
+    $total_res = $conn->query("SELECT COUNT(*) as t FROM productos $where");
+    $total_filas = $total_res->fetch_assoc()['t'];
+    $total_paginas = ceil($total_filas / 18);
+
+    $pagina = $_GET['pag'] ?? 1;
+    $offset = ($pagina - 1) * 18;
+
     // OBTENER TODOS LOS PRODUCTOS ACTIVOS
     $productos = $conn->query(
         "SELECT * FROM productos 
-        ORDER BY id DESC 
-        LIMIT 4");
+        $where ORDER BY id DESC 
+        LIMIT 18 OFFSET $offset");
+
+    // LÓGICA DE RANGO PARA EL PAGINADOR
+    $rango = 2; 
+    $inicio = max(1, $pagina - $rango);
+    $fin = min($total_paginas, $pagina + $rango);
 
     // Función para el texto del estado
     function getEstadoTexto($estado) {
@@ -30,13 +55,25 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio | Tienda</title>
     <link rel="stylesheet" href="css/cliente/index/index.css">
     <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
+    <style>
+        article { 
+            display: flex;
+            justify-content: flex-start;
+            .p-card {
+                max-width: 180px; 
+                .dropdown-btn { width: 140px !important; } 
+                p { font-size: 1em; }
+                .btn-1 { font-size: 1em; }
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -48,6 +85,11 @@
         <input type="search" placeholder="Buscar aquí..." class="searchbar">
 
         <div class="actions">
+            <div class="atras">
+                <a href="index.php"><i class="fa-regular fa-circle-left icono-accion"></i></a>
+                <p>Atrás</p>
+            </div>
+
             <div class="carrito">
                 <?php 
                     if (isset($total_carrito)) {
@@ -93,13 +135,7 @@
     </nav>
 
     <main>
-        <section class="novedades">
-            <div class="section-header">
-                <i class="fa-solid fa-fire icono-header"></i>
-                <h2>Últimas novedades</h2>
-            </div>
-            <hr>
-
+        <section class="articulos">
             <article>
                 <?php foreach ($productos as $p): ?>
                     <div class="p-card">
@@ -150,12 +186,45 @@
                 <?php endforeach; ?>
             </article>
 
-            <hr>
-            <p class="boton-todo">
-                <i class="fa-solid fa-ellipsis"></i>
-                <a href="productos_todos.php">Ver todo</a>
-                <i class="fa-solid fa-ellipsis"></i>
-            </p>
+            <?php
+                $filtro = $_GET['f'] ?? null;
+                $url_f = $filtro ? "&f=" . urlencode($filtro) : "";
+
+                // Cálculo de rango para el paginador
+                $rango = 1; 
+                $inicio = max(1, $pagina - $rango);
+                $fin = min($total_paginas, $pagina + $rango);
+            ?>
+
+            <div class="paginador">
+                <?php if ($pagina > 1): ?>
+                    <a href="?pag=<?= $pagina - 1 ?><?= $url_f ?>" class="icono-flecha">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </a>
+                <?php endif; ?>
+
+                <?php if ($inicio > 1): ?>
+                    <a href="?pag=1<?= $url_f ?>" class="pagina-limite">1</a>
+                    <?php if ($inicio > 2): ?><span>...</span><?php endif; ?>
+                <?php endif; ?>
+
+                <?php for ($i = $inicio; $i <= $fin; $i++): ?>
+                    <a href="?pag=<?= $i ?><?= $url_f ?>" class="<?= $i == $pagina ? 'activo' : '' ?>">
+                        <?= $i ?>
+                    </a>
+                <?php endfor; ?>
+
+                <?php if ($fin < $total_paginas): ?>
+                    <?php if ($fin < $total_paginas - 1): ?><span>...</span><?php endif; ?>
+                    <a href="?pag=<?= $total_paginas ?><?= $url_f ?>" class="pagina-limite"><?= $total_paginas ?></a>
+                <?php endif; ?>
+
+                <?php if ($pagina < $total_paginas): ?>
+                    <a href="?pag=<?= $pagina + 1 ?><?= $url_f ?>" class="icono-flecha">
+                        <i class="fa-solid fa-angle-right"></i>
+                    </a>
+                <?php endif; ?>
+            </div>
         </section>
     </main>
 
@@ -167,6 +236,7 @@
                 <p>Ángel García, 2026.</p>
             </div>
         </div>
+        
         <script src="js/dropdown.js"></script>
     </footer>
 </body>

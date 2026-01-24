@@ -65,7 +65,14 @@ section {
 
             a {
                 align-self: flex-end;
+                color: $color-light;
             }
+        }
+
+        .cesta-vacia {
+            font-size: 3em;
+            color: $color-light;
+            padding: 100px;
         }
     }
 }

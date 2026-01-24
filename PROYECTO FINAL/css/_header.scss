@@ -56,22 +56,17 @@ header {
             font-size: 2.5em;
             margin-bottom: 5px;
             transition: 0.2s ease;
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backface-visibility: hidden;
             
-            @keyframes salto-breve {
-                0% { transform: translateY(0); }
-                30% { transform: translateY(-7px); }
-                100% { transform: translateY(0); }
-            }
-
             &:hover {
                 color: $color-accent;
-                animation: salto-breve 0.3s ease-out forwards;
+                transform: translateY(-5px) scale(1.25);
                 text-shadow: #fff 4px 4px 0;
             }
 
-            &.is-active {
-                color: $color-accent;
-            }
+            &.is-active { color: $color-accent; }
         }
 
         .num-articulos {

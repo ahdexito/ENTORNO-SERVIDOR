@@ -1,16 +1,16 @@
 <?php
     session_start();
+    require_once "db/db.inc";
 
     // Obtener IDs de la sesión (keys)
     $ids_carrito = isset($_SESSION['carrito']) ? array_keys($_SESSION['carrito']) : [];
-
     $productos_carrito = [];
+    $total = 0;
 
     if (!empty($ids_carrito)) {
-        require_once "db/db.inc";
 
         // Convertir array de IDs a lista separada por comas
-        $lista_ids = implode(",", $ids_carrito);
+        $lista_ids = implode(",", array_map('intval', $ids_carrito));
 
         // Consultar datos de artículos
         $sql = "SELECT * FROM productos WHERE id IN ($lista_ids)";
@@ -19,6 +19,7 @@
         // Guardar filas de consulta en array
         while ($fila = $resultado->fetch_assoc()) {
             $productos_carrito[] = $fila;
+            $total += $fila['precio'];
         }
     }
 
@@ -32,6 +33,50 @@
 
         header("location:carrito.php");
         exit();
+    }
+
+    // PROCESAR INFO DEL PEDIDO
+    if (isset($_POST['confirmar_pedido']) && !empty($productos_carrito)) {
+        // Redireccionar si no está logeado
+        if (!isset($_SESSION['id_cliente'])) {
+            header("location:login.php");
+            exit();
+        }
+
+        $cliente_id = $_SESSION['id_cliente'];
+
+        $conn->begin_transaction();
+        try {
+            $stmt = $conn->prepare("INSERT INTO pedidos (cliente_id, total, estado) VALUES (?, ?, 'pendiente')");
+            $stmt->bind_param("id", $cliente_id, $total);
+            $stmt->execute();
+
+            $pedido_id = mysqli_insert_id($conn);
+
+            $stmt_linea = $conn->prepare("INSERT INTO linea_pedido (pedido_id, producto_id, precio) VALUES (?, ?, ?)");
+            $stmt_update = $conn->prepare("UPDATE productos SET activo = 2 WHERE id = ?");
+
+            foreach ($productos_carrito as $p) {
+                // Insertar línea
+                $stmt_linea->bind_param("iid", $pedido_id, $p['id'], $p['precio']);
+                $stmt_linea->execute();
+
+                // Actualizar producto reservado
+                $stmt_update->bind_param("i", $p['id']);
+                $stmt_update->execute();
+            }
+
+            $conn->commit();
+            
+            unset($_SESSION['carrito']);
+            header("location:gracias.php");
+            exit();
+        }
+
+        catch (Exception $e) {
+            $conn->rollback();
+            $error_pedido = "Error al procesar: " . $e->getMessage();
+        }
     }
 ?>
 
@@ -103,6 +148,8 @@
 
             <article>
                 <?php 
+                    if (empty($productos_carrito)) echo '<h2 class="cesta-vacia">Aún no has agregado ningún producto...</h2>';
+
                     $total = 0;
                     foreach ($productos_carrito as $p): 
                         $total += $p['precio']; ?>
@@ -117,6 +164,16 @@
                     </div>
                 <?php endforeach; ?>
             </article>
+            <hr>
+
+            <?php if (!empty($productos_carrito)): ?>
+                <form method="POST">
+                    <input type="hidden" name="total_pago" value="<?= $total ?>">
+                    <button type="submit" name="confirmar_pedido" class="btn-1">
+                        Confirmar pedido (<?= $total ?> €)
+                    </button>
+                </form>
+            <?php endif; ?>
         </section>
     </main>
 

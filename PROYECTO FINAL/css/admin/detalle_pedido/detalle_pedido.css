@@ -1,6 +1,3 @@
-/* ===========================
-    IMPORTS
-=========================== */
 @import url("https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Inter:wght@100..900&display=swap");
 .btn-1, .p-card .dropdown-content, .paginador a, .paginador {
   display: flex;
@@ -266,24 +263,6 @@ hr {
   cursor: default;
 }
 
-footer {
-  width: 100%;
-  padding: 30px 15px;
-  background: linear-gradient(#464646 0%, #242424 20%, #242424 80%, #161616 100%);
-}
-footer .copy {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-shadow: 3px 3px 10px #000;
-}
-footer .copy i {
-  font-size: 3em;
-}
-footer .copy p {
-  color: #fff;
-}
-
 header {
   position: fixed;
   z-index: 100;
@@ -411,16 +390,35 @@ header .actions .dropdown .show {
   display: flex;
 }
 
-.carrito i {
-  color: #fa7900 !important;
+footer {
+  width: 100%;
+  padding: 30px 15px;
+  background: linear-gradient(#464646 0%, #242424 20%, #242424 80%, #161616 100%);
+}
+footer .copy {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-shadow: 3px 3px 10px #000;
+}
+footer .copy i {
+  font-size: 3em;
+}
+footer .copy p {
+  color: #fff;
 }
 
 main {
   flex: 1;
   padding: 20px;
+  color: #fff;
 }
-
-section {
+@media (min-width: 1201px) {
+  main {
+    margin-top: 0;
+  }
+}
+main section {
   background-color: #17684d;
   box-shadow: #000 0px 0px 15px 5px;
   border-radius: 5px;
@@ -430,49 +428,52 @@ section {
   display: flex;
   flex-direction: column;
 }
-section article {
-  margin: 20px 0;
-  padding: 10px;
-  border-radius: 5px;
+main section .detalle-container {
   background-color: rgb(13.7637795276, 62.2362204724, 46.0787401575);
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  padding: 20px;
+  border-radius: 8px;
   width: 100%;
-}
-section article .linea-pedido {
-  background-color: #181818;
-  padding: 10px;
+  max-width: 1200px;
   margin: auto;
-  width: 100%;
-  max-width: 1000px;
-  color: #fff;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 20px;
-  font-size: 2em;
+  margin-top: 20px;
+  font-size: 1.3em;
+  overflow-x: auto;
 }
-section article .linea-pedido img {
-  width: 100px;
-  aspect-ratio: 1/1;
+main section .detalle-container .info-bloque {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  text-wrap: nowrap;
+  gap: 50px;
+  margin-bottom: 20px;
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 15px;
+}
+main section .detalle-container .info-bloque h3 {
+  margin-bottom: 10px;
+}
+main section .detalle-container table {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  background-color: rgb(9.1456692913, 41.3543307087, 30.6181102362);
+}
+main section .detalle-container table thead {
+  background-color: rgb(4.5275590551, 20.4724409449, 15.157480315);
+}
+main section .detalle-container table th, main section .detalle-container table td {
+  padding: 15px;
+  text-wrap: nowrap;
+}
+main section .detalle-container .img-mini {
+  width: 80px;
+  height: 80px;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 4px;
 }
-section article .linea-pedido .prod-nombre {
-  align-self: flex-start;
-}
-section article .linea-pedido .prod-precio {
-  margin-left: auto;
-  text-wrap: nowrap;
-  align-self: flex-end;
-}
-section article .linea-pedido a {
-  align-self: flex-end;
-  color: #fff;
-}
-section article .cesta-vacia {
-  font-size: 3em;
-  color: #fff;
-  padding: 100px;
-}/*# sourceMappingURL=carrito.css.map */
+main section .detalle-container .total-destacado {
+  margin-top: 30px;
+  font-size: 1.5em;
+  text-align: right;
+}/*# sourceMappingURL=detalle_pedido.css.map */

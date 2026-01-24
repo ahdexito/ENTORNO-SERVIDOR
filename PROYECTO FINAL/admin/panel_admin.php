@@ -24,14 +24,15 @@
         
         <div class="actions">
             <div class="usuario dropdown">
-                <i class="fa-solid fa-user icono-usuario dropdown-btn icono-accion" id="dropdown-btn"></i>
-                <?php echo "<p>" . $_SESSION["nombre"] . "</p>"?>
+                <i class="fa-solid fa-user icono-usuario dropdown-btn icono-accion"></i>
 
                 <div class="dropdown-content">
                     <a href="#"><i class="fa-solid fa-gear icono-dropdown"></i>Ajustes</a>
                     <hr>
                     <a href="desconectar_admin.php"><i class="fa-solid fa-arrow-right-from-bracket icono-dropdown"></i>Cerrar sesión</a>
                 </div>
+
+                <?php echo "<p>" . $_SESSION["nombre"] . "</p>"?>
             </div>
         </div>
     </header>
@@ -54,13 +55,13 @@
                     <i class="fa-solid fa-shop"></i>
                     <p>Productos</p>
                 </a>
+                <a href="gestion_pedidos.php" class="boton">
+                    <i class="fa-solid fa-truck-ramp-box"></i>
+                    <p>Pedidos</p>
+                </a>
                 <a href="#" class="boton">
                     <i class="fa-solid fa-tags"></i>
                     <p>Rebajas</p>
-                </a>
-                <a href="#" class="boton">
-                    <i class="fa-solid fa-gear"></i>
-                    <p>Ajustes</p>
                 </a>
             </article>
         </section>

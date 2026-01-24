@@ -22,7 +22,7 @@
                     $email = htmlspecialchars(trim($_POST["email"]));
                     $password = htmlspecialchars(sha1($_POST["password"]));
 
-                    $check = $conn -> prepare("SELECT nombre, email FROM clientes WHERE email = ? AND password = ?");
+                    $check = $conn -> prepare("SELECT id, nombre, email FROM clientes WHERE email = ? AND password = ?");
                     
                     $check -> bind_param("ss", $email, $password);
                     $check -> execute();
@@ -31,9 +31,10 @@
                     if ($check -> num_rows > 0) {
                         session_start();
 
-                        $check -> bind_result($nombre, $emailDB);
+                        $check -> bind_result($id, $nombre, $emailDB);
                         $check -> fetch();
 
+                        $_SESSION["id_cliente"] = $id;
                         $_SESSION["nombre"] = $nombre;
                         $_SESSION["email"] = $emailDB;
 

@@ -25,7 +25,7 @@
     if(isset($_POST['nombre'], $_POST['precio'], $_POST['tipo'], $_POST['genero'])) {
         $nombre = htmlspecialchars($_POST['nombre']);
         $precio = floatval($_POST['precio']);
-        $activo = isset($_POST['activo']) ? 1 : 0;
+        $activo = intval($_POST['activo']);
         $estado = intval($_POST['estado']);
         $marca = htmlspecialchars($_POST['marca']);
         $material = htmlspecialchars($_POST['material']);
@@ -94,13 +94,14 @@
             </div>
             <div class="usuario dropdown">
                 <i class="fa-solid fa-user icono-usuario dropdown-btn icono-accion" id="dropdown-btn"></i>
-                <?php echo "<p>" . $_SESSION["nombre"] . "</p>"?>
 
                 <div class="dropdown-content">
                     <a href="#"><i class="fa-solid fa-gear icono-dropdown"></i>Ajustes</a>
                     <hr>
                     <a href="desconectar_admin.php"><i class="fa-solid fa-arrow-right-from-bracket icono-dropdown"></i>Cerrar sesión</a>
                 </div>
+
+                <?php echo "<p>" . $_SESSION["nombre"] . "</p>"?>
             </div>
         </div>
     </header>
@@ -172,11 +173,13 @@
                 </div>
 
                 <div class="casilla">
-                    <p>Activo</p>
-                    <div class="checkbox-background" id="checkbox-background">
-                        <span for="checkbox" class="checkbox-info" id="checkbox-info">Activado</span>
-                        <input type="checkbox" name="activo" id="checkbox" class="checkbox" <?= $producto['activo']?'checked':'' ?> >
-                    </div>
+                    <label for="activo">Activo</label>
+                    <select name="activo" class="seleccion" required>
+                        <option value="0" <?= $producto['activo']==0?'selected':'' ?> >Desactivado</option>
+                        <option value="1" <?= $producto['activo']==1?'selected':'' ?> >Activado</option>
+                        <option value="2" <?= $producto['activo']==2?'selected':'' ?> >Reservado</option>
+                    </select>
+                    
                 </div>
 
                 <?php

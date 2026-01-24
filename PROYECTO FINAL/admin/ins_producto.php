@@ -8,12 +8,12 @@
     include("../db/db.inc");
 
     if (
-        isset($_POST["nombre"], $_POST["precio"], $_POST["tipo"], $_POST['estado'], $_POST["genero"]) &&
-        $_POST["tipo"] !== "default" && $_POST["genero"] !== "default" && $_POST['estado'] !== "default"
+        isset($_POST["nombre"], $_POST["precio"], $_POST["tipo"], $_POST["estado"], $_POST["genero"]) &&
+        $_POST["tipo"] !== "default" && $_POST["genero"] !== "default" && $_POST["estado"] !== "default"
     ) {
         $nombre = htmlspecialchars($_POST["nombre"]);
         $precio = floatval($_POST["precio"]);
-        $activo = isset($_POST["activo"]) ? 1 : 0;
+        $activo = intval($_POST['activo']);
         $estado = intval($_POST['estado']);
         $marca = htmlspecialchars($_POST["marca"]);
         $material = htmlspecialchars($_POST["material"]);
@@ -77,13 +77,14 @@
             </div>
             <div class="usuario dropdown">
                 <i class="fa-solid fa-user icono-usuario dropdown-btn icono-accion" id="dropdown-btn"></i>
-                <?php echo "<p>" . $_SESSION["nombre"] . "</p>"?>
 
                 <div class="dropdown-content">
                     <a href="#"><i class="fa-solid fa-gear icono-dropdown"></i>Ajustes</a>
                     <hr>
                     <a href="desconectar_admin.php"><i class="fa-solid fa-arrow-right-from-bracket icono-dropdown"></i>Cerrar sesión</a>
                 </div>
+
+                <?php echo "<p>" . $_SESSION["nombre"] . "</p>"?>
             </div>
         </div>
     </header>
@@ -157,11 +158,12 @@
                     </div>
 
                     <div class="casilla">
-                        <p>Activo</p>
-                        <div class="checkbox-background" id="checkbox-background">
-                            <span class="checkbox-info" id="checkbox-info">Activado</span>
-                            <input type="checkbox" name="activo" id="checkbox" class="checkbox" checked>
-                        </div>
+                        <label for="activo">Activo</label>
+                        <select name="activo" id="activo" class="seleccion" required>
+                            <option value="1" selected>Activado</option>
+                            <option value="0">Desactivado</option>
+                            <option value="2">Reservado</option>
+                        </select>
                     </div>
 
                     <div class="casilla">
