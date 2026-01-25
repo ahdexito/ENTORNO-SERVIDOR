@@ -3,6 +3,7 @@
 // ==========================================================================
 @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Inter:wght@100..900&display=swap');
 @import 'variables';
+@import 'mixins';
 
 // --- MIXINS & PLACEHOLDERS ---
 %flex-center {
@@ -149,12 +150,16 @@ hr {
     }
 
     .prod-nombre {
+        flex: 1;
         font-weight: bold;
         font-style: italic;
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
 
-    .prod-precio { font-size: 1.3em; }
+    .prod-precio { 
+        font-size: 1.3em; 
+        margin-top: 30px
+    }
 
     // --- Dropdown Interno ---
     .dropdown-btn {
@@ -234,6 +239,8 @@ hr {
             .prod-nombre { font-size: 2em; }
 
             .prod-talla { justify-self: flex-start; }
+
+            .prod-precio { margin: 0; }
             
             ul {
                 list-style: none;

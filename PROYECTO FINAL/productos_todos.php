@@ -1,57 +1,89 @@
 <?php
-    session_start();
-    include("db/db.inc");
+/**
+ * ARCHIVO: productos_todos.php
+ * DESCRIPCIÓN: Listado completo de productos con soporte para filtrado por 
+ * categoría/género y sistema de paginación integrado.
+ */
 
-    // AGREGAR AL CARRITO
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_producto'])) {
-        $id = $_POST['id_producto'];
+session_start();
+include("db/db.inc");
 
-        if (!isset($_SESSION['carrito'][$id])) {
-            $_SESSION['carrito'][$id] = true;
-        }
-    }
+/**
+ * GESTIÓN DEL CARRITO (PATRÓN POST-REDIRECT-GET)
+ */
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_producto'])) {
+    $id = htmlspecialchars(trim($_POST['id_producto']));
 
     if (!isset($_SESSION['carrito'])) {
         $_SESSION['carrito'] = [];
     }
-    else { $total_carrito = count($_SESSION['carrito']); }
 
-    $filtro = $_GET['f'] ?? null;
-    $where = "WHERE estado > 0";
-
-    if ($filtro) {
-        $f = $conn->real_escape_string($filtro);
-
-        if ($f == 'mujer')
-            $where .= " AND genero = 'mujer'";
-        else
-            $where .= " AND tipo = '$f'";
+    if (!isset($_SESSION['carrito'][$id])) {
+        $_SESSION['carrito'][$id] = true;
     }
 
-    // PAGINADOR
-    $total_res = $conn->query("SELECT COUNT(*) as t FROM productos $where");
-    $total_filas = $total_res->fetch_assoc()['t'];
-    $total_paginas = ceil($total_filas / 18);
+    // Redirección para evitar reenvío de formulario al refrescar (F5)
+    // Mantenemos los parámetros GET (filtros y página) en la redirección
+    $queryString = !empty($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : '';
+    header("Location: " . $_SERVER['PHP_SELF'] . $queryString);
+    exit();
+}
 
-    $pagina = $_GET['pag'] ?? 1;
-    $offset = ($pagina - 1) * 18;
+// Inicialización de contador de carrito
+if (!isset($_SESSION['carrito'])) {
+    $_SESSION['carrito'] = [];
+}
+$total_carrito = count($_SESSION['carrito']);
 
-    // OBTENER TODOS LOS PRODUCTOS ACTIVOS
-    $productos = $conn->query(
-        "SELECT * FROM productos 
-        $where ORDER BY id DESC 
-        LIMIT 18 OFFSET $offset");
+/**
+ * LÓGICA DE FILTRADO Y CONSULTA
+ */
+$filtro = $_GET['f'] ?? null;
+$where = "WHERE estado > 0";
 
-    // LÓGICA DE RANGO PARA EL PAGINADOR
-    $rango = 2; 
-    $inicio = max(1, $pagina - $rango);
-    $fin = min($total_paginas, $pagina + $rango);
+if ($filtro) {
+    // Escapado para evitar inyecciones en la cláusula WHERE
+    $f = $conn->real_escape_string($filtro);
 
-    // Función para el texto del estado
-    function getEstadoTexto($estado) {
-        $estados = [1 => "A estrenar", 2 => "Como nuevo", 3 => "Buen estado", 4 => "Aceptable", 5 => "Bastante usado"];
-        return $estados[$estado] ?? "Desconocido";
-    }
+    if ($f == 'mujer') $where .= " AND genero != 'hombre'";
+    else $where .= " AND tipo = '$f'";
+}
+
+/**
+ * SISTEMA DE PAGINACIÓN
+ * Calcula el total de registros para determinar el número de páginas.
+ */
+$total_res = $conn->query("SELECT COUNT(*) as t FROM productos $where");
+$total_filas = $total_res->fetch_assoc()['t'];
+$articulos_por_pagina = 14;
+$total_paginas = ceil($total_filas / $articulos_por_pagina);
+
+// Página actual y cálculo de desplazamiento (OFFSET)
+$pagina = isset($_GET['pag']) ? (int)$_GET['pag'] : 1;
+if ($pagina < 1) $pagina = 1;
+$offset = ($pagina - 1) * $articulos_por_pagina;
+
+// Obtención de productos limitados por la página actual
+$productos = $conn->query(
+    "SELECT * FROM productos 
+    $where ORDER BY id DESC 
+    LIMIT $articulos_por_pagina OFFSET $offset"
+);
+
+/**
+ * FUNCIÓN: getEstadoTexto
+ * Traduce el valor numérico de la DB a una etiqueta legible.
+ */
+function getEstadoTexto($estado) {
+    $estados = [
+        1 => "A estrenar", 
+        2 => "Como nuevo", 
+        3 => "Buen estado", 
+        4 => "Aceptable", 
+        5 => "Bastante usado"
+    ];
+    return $estados[$estado] ?? "Desconocido";
+}
 ?>
 
 <!DOCTYPE html>
@@ -66,12 +98,21 @@
         article { 
             display: flex;
             justify-content: flex-start;
-            .p-card {
-                max-width: 180px; 
-                .dropdown-btn { width: 140px !important; } 
-                p { font-size: 1em; }
-                .btn-1 { font-size: 1em; }
-            }
+            flex-wrap: wrap;
+        }
+        article .p-card {
+            max-width: 15vw; 
+            min-width: 180px;
+        }
+        article .p-card .dropdown-btn { 
+            width: 10vw !important; 
+            min-width: 150px;
+        } 
+        article .p-card p { font-size: 1em; }
+        article .p-card .btn-1 { font-size: 1em; }
+        a.activo {
+            color: #fff;
+            background-color: #1d1d1d;
         }
     </style>
 </head>
@@ -91,13 +132,9 @@
             </div>
 
             <div class="carrito">
-                <?php 
-                    if (isset($total_carrito)) {
-                        if  ($total_carrito > 0) {
-                            echo "<div class='num-articulos'>" . $total_carrito . "</div>";
-                        }
-                    }
-                ?>
+                <?php if ($total_carrito > 0): ?>
+                    <div class='num-articulos'><?= $total_carrito ?></div>
+                <?php endif; ?>
                 <a href="carrito.php"><i class="fa-solid fa-cart-shopping icono-accion"></i></a>
                 <p>Carrito</p>
             </div>
@@ -107,8 +144,8 @@
                     <i class="fa-solid fa-user icono-usuario dropdown-btn icono-accion"></i>
                     <div class="dropdown-content">
                         <?php if (isset($_SESSION["rol"])): ?>
-                        <a href="admin/panel_admin.php"><i class="fa-solid fa-bars-progress icono-dropdown"></i>Panel de control</a>
-                        <hr>
+                            <a href="admin/panel_admin.php"><i class="fa-solid fa-bars-progress icono-dropdown"></i>Panel de control</a>
+                            <hr>
                         <?php endif; ?>
                         <a href="#"><i class="fa-solid fa-gear icono-dropdown"></i>Ajustes</a>
                         <hr>
@@ -124,15 +161,21 @@
     </header>
     
     <nav>
-        <ul>
-            <li><a href="productos_todos.php?f=mono">Monos</a></li>
-            <li><a href="productos_todos.php?f=chaqueta">Chaquetas</a></li>
-            <li><a href="productos_todos.php?f=pantalon">Pantalones</a></li>
-            <li><a href="productos_todos.php?f=botas">Botas</a></li>
-            <li><a href="productos_todos.php?f=mujer">Mujer</a></li>
-            <li><a href="productos_todos.php">Ver todo</a></li>
-        </ul>
-    </nav>
+    <ul>
+        <?php
+        // Función para verificar si el filtro coincide
+        function is_active($current_filter, $f_url) {
+            return ($current_filter === $f_url) ? 'class="activo"' : '';
+        }
+        ?>
+        <li><a href="productos_todos.php?f=chaqueta" <?= is_active($filtro, 'chaqueta') ?> >Chaquetas</a></li>
+        <li><a href="productos_todos.php?f=pantalon" <?= is_active($filtro, 'pantalon') ?> >Pantalones</a></li>
+        <li><a href="productos_todos.php?f=botas" <?= is_active($filtro, 'botas') ?> >Botas</a></li>
+        <li><a href="productos_todos.php?f=mono" <?= is_active($filtro, 'mono') ?> >Monos</a></li>
+        <li><a href="productos_todos.php?f=mujer" <?= is_active($filtro, 'mujer') ?> >Mujer</a></li>
+        <li><a href="productos_todos.php" <?= is_active($filtro, null) ?> >Ver todo</a></li>
+    </ul>
+</nav>
 
     <main>
         <section class="articulos">
@@ -147,17 +190,13 @@
                                 <h1 class="prod-nombre"><?= htmlspecialchars($p['nombre']) ?></h1>
                                 <ul>
                                     <li><p class="prod-talla">TALLA: <?= htmlspecialchars($p['talla']) ?></p></li>
-                                    <li><p class="prod-genero" style="text-transform: capitalize;">GÉNERO: <?= htmlspecialchars($p['genero']) ?></p></li>
-                                    <li><p class="prod-material" style="text-transform: capitalize;">MATERIAL: <?= htmlspecialchars($p['material']) ?></p></li>
+                                    <li><p class="prod-genero">GÉNERO: <?= htmlspecialchars($p['genero']) ?></p></li>
+                                    <li><p class="prod-material">MATERIAL: <?= htmlspecialchars($p['material']) ?></p></li>
                                     <li><p class="prod-precio">PRECIO: <?= htmlspecialchars($p['precio']) ?> €</p></li>
                                     <li><p class="prod-estado">ESTADO: <?= getEstadoTexto($p['estado']) ?></p></li>
                                     
                                     <?php if (!empty($p['detalles'])): ?>
                                         <li><p class='prod-detalles'>DETALLES: <?= htmlspecialchars($p['detalles']) ?></p></li>
-                                    <?php endif; ?>
-                                    
-                                    <?php if (!empty($p['medidas'])): ?>
-                                        <li><p class='prod-medidas'>MEDIDAS: <?= htmlspecialchars($p['medidas']) ?></p></li>
                                     <?php endif; ?>
                                 </ul>
                             </div>
@@ -166,20 +205,15 @@
                         <p class="prod-nombre"><u><?= htmlspecialchars($p['nombre']) ?></u></p>
                         <p class="prod-talla">Talla <?= htmlspecialchars($p['talla']) ?></p>
                         <p class="prod-precio"><?= htmlspecialchars($p['precio']) ?> €</p>
+                        
                         <form method="POST">
-                            <input type="hidden" name="id_producto" value= <?= $p['id'] ?> >
+                            <input type="hidden" name="id_producto" value="<?= $p['id'] ?>">
                             <?php if ($p['activo'] == 2): ?>
-                                <button type="button" class="btn-1 disabled">
-                                    <i class="fa-solid fa-lock"></i> RESERVADO
-                                </button>
+                                <button type="button" class="btn-1 disabled"><i class="fa-solid fa-lock"></i> RESERVADO</button>
                             <?php elseif (isset($_SESSION['carrito'][$p['id']])): ?>
-                                <button type="button" class="btn-1 disabled" disabled>
-                                    <i class="fa-solid fa-cart-arrow-down"></i>Ya en el carrito
-                                </button>
+                                <button type="button" class="btn-1 disabled" disabled><i class="fa-solid fa-cart-arrow-down"></i>Ya en el carrito</button>
                             <?php else: ?>
-                                <button type="submit" class="btn-1">
-                                    <i class="fa-solid fa-cart-plus"></i>Añadir
-                                </button>
+                                <button type="submit" class="btn-1"><i class="fa-solid fa-cart-plus"></i>Añadir</button>
                             <?php endif; ?>
                         </form>
                     </div>
@@ -187,10 +221,11 @@
             </article>
 
             <?php
-                $filtro = $_GET['f'] ?? null;
+                /**
+                 * RENDERIZADO DEL PAGINADOR
+                 * Genera los enlaces de navegación entre páginas manteniendo el filtro actual.
+                 */
                 $url_f = $filtro ? "&f=" . urlencode($filtro) : "";
-
-                // Cálculo de rango para el paginador
                 $rango = 1; 
                 $inicio = max(1, $pagina - $rango);
                 $fin = min($total_paginas, $pagina + $rango);
@@ -236,7 +271,6 @@
                 <p>Ángel García, 2026.</p>
             </div>
         </div>
-        
         <script src="js/dropdown.js"></script>
     </footer>
 </body>

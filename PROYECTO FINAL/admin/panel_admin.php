@@ -1,17 +1,28 @@
 <?php
-    session_start();
-    if(!isset($_SESSION["rol"])) {
-        header("location:../index.php");
-        die();
-    }
+/**
+ * ARCHIVO: admin/panel_admin.php
+ * DESCRIPCIÓN: Menú principal de administración. 
+ * Solo accesible para usuarios con el rol adecuado.
+ */
+
+session_start();
+
+/**
+ * CONTROL DE ACCESO
+ * Si no existe la variable de sesión 'rol', expulsamos al usuario.
+ */
+if (!isset($_SESSION["rol"])) {
+    header("location:../index.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Panel de Control | Administración</title>
     <link rel="stylesheet" href="../css/admin/panel_admin/panel_admin.css">
     <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
 </head>
@@ -32,7 +43,7 @@
                     <a href="desconectar_admin.php"><i class="fa-solid fa-arrow-right-from-bracket icono-dropdown"></i>Cerrar sesión</a>
                 </div>
 
-                <?php echo "<p>" . $_SESSION["nombre"] . "</p>"?>
+                <p><?= htmlspecialchars($_SESSION["nombre"]) ?></p>
             </div>
         </div>
     </header>

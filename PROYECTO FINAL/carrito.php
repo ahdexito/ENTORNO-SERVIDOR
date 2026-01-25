@@ -1,83 +1,97 @@
 <?php
-    session_start();
-    require_once "db/db.inc";
+/**
+ * ARCHIVO: carrito.php
+ * DESCRIPCIÓN: Gestiona el resumen de compra, eliminación de productos 
+ * y la finalización del pedido mediante transacciones SQL.
+ */
 
-    // Obtener IDs de la sesión (keys)
-    $ids_carrito = isset($_SESSION['carrito']) ? array_keys($_SESSION['carrito']) : [];
-    $productos_carrito = [];
-    $total = 0;
+session_start();
+require_once "db/db.inc";
 
-    if (!empty($ids_carrito)) {
+/**
+ * LÓGICA DE ELIMINACIÓN (GET)
+ * Se procesa antes de cargar los productos para que el resumen esté actualizado.
+ */
+if (isset($_GET["eliminar"])) {
+    $id_producto = intval($_GET["eliminar"]);
 
-        // Convertir array de IDs a lista separada por comas
-        $lista_ids = implode(",", array_map('intval', $ids_carrito));
-
-        // Consultar datos de artículos
-        $sql = "SELECT * FROM productos WHERE id IN ($lista_ids)";
-        $resultado = $conn->query($sql);
-
-        // Guardar filas de consulta en array
-        while ($fila = $resultado->fetch_assoc()) {
-            $productos_carrito[] = $fila;
-            $total += $fila['precio'];
-        }
+    if (isset($_SESSION['carrito'][$id_producto])) {
+        unset($_SESSION['carrito'][$id_producto]);
     }
 
-    // ELIMINAR LINEA PRODUCTO
-    if (isset($_GET["eliminar"])) {
-        $id_producto = intval($_GET["eliminar"]);
+    header("location:carrito.php");
+    exit();
+}
 
-        if (isset($_SESSION['carrito'][$id_producto])) {
-            unset($_SESSION['carrito'][$id_producto]);
-        }
+/**
+ * PREPARACIÓN DE DATOS DEL CARRITO
+ */
+$ids_carrito = isset($_SESSION['carrito']) ? array_keys($_SESSION['carrito']) : [];
+$productos_carrito = [];
+$total = 0;
 
-        header("location:carrito.php");
+if (!empty($ids_carrito)) {
+    // Sanitización de IDs para la consulta IN
+    $lista_ids = implode(",", array_map('intval', $ids_carrito));
+    $sql = "SELECT * FROM productos WHERE id IN ($lista_ids)";
+    $resultado = $conn->query($sql);
+
+    while ($fila = $resultado->fetch_assoc()) {
+        $productos_carrito[] = $fila;
+        $total += $fila['precio'];
+    }
+}
+
+/**
+ * PROCESO DE CONFIRMACIÓN DE PEDIDO (POST)
+ * Uso de transacciones para asegurar la integridad de los datos.
+ */
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar_pedido']) && !empty($productos_carrito)) {
+    
+    // Verificación de sesión de cliente
+    if (!isset($_SESSION['id_cliente'])) {
+        header("location:login.php");
         exit();
     }
 
-    // PROCESAR INFO DEL PEDIDO
-    if (isset($_POST['confirmar_pedido']) && !empty($productos_carrito)) {
-        // Redireccionar si no está logeado
-        if (!isset($_SESSION['id_cliente'])) {
-            header("location:login.php");
-            exit();
+    $cliente_id = $_SESSION['id_cliente'];
+
+    // Inicio de transacción: O se guarda todo, o nada.
+    $conn->begin_transaction();
+    try {
+        // Insertar el pedido principal
+        $stmt = $conn->prepare("INSERT INTO pedidos (cliente_id, total, estado) VALUES (?, ?, 'pendiente')");
+        $stmt->bind_param("id", $cliente_id, $total);
+        $stmt->execute();
+        $pedido_id = mysqli_insert_id($conn);
+
+        // Preparar sentencias para líneas de pedido y actualización de stock
+        $stmt_linea = $conn->prepare("INSERT INTO linea_pedido (pedido_id, producto_id, precio) VALUES (?, ?, ?)");
+        $stmt_update = $conn->prepare("UPDATE productos SET activo = 2 WHERE id = ?");
+
+        foreach ($productos_carrito as $p) {
+            // Insertar detalle del producto en el pedido
+            $stmt_linea->bind_param("iid", $pedido_id, $p['id'], $p['precio']);
+            $stmt_linea->execute();
+
+            // Marcar producto como reservado (activo = 2)
+            $stmt_update->bind_param("i", $p['id']);
+            $stmt_update->execute();
         }
 
-        $cliente_id = $_SESSION['id_cliente'];
+        // Si todo ha ido bien, confirmamos los cambios
+        $conn->commit();
+        
+        unset($_SESSION['carrito']);
+        header("location:gracias.php");
+        exit();
 
-        $conn->begin_transaction();
-        try {
-            $stmt = $conn->prepare("INSERT INTO pedidos (cliente_id, total, estado) VALUES (?, ?, 'pendiente')");
-            $stmt->bind_param("id", $cliente_id, $total);
-            $stmt->execute();
-
-            $pedido_id = mysqli_insert_id($conn);
-
-            $stmt_linea = $conn->prepare("INSERT INTO linea_pedido (pedido_id, producto_id, precio) VALUES (?, ?, ?)");
-            $stmt_update = $conn->prepare("UPDATE productos SET activo = 2 WHERE id = ?");
-
-            foreach ($productos_carrito as $p) {
-                // Insertar línea
-                $stmt_linea->bind_param("iid", $pedido_id, $p['id'], $p['precio']);
-                $stmt_linea->execute();
-
-                // Actualizar producto reservado
-                $stmt_update->bind_param("i", $p['id']);
-                $stmt_update->execute();
-            }
-
-            $conn->commit();
-            
-            unset($_SESSION['carrito']);
-            header("location:gracias.php");
-            exit();
-        }
-
-        catch (Exception $e) {
-            $conn->rollback();
-            $error_pedido = "Error al procesar: " . $e->getMessage();
-        }
+    } catch (Exception $e) {
+        // Si hay error, revertimos cualquier cambio en la base de datos
+        $conn->rollback();
+        $error_pedido = "Error crítico al procesar el pedido: " . $e->getMessage();
     }
+}
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +99,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio | Tienda</title>
+    <title>Resumen de Carrito | Tienda</title>
     <link rel="stylesheet" href="css/cliente/carrito/carrito.css">
     <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
 </head>
@@ -110,30 +124,24 @@
             </div>
 
             <div class="usuario dropdown">
-            <?php
-                if (isset($_SESSION["nombre"])) {
-                    ?>
-                    <i class="fa-solid fa-user icono-usuario dropdown-btn icono-accion" id="dropdown-btn"></i>
-
+                <?php if (isset($_SESSION["nombre"])): ?>
+                    <i class="fa-solid fa-user icono-usuario dropdown-btn icono-accion"></i>
                     <div class="dropdown-content">
-                        <?php if (isset($_SESSION["rol"])) {
-                            echo "<a href='admin/panel_admin.php'><i class='fa-solid fa-bars-progress icono-dropdown'></i>Panel admin</a>";
-                            echo "<hr>";
-                        }?>
+                        <?php if (isset($_SESSION["rol"])): ?>
+                            <a href="admin/panel_admin.php"><i class="fa-solid fa-bars-progress icono-dropdown"></i>Panel admin</a>
+                            <hr>
+                        <?php endif; ?>
                         <a href="#"><i class="fa-solid fa-heart icono-dropdown"></i>Favoritos</a>
                         <hr>
                         <a href="#"><i class="fa-solid fa-gear icono-dropdown"></i>Ajustes</a>
                         <hr>
                         <a href="desconectar.php"><i class="fa-solid fa-arrow-right-from-bracket icono-dropdown"></i>Cerrar sesión</a>
                     </div>
-                    
-                    <?php echo "<p>" . $_SESSION["nombre"] . "</p>";
-                }
-                else {
-                    echo '<a href="login.php"><i class="fa-solid fa-user icono-accion"></i></a>';
-                    echo "<p>Login</p>";
-                }
-            ?>
+                    <p><?= htmlspecialchars($_SESSION["nombre"]) ?></p>
+                <?php else: ?>
+                    <a href="login.php"><i class="fa-solid fa-user icono-accion"></i></a>
+                    <p>Login</p>
+                <?php endif; ?>
             </div>
         </div>
     </header>
@@ -146,33 +154,38 @@
             </div>
             <hr>
 
+            <?php if (isset($error_pedido)): ?>
+                <p class="error"><?= htmlspecialchars($error_pedido) ?></p>
+            <?php endif; ?>
+
             <article>
-                <?php 
-                    if (empty($productos_carrito)) echo '<h2 class="cesta-vacia">Aún no has agregado ningún producto...</h2>';
-
-                    $total = 0;
-                    foreach ($productos_carrito as $p): 
-                        $total += $p['precio']; ?>
-
-                    <div class="linea-pedido">
-                        <img src="imagenes_productos/<?= htmlspecialchars($p['imagen']) ?>" alt="imagen producto">
-                        <p class="prod-nombre"> <?= $p['nombre'] . " " . $p['talla'] ?> </p>
-                        <p class="prod-precio"> <?= $p['precio'] ?> €</p>
-                        <a href="?eliminar=<?= $p['id'] ?>">
-                            <i class="fa-regular fa-trash-can icono-papelera"></i>
-                        </a>
-                    </div>
-                <?php endforeach; ?>
+                <?php if (empty($productos_carrito)): ?>
+                    <h2 class="cesta-vacia">Aún no has agregado ningún producto...</h2>
+                <?php else: ?>
+                    <?php foreach ($productos_carrito as $p): ?>
+                        <div class="linea-pedido">
+                            <img src="img/<?= htmlspecialchars($p['imagen']) ?>" alt="imagen producto">
+                            <p class="prod-nombre">
+                                <?= htmlspecialchars($p['nombre']) ?> - <strong>Talla <?= htmlspecialchars($p['talla']) ?></strong>
+                            </p>
+                            <p class="prod-precio"><?= htmlspecialchars($p['precio']) ?> €</p>
+                            <a href="?eliminar=<?= $p['id'] ?>" title="Eliminar producto">
+                                <i class="fa-regular fa-trash-can icono-papelera"></i>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </article>
             <hr>
 
             <?php if (!empty($productos_carrito)): ?>
-                <form method="POST">
-                    <input type="hidden" name="total_pago" value="<?= $total ?>">
-                    <button type="submit" name="confirmar_pedido" class="btn-1">
-                        Confirmar pedido (<?= $total ?> €)
-                    </button>
-                </form>
+                <div class="confirmacion-container">
+                    <form method="POST">
+                        <button type="submit" name="confirmar_pedido" class="btn-1">
+                            Confirmar pedido (<?= $total ?> €)
+                        </button>
+                    </form>
+                </div>
             <?php endif; ?>
         </section>
     </main>
@@ -181,8 +194,7 @@
         <div class="copy">
             <i class="fa-regular fa-copyright" style="color: #63E6BE;"></i>
             <div>   
-                <p>Todos los derechos reservados.</p><br>
-                <p>Ángel García, 2026.</p>
+                <p>Todos los derechos reservados. Ángel García, 2026.</p>
             </div>
         </div>
         <script src="js/dropdown.js"></script>

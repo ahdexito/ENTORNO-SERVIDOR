@@ -95,17 +95,17 @@ main form button {
   font-weight: bold;
   cursor: pointer;
   color: #fff;
-  background-color: #17684d;
+  background-color: #379164;
 }
 main form button:hover {
-  background-color: rgb(32.2362204724, 145.7637795276, 107.9212598425);
+  background-color: rgb(69.025, 181.975, 125.5);
 }
 main p {
   font-size: 1.2em;
   color: #fff;
 }
 main p a {
-  color: #17684d;
+  color: #379164;
   font-weight: bold;
 }
 main .error {

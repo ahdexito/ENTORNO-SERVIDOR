@@ -41,7 +41,7 @@ hr {
   gap: 20px;
   padding: 10px 0;
   color: #fff;
-  text-shadow: rgb(9.1456692913, 41.3543307087, 30.6181102362) 5px 5px 0;
+  text-shadow: rgb(33.9625, 89.5375, 61.75) 5px 5px 0;
 }
 .section-header .icono-header {
   font-size: 3em;
@@ -63,7 +63,7 @@ hr {
   width: 40px;
   height: 40px;
   padding: 20px;
-  background-color: rgb(13.7637795276, 62.2362204724, 46.0787401575);
+  background-color: rgb(40.975, 108.025, 74.5);
   border-radius: 10px;
   color: #fff;
   font-size: 1.5em;
@@ -74,12 +74,12 @@ hr {
   transform: scale(1.2);
 }
 .paginador .activo {
-  background-color: rgb(4.5275590551, 20.4724409449, 15.157480315);
-  color: #17684d;
+  background-color: rgb(26.95, 71.05, 49);
+  color: #379164;
   font-weight: bold;
 }
 .paginador .icono-flecha {
-  background-color: #17684d;
+  background-color: #379164;
   border: 2px solid #fff;
 }
 
@@ -99,12 +99,12 @@ hr {
   text-decoration: none;
   border-radius: 10px;
   background-color: #fff;
-  color: #17684d;
+  color: #379164;
 }
 .boton-insertar:hover {
   background-color: #fa7900;
   color: #fff;
-  box-shadow: rgb(4.5275590551, 20.4724409449, 15.157480315) 5px 5px 10px;
+  box-shadow: rgb(26.95, 71.05, 49) 5px 5px 10px;
 }
 
 .p-card {
@@ -113,7 +113,7 @@ hr {
   flex-direction: column;
   justify-content: space-between;
   background: linear-gradient(#000 0%, #2b2b2b 50%, #000 100%);
-  box-shadow: rgb(9.1456692913, 41.3543307087, 30.6181102362) 7px 7px 0 0;
+  box-shadow: rgb(33.9625, 89.5375, 61.75) 7px 7px 0 0;
   border-radius: 10px;
   padding: 10px;
 }
@@ -122,12 +122,14 @@ hr {
   padding: 5px;
 }
 .p-card .prod-nombre {
+  flex: 1;
   font-weight: bold;
   font-style: italic;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 .p-card .prod-precio {
   font-size: 1.3em;
+  margin-top: 30px;
 }
 .p-card .dropdown-btn {
   -webkit-user-select: none;
@@ -212,6 +214,9 @@ hr {
 }
 .p-card .dropdown-content .dropdown-content-info .prod-talla {
   justify-self: flex-start;
+}
+.p-card .dropdown-content .dropdown-content-info .prod-precio {
+  margin: 0;
 }
 .p-card .dropdown-content .dropdown-content-info ul {
   list-style: none;
@@ -421,7 +426,7 @@ main {
 }
 
 section {
-  background-color: #17684d;
+  background-color: #379164;
   box-shadow: #000 0px 0px 15px 5px;
   border-radius: 5px;
   min-width: 450px;
@@ -434,7 +439,7 @@ section article {
   margin: 20px 0;
   padding: 10px;
   border-radius: 5px;
-  background-color: rgb(13.7637795276, 62.2362204724, 46.0787401575);
+  background-color: rgb(40.975, 108.025, 74.5);
   display: flex;
   flex-direction: column;
   gap: 15px;

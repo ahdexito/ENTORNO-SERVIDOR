@@ -1,5 +1,60 @@
 <?php
-    include("db/db.inc");
+/**
+ * ARCHIVO: login.php
+ * DESCRIPCIÓN: Gestiona el inicio de sesión de los clientes.
+ */
+
+// Inclusión del archivo de conexión a la base de datos
+include("db/db.inc");
+
+ // Variable para capturar mensajes y mostrarlos en el cuerpo
+$error_msg = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    // Validación de formato de Email
+    if(isset($_POST["email"]) && !empty($_POST["email"]) && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+        
+        // Validación de presencia de contraseña
+        if(isset($_POST["password"]) && !empty($_POST["password"])) {
+            
+            // Limpieza de datos (Email) y cifrado (Password)
+            $email = htmlspecialchars(trim($_POST["email"]));
+            $password = sha1($_POST["password"]);
+
+            // Preparación de consulta segura contra SQL Injection
+            $check = $conn -> prepare("SELECT id, nombre, email FROM clientes WHERE email = ? AND password = ?");
+            $check -> bind_param("ss", $email, $password);
+            $check -> execute();
+            $check -> store_result();
+
+            // Verificación de existencia del usuario
+            if ($check -> num_rows > 0) {
+                session_start();
+
+                // Extracción de datos para la sesión
+                $check -> bind_result($id, $nombre, $emailDB);
+                $check -> fetch();
+
+                $_SESSION["id_cliente"] = $id;
+                $_SESSION["nombre"] = $nombre;
+                $_SESSION["email"] = $emailDB;
+
+                // Redirección segura antes de que exista salida de texto
+                header("location:./index.php");
+                die();
+            } else {
+                $error_msg = "El email y/o la contraseña NO coinciden.";
+            }
+        } else {
+            $error_msg = "Error en el campo 'contraseña'.";
+        }
+    } else {
+        if(isset($_POST["email"])) {
+            $error_msg = "El email NO es válido.";
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,48 +71,13 @@
         <img src="img/logo-vertical.png" alt="logotipo">
         <h1>¡Bienvenid@!</h1>
 
-        <?php
-            if(isset($_POST["email"]) && !empty($_POST["email"]) && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-                if(isset($_POST["password"]) && !empty($_POST["password"])) {
-                    $email = htmlspecialchars(trim($_POST["email"]));
-                    $password = htmlspecialchars(sha1($_POST["password"]));
-
-                    $check = $conn -> prepare("SELECT id, nombre, email FROM clientes WHERE email = ? AND password = ?");
-                    
-                    $check -> bind_param("ss", $email, $password);
-                    $check -> execute();
-                    $check -> store_result();
-
-                    if ($check -> num_rows > 0) {
-                        session_start();
-
-                        $check -> bind_result($id, $nombre, $emailDB);
-                        $check -> fetch();
-
-                        $_SESSION["id_cliente"] = $id;
-                        $_SESSION["nombre"] = $nombre;
-                        $_SESSION["email"] = $emailDB;
-
-                        header("location:./index.php");
-                        die();
-                    }
-
-                    else {
-                        echo "<div class='error'><i class='fa-solid fa-triangle-exclamation'></i>El email y/o la contraseña NO coinciden.</div>";
-                    }
-                }
-
-                else {
-                    echo "<div class='error'><i class='fa-solid fa-triangle-exclamation'></i>Error en el campo 'contraseña'.</div>";
-                }
-            }
-
-            else {
-                if(isset($_POST["email"])) {
-                    echo "<div class='error'><i class='fa-solid fa-triangle-exclamation'></i>El email NO es válido.</div>";
-                }
-            }
-        ?>
+        <?php 
+        // Renderizado de errores si existen tras el procesamiento superior
+        if (!empty($error_msg)): ?>
+            <div class='error'>
+                <i class='fa-solid fa-triangle-exclamation'></i><?php echo $error_msg; ?>
+            </div>
+        <?php endif; ?>
 
         <form method="POST">
             <h2>Iniciar sesión</h2>
