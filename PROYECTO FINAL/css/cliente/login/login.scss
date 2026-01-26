@@ -56,12 +56,12 @@ main {
     form {
         width: 100%;
         max-width: 800px;
-        height: 330px;
         padding: 30px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+        gap: 20px;
         background-color: $color-dark;
         border-radius: 10px;
 
@@ -88,10 +88,12 @@ main {
             box-shadow: darken($color-dark, 15%) 5px 5px 5px 3px;
         }
 
-        input {
+        input, select {
             @include input;
             font-size: 1.2em;
         }
+
+        select { padding-left: 25px; }
 
         button {
             @include input;
@@ -116,14 +118,28 @@ main {
         }
     }
 
-    .error {
+    @mixin mensaje {
         padding: 10px 40px;
         font-size: 1.3em;
         font-weight: bold;
         color: $color-light;
-        background-color: $color-accent;
         border-radius: 20px;
 
         i { margin-right: 10px; }
+    }
+
+    .error {
+        @include mensaje;
+        background-color: $color-accent;
+    }
+
+    .exito {
+        @include mensaje;
+        background-color: $color-primary;
+
+        a {
+            font-size: 1.5em;
+            color: $color-light;
+        }
     }
 }

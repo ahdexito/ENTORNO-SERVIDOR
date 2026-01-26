@@ -51,8 +51,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/admin/gestion_clientes/gestion_clientes.css">
+    <title>Gestión Clientes</title>
+    <link rel="stylesheet" href="../css/admin/tabla_gestion/tabla_gestion.css">
     <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -143,6 +143,7 @@
                             <th>Cod. Postal</th>
                             <th>Población</th>
                             <th>Provincia</th>
+                            <th>Creación</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -166,6 +167,7 @@
                             <td><?= $c['codpostal'] ?></td>
                             <td><?= htmlspecialchars($c['poblacion']) ?></td>
                             <td><?= htmlspecialchars($c['provincia']) ?></td>
+                            <td> <?= date('d/m/Y H:i', strtotime($c['creado'])) ?> </td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

@@ -348,7 +348,6 @@ header .actions .icono-accion {
   color: #fff;
   font-size: 2.5em;
   margin-bottom: 5px;
-  transition: 0.2s ease;
   display: inline-block;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   backface-visibility: hidden;
@@ -356,7 +355,7 @@ header .actions .icono-accion {
 header .actions .icono-accion:hover {
   color: #fa7900;
   transform: translateY(-5px) scale(1.25);
-  text-shadow: #fff 4px 4px 0;
+  text-shadow: #fff 3px 3px 0;
 }
 header .actions .icono-accion.is-active {
   color: #fa7900;

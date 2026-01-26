@@ -52,12 +52,12 @@ main h1 {
 main form {
   width: 100%;
   max-width: 800px;
-  height: 330px;
   padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
   background-color: rgba(0, 0, 0, 0.6431372549);
   border-radius: 10px;
 }
@@ -72,7 +72,7 @@ main form hr {
   border: 2px solid #999999;
   border-radius: 10px;
 }
-main form input {
+main form input, main form select {
   width: 100%;
   max-width: 600px;
   padding: 10px 30px;
@@ -81,6 +81,9 @@ main form input {
   color: #000;
   box-shadow: rgba(0, 0, 0, 0.6431372549) 5px 5px 5px 3px;
   font-size: 1.2em;
+}
+main form select {
+  padding-left: 25px;
 }
 main form button {
   width: 100%;
@@ -113,9 +116,24 @@ main .error {
   font-size: 1.3em;
   font-weight: bold;
   color: #fff;
-  background-color: #fa7900;
   border-radius: 20px;
+  background-color: #fa7900;
 }
 main .error i {
   margin-right: 10px;
+}
+main .exito {
+  padding: 10px 40px;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 20px;
+  background-color: #379164;
+}
+main .exito i {
+  margin-right: 10px;
+}
+main .exito a {
+  font-size: 1.5em;
+  color: #fff;
 }/*# sourceMappingURL=login.css.map */

@@ -22,7 +22,7 @@ if (!isset($_SESSION["rol"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Control | Administración</title>
+    <title>Panel de Control Admin</title>
     <link rel="stylesheet" href="../css/admin/panel_admin/panel_admin.css">
     <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
 </head>

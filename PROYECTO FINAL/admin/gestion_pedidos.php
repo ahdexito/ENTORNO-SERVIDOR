@@ -119,8 +119,8 @@ if (isset($_GET["eliminar"])) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Gestión de Pedidos | Admin</title>
-    <link rel="stylesheet" href="../css/admin/gestion_clientes/gestion_clientes.css">
+    <title>Gestión Pedidos</title>
+    <link rel="stylesheet" href="../css/admin/tabla_gestion/tabla_gestion.css">
     <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
     <style>
         .estado { padding: 4px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; }
@@ -186,10 +186,10 @@ if (isset($_GET["eliminar"])) {
                         <tr>
                             <th>Acciones</th>
                             <th>ID Pedido</th>
-                            <th>Fecha</th>
                             <th>Cliente</th>
                             <th>Total</th>
                             <th>Estado</th>
+                            <th>Creación</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -212,7 +212,6 @@ if (isset($_GET["eliminar"])) {
                                 </a>
                             </td>
                             <td>#<?= $p['id'] ?></td>
-                            <td><?= date("d/m/Y H:i", strtotime($p['fecha'])) ?></td>
                             <td><?= htmlspecialchars($p['nombre'] . " " . $p['apellidos']) ?></td>
                             <td><?= number_format($p['total'], 2) ?> €</td>
                             <td>
@@ -220,6 +219,7 @@ if (isset($_GET["eliminar"])) {
                                     <?= strtoupper($p['estado']) ?>
                                 </span>
                             </td>
+                            <td><?= date("d/m/Y H:i", strtotime($p['fecha'])) ?></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

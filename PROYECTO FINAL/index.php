@@ -63,7 +63,7 @@ function getEstadoTexto($estado) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio | Tienda</title>
+    <title>Inicio</title>
     <link rel="stylesheet" href="css/cliente/index/index.css">
     <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
 </head>
@@ -140,7 +140,9 @@ function getEstadoTexto($estado) {
                                     <li><p class="prod-material">MATERIAL: <?= htmlspecialchars($p['material']) ?></p></li>
                                     <li><p class="prod-precio">PRECIO: <?= htmlspecialchars($p['precio']) ?> €</p></li>
                                     <li><p class="prod-estado">ESTADO: <?= getEstadoTexto($p['estado']) ?></p></li>
-                                    
+                                    <?php if (!empty($p['medidas'])): ?>
+                                        <li><p class='prod-medidas'>MEDIDAS: <?= htmlspecialchars($p['medidas']) ?></p></li>
+                                    <?php endif; ?>
                                     <?php if (!empty($p['detalles'])): ?>
                                         <li><p class='prod-detalles'>DETALLES: <?= htmlspecialchars($p['detalles']) ?></p></li>
                                     <?php endif; ?>

@@ -7,7 +7,7 @@
 // Inclusión del archivo de conexión a la base de datos
 include("db/db.inc");
 
- // Variable para capturar mensajes y mostrarlos en el cuerpo
+// Variable para capturar mensajes y mostrarlos en el cuerpo
 $error_msg = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit">Entrar</button>
         </form>
 
-        <p>¿No tienes cuenta? <a href="#">Regístrate</a></p>
+        <p>¿No tienes cuenta? <a href="registro.php">Regístrate</a></p>
         <p class="admin"><a href="admin/login_admin.php">Soy administrador</a></p>
     </main>
 </body>

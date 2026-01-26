@@ -330,7 +330,6 @@ header .actions .icono-accion {
   color: #fff;
   font-size: 2.5em;
   margin-bottom: 5px;
-  transition: 0.2s ease;
   display: inline-block;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   backface-visibility: hidden;
@@ -338,7 +337,7 @@ header .actions .icono-accion {
 header .actions .icono-accion:hover {
   color: #fa7900;
   transform: translateY(-5px) scale(1.25);
-  text-shadow: #fff 4px 4px 0;
+  text-shadow: #fff 3px 3px 0;
 }
 header .actions .icono-accion.is-active {
   color: #fa7900;
@@ -417,29 +416,8 @@ footer .copy p {
 }
 
 /* ===========================
-    ALERTAS
+    MIXINS
 =========================== */
-.alerta {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 5px 5px 20px;
-  font-size: 1.5em;
-  background: linear-gradient(#fff 0%, #fff 80%, #181818 100%);
-}
-.alerta i {
-  font-size: 2em;
-}
-.alerta .check {
-  color: #06bb00;
-}
-.alerta .exclamacion {
-  color: #fa7900;
-}
-.alerta .xmark {
-  color: #db0700;
-}
-
 /* ===========================
     MAIN
 =========================== */
@@ -457,63 +435,130 @@ main .panel-control {
   display: flex;
   flex-direction: column;
 }
-main .panel-control .caja-overflow {
+main .panel-control form {
   margin-top: 20px;
-  overflow-x: auto;
-  border: 3px solid #fff;
-}
-main .panel-control .caja-overflow table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #fff;
-  text-align: center;
-}
-main .panel-control .caja-overflow table thead {
-  height: 80px;
-  background-color: #131313;
-  color: #fff;
-}
-main .panel-control .caja-overflow table tbody tr:nth-child(odd) {
-  background-color: #acacac;
-  color: #000;
-}
-main .panel-control .caja-overflow table tbody tr:nth-child(odd) i {
-  color: #000;
-}
-main .panel-control .caja-overflow table tbody tr:nth-child(even) {
-  background-color: #464646;
-  color: #fff;
-}
-main .panel-control .caja-overflow table tbody tr:nth-child(even) i {
-  color: #fff;
-}
-main .panel-control .caja-overflow table th, main .panel-control .caja-overflow table td {
-  padding: 10px;
-  font-family: "Inter", sans-serif;
-  font-size: 1.2em;
-  border: 1px solid #000;
-}
-main .panel-control .caja-overflow table th a, main .panel-control .caja-overflow table td a {
-  text-decoration: none;
-}
-main .panel-control .caja-overflow table th a i, main .panel-control .caja-overflow table td a i {
-  font-size: 1.5em;
-}
-main .panel-control .caja-overflow table th img, main .panel-control .caja-overflow table td img {
-  width: 150px;
+  padding: 20px;
+  background-color: rgb(40.975, 108.025, 74.5);
   border-radius: 10px;
-  box-shadow: #000 0px 0px 15px 3px;
 }
-main .panel-control .caja-overflow table td:not(:first-child) {
-  height: 170px;
-  font-size: 1.5em;
+main .panel-control form .form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
-main .panel-control .caja-overflow table th:last-child, main .panel-control .caja-overflow table td:last-child {
-  text-align: left;
+main .panel-control form .form .casilla {
+  width: 100%;
+  min-width: 300px;
+  max-width: 400px;
+  padding: 15px 20px;
+  border: 0;
+  border-radius: 15px;
+  font-size: 1.2em;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(33.9625, 89.5375, 61.75);
+  color: #fff;
 }
-main .panel-control .caja-overflow table td.text-area {
-  font-size: 1em;
-  min-width: 25ch;
-  white-space: pre-line;
-  word-break: break-word;
-}/*# sourceMappingURL=gestion_productos.css.map */
+main .panel-control form .form .casilla label, main .panel-control form .form .casilla p {
+  margin: 10px 20px;
+}
+main .panel-control form .form .casilla input:not(.checkbox, .imagen) {
+  width: 100%;
+  min-width: 300px;
+  max-width: 400px;
+  padding: 15px 20px;
+  border: 0;
+  border-radius: 15px;
+  font-size: 1.2em;
+}
+main .panel-control form .form .casilla .seleccion {
+  width: 100%;
+  min-width: 300px;
+  max-width: 400px;
+  padding: 15px 20px;
+  border: 0;
+  border-radius: 15px;
+  font-size: 1.2em;
+  background-color: #fff;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  cursor: pointer;
+}
+main .panel-control form .form .casilla .area-texto {
+  width: 100%;
+  min-width: 300px;
+  max-width: 400px;
+  padding: 15px 20px;
+  border: 0;
+  border-radius: 15px;
+  font-size: 1.2em;
+  height: 57px;
+}
+main .panel-control form .form .casilla .imagen {
+  padding: 15px;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  background-color: #fff;
+  color: #000;
+  font-size: 0.7em;
+  cursor: pointer;
+}
+main .panel-control form .form .casilla .imagen::file-selector-button {
+  cursor: pointer;
+  font-size: 1.7em;
+  border: 0;
+  background-color: #fff;
+  font-family: "Jura";
+}
+main .panel-control form .form .checkbox-background {
+  width: 100%;
+  min-width: 300px;
+  max-width: 400px;
+  padding: 15px 20px;
+  border: 0;
+  border-radius: 15px;
+  font-size: 1.2em;
+  background-color: #fff;
+  height: 57px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+main .panel-control form .form .checkbox-background .checkbox {
+  min-width: 0;
+  max-width: none;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+main .panel-control form .form .checkbox-background .checkbox-info {
+  color: #000;
+}
+main .panel-control form .guardar {
+  width: 100%;
+  min-width: 300px;
+  max-width: 400px;
+  padding: 15px 20px;
+  border: 0;
+  border-radius: 15px;
+  font-size: 1.2em;
+  max-width: none;
+  display: block;
+  margin: 50px auto 0;
+  cursor: pointer;
+  background-color: #fff;
+  color: rgb(40.975, 108.025, 74.5);
+  font-weight: bold;
+  font-size: 2em;
+  transition: 0.2s ease;
+}
+main .panel-control form .guardar:hover {
+  background-color: #fa7900;
+  color: #fff;
+  box-shadow: rgb(26.95, 71.05, 49) 5px 5px 10px;
+}/*# sourceMappingURL=insertar.css.map */

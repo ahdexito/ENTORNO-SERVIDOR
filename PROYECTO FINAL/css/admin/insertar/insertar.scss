@@ -57,15 +57,66 @@ main {
                     background-color: darken($color-primary, 15%);
                     color: $color-light;
 
-                    label { margin: 10px 20px; }
+                    label, p { 
+                        margin: 10px 20px; 
+                    }
 
-                    input { @include input-base; }
+                    // Aplicamos el mixin a inputs generales excepto casos especiales
+                    input:not(.checkbox, .imagen) { 
+                        @include input-base; 
+                    }
 
                     .seleccion {
                         @include input-base;
                         background-color: $color-light;
                         appearance: none;
                         cursor: pointer;
+                    }
+
+                    .area-texto {
+                        @include input-base;
+                        height: 57px;
+                    }
+
+                    .imagen {
+                        padding: 15px;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 15px;
+                        background-color: $color-light;
+                        color: #000;
+                        font-size: 0.7em;
+                        cursor: pointer;
+
+                        &::file-selector-button {
+                            cursor: pointer;
+                            font-size: 1.7em;
+                            border: 0;
+                            background-color: $color-light;
+                            font-family: 'Jura';
+                        }
+                    }
+                }
+
+                .checkbox-background {
+                    @include input-base;
+                    background-color: $color-light;
+                    height: 57px;
+                    border-radius: 15px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .checkbox {
+                        min-width: 0; // Corregido de 'none' para validez CSS
+                        max-width: none;
+                        width: 30px;
+                        height: 30px;
+                        cursor: pointer;
+                    }
+
+                    .checkbox-info {
+                        color: #000;
                     }
                 }
             }

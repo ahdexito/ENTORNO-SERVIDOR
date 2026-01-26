@@ -22,7 +22,7 @@
     // OBTENER PRODUCTOS
     $resultado = $conn->query(
         "SELECT * FROM productos 
-        ORDER BY activo DESC, id ASC
+        ORDER BY activo DESC, creado DESC
         LIMIT $num_lineas OFFSET $offset"
     );
     $productos = $resultado->fetch_all(MYSQLI_ASSOC);
@@ -51,8 +51,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/admin/gestion_productos/gestion_productos.css">
+    <title>Gestión Productos</title>
+    <link rel="stylesheet" href="../css/admin/tabla_gestion/tabla_gestion.css">
     <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -145,6 +145,7 @@
                             <th>Talla</th>
                             <th>Género</th>
                             <th>Tipo</th>
+                            <th>Creación</th>
                             <th class="medidas">Medidas</th>
                             <th class="detalles">Detalles</th>
                         </tr>
@@ -199,13 +200,14 @@
                                     }
                                 ?>
                             </td>
-                            <td><?= htmlspecialchars($p['marca']) ?></td>
-                            <td><?= htmlspecialchars($p['material']) ?></td>
-                            <td><?= htmlspecialchars($p['talla']) ?></td>
-                            <td><?= $p['genero'] ?></td>
-                            <td><?= $p['tipo'] ?></td>
-                            <td class="text-area"><?= htmlspecialchars($p['medidas']) ?></td>
-                            <td class="text-area"><?= htmlspecialchars($p['detalles']) ?></td>
+                            <td> <?= htmlspecialchars($p['marca']) ?> </td>
+                            <td> <?= htmlspecialchars($p['material']) ?> </td>
+                            <td> <?= htmlspecialchars($p['talla']) ?> </td>
+                            <td> <?= $p['genero'] ?> </td>
+                            <td> <?= $p['tipo'] ?> </td>
+                            <td> <?= date('d/m/Y H:i', strtotime($p['creado'])) ?> </td>
+                            <td class="text-area"> <?= htmlspecialchars($p['medidas']) ?> </td>
+                            <td class="text-area"> <?= htmlspecialchars($p['detalles']) ?> </td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

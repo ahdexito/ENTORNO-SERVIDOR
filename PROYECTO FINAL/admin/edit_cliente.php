@@ -43,8 +43,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/admin/ins_cliente/ins_cliente.css">
+    <title>Editar Cliente</title>
+    <link rel="stylesheet" href="../css/admin/insertar/insertar.css">
     <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
 </head>
 <body>
