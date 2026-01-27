@@ -1,15 +1,8 @@
 <?php
-/**
- * ARCHIVO: admin/login.php
- * DESCRIPCIÓN: Acceso restringido para administradores.
- */
 
 session_start();
 include("../db/db.inc");
 
-/**
- * LÓGICA DE PROCESAMIENTO
- */
 $error = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -20,33 +13,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!empty($pass_raw)) {
             
             // Limpieza y hash
-            $email = htmlspecialchars(trim($email_raw));
-            $password = sha1($pass_raw); // Nota: sha1 es vulnerable, pero mantengo tu lógica.
+            $email_input = trim($email_raw);
+            $password_input = $pass_raw;
 
-            $check = $conn->prepare("SELECT nombre, email, rol FROM usuarios WHERE email = ? AND password = ?");
-            $check->bind_param("ss", $email, $password);
-            $check->execute();
-            $check->store_result();
+            $stmt = $conn->prepare("SELECT nombre, email, password, rol FROM usuarios WHERE email = ?");
+            $stmt->bind_param("s", $email_input);
+            $stmt->execute();
+            $result =$stmt->get_result();
 
-            if ($check->num_rows > 0) {
-                $check->bind_result($nombre, $emailDB, $rol);
-                $check->fetch();
+            if ($usuario = $result->fetch_assoc()) {
 
-                // Guardamos datos en sesión
-                $_SESSION["nombre"] = $nombre;
-                $_SESSION["rol"] = $rol;
-                $_SESSION["email"] = $emailDB;
+                if (password_verify($password_input, $usuario["password"])) {
 
-                header("location: panel_admin.php");
-                exit();
+                    // Guardamos datos en sesión
+                    $_SESSION["nombre"] = $usuario["nombre"];
+                    $_SESSION["rol"] = $usuario["rol"];
+                    $_SESSION["email"] = $usuario["email"];
+
+                    header("location:panel_admin.php");
+                    exit();
+                } else {
+                    $error = "El email y/o la contraseña NO coinciden.";
+                }
             } else {
                 $error = "El email y/o la contraseña NO coinciden.";
             }
+
+            $stmt->close();
         } else {
             $error = "Error en el campo 'contraseña'.";
         }
     } else {
-        $error = "El email NO es válido.";
+        if (!empty($email_raw)) {
+            $error = "El email NO es válido.";
+        }
     }
 }
 ?>

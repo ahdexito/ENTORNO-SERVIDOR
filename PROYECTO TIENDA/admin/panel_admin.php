@@ -1,16 +1,7 @@
 <?php
-/**
- * ARCHIVO: admin/panel_admin.php
- * DESCRIPCIÓN: Menú principal de administración. 
- * Solo accesible para usuarios con el rol adecuado.
- */
 
 session_start();
 
-/**
- * CONTROL DE ACCESO
- * Si no existe la variable de sesión 'rol', expulsamos al usuario.
- */
 if (!isset($_SESSION["rol"])) {
     header("location:../index.php");
     exit();
@@ -70,7 +61,7 @@ if (!isset($_SESSION["rol"])) {
                     <i class="fa-solid fa-truck-ramp-box"></i>
                     <p>Pedidos</p>
                 </a>
-                <a href="#" class="boton">
+                <a href="gestion_rebajas.php" class="boton">
                     <i class="fa-solid fa-tags"></i>
                     <p>Rebajas</p>
                 </a>

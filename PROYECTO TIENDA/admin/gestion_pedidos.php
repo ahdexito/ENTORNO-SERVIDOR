@@ -1,5 +1,6 @@
 <?php
     session_start();
+    
     if(!isset($_SESSION["rol"])) {
         header("location:../index.php");
         die();
@@ -41,7 +42,7 @@
         $stmt->bind_param("si", $nuevo_estado, $id_pedido);
         $stmt->execute();
 
-        if ($nuevo_estado == 'enviado') {
+        if ($nuevo_estado == 'enviado' || $nuevo_estado == 'archivado') { // productos desactivados
             $sql_stock =
                 "UPDATE productos SET activo = 0
                 WHERE id IN (
@@ -53,7 +54,7 @@
             $stmt_stock->execute();
         }
 
-        elseif ($nuevo_estado == 'cancelado') {
+        elseif ($nuevo_estado == 'cancelado') { // productos reactivados
             $sql_stock = 
             "UPDATE productos SET activo = 1
             WHERE id IN(
@@ -65,7 +66,7 @@
             $stmt_stock->execute();
         }
 
-        elseif ($nuevo_estado == 'pendiente' || $nuevo_estado == 'pagado') {
+        elseif ($nuevo_estado == 'pagado') { // productos reservados
             $sql_stock = 
             "UPDATE productos SET activo = 2
             WHERE id IN(
@@ -124,9 +125,10 @@ if (isset($_GET["eliminar"])) {
     <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
     <style>
         .estado { padding: 4px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; }
-        .pendiente { background: #ffeaa7; color: #d6a316; }
-        .pagado { background: #55efc4; color: #00b894; }
+        .pagado { background: #ffeaa7; color: #d6a316; }
+        .enviado { background: #55efc4; color: #00b894; }
         .cancelado { background: #ff7675; color: #d63031; }
+        .archivado { background-color: #7c7c7c ; color: #222222; }
         .acciones {
             display: flex;
             align-items: center;
@@ -200,16 +202,11 @@ if (isset($_GET["eliminar"])) {
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
                                 <select onchange="location.href='?id=<?= $p['id'] ?>&pag=<?= $pagina ?>&estado=' + this.value">
-                                    <option value="pendiente" <?= $p['estado']=='pendiente'?'selected':'' ?> >Pendiente</option>
                                     <option value="pagado" <?= $p['estado']=='pagado'?'selected':'' ?> >Pagado</option>
                                     <option value="enviado" <?= $p['estado']=='enviado'?'selected':'' ?> >Enviado</option>
                                     <option value="cancelado" <?= $p['estado']=='cancelado'?'selected':'' ?> >Cancelar</option>
+                                    <option value="archivado" <?= $p['estado']=='archivado'?'selected':'' ?> >Archivar</option>
                                 </select>
-                                <a href="?eliminar=<?= $p['id'] ?>&pag=<?= $pagina ?>" 
-                                    title="Eliminar pedido" 
-                                    onclick="return confirm('¿Estás seguro? Se borrará el pedido y los productos volverán a estar a la venta.')">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                </a>
                             </td>
                             <td>#<?= $p['id'] ?></td>
                             <td><?= htmlspecialchars($p['nombre'] . " " . $p['apellidos']) ?></td>

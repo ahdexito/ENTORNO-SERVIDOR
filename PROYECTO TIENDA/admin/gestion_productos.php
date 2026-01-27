@@ -1,5 +1,6 @@
 <?php
     session_start();
+    
     if(!isset($_SESSION["rol"])) {
         header("location:../index.php");
         die();
@@ -8,40 +9,40 @@
     include("../db/db.inc");
 
     // PAGINADOR
-    $num_lineas = 10;
+    $num_lineas = 4;
     $pagina = isset($_GET['pag']) ? max(1, intval($_GET['pag'])) : 1;
     $offset = ($pagina - 1) * $num_lineas;
 
     // TOTAL DE REGISTROS
     $total_resultado = $conn -> query(
-        "SELECT COUNT(*) AS total FROM clientes"
+        "SELECT COUNT(*) AS total FROM productos"
     );
     $total_filas = $total_resultado -> fetch_assoc()['total'];
     $total_paginas = ceil($total_filas / $num_lineas);
 
-    // OBTENER clientes
+    // OBTENER PRODUCTOS
     $resultado = $conn->query(
-        "SELECT * FROM clientes 
-        ORDER BY id DESC 
+        "SELECT * FROM productos 
+        ORDER BY activo DESC, creado DESC
         LIMIT $num_lineas OFFSET $offset"
     );
-    $clientes = $resultado->fetch_all(MYSQLI_ASSOC);
+    $productos = $resultado->fetch_all(MYSQLI_ASSOC);
 
     // LÓGICA DE RANGO PARA EL HTML
     $rango = 1; // cuántas páginas mostrar a cada lado de la actual
     $inicio = max(1, $pagina - $rango);
     $fin = min($total_paginas, $pagina + $rango);
 
-    // ELIMINAR CLIENTE
+    // ELIMINAR PRODUCTOS
     if (isset($_GET["eliminar"])) {
-        $id_cliente = intval($_GET["eliminar"]);
+        $id_producto = intval($_GET["eliminar"]);
 
-        $stmt = $conn -> prepare("DELETE FROM clientes WHERE id = ?");
-        $stmt -> bind_param("i", $id_cliente);
+        $stmt = $conn -> prepare("DELETE FROM productos WHERE id = ?");
+        $stmt -> bind_param("i", $id_producto);
         $stmt -> execute();
         $stmt -> close();
 
-        header("location:gestion_clientes.php");
+        header("location:gestion_productos.php");
         exit();
     }
 ?>
@@ -51,7 +52,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión Clientes</title>
+    <title>Gestión Productos</title>
     <link rel="stylesheet" href="../css/admin/tabla_gestion/tabla_gestion.css">
     <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
 </head>
@@ -73,7 +74,7 @@
             </div>
             <div class="usuario dropdown">
                 <i class="fa-solid fa-user icono-usuario dropdown-btn icono-accion" id="dropdown-btn"></i>
-                
+
                 <div class="dropdown-content">
                     <a href="#"><i class="fa-solid fa-gear icono-dropdown"></i>Ajustes</a>
                     <hr>
@@ -86,31 +87,31 @@
     </header>
     
     <?php
-        // ALERTAS DE CREACIÓN DE CLIENTE
-        if (isset($_GET["cli"])) {
-            if ($_GET["cli"] == 0) { // registro correcto
+        // ALERTAS DE CREACIÓN DE PRODUCTO
+        if (isset($_GET["prod"])) {
+            if ($_GET["prod"] == 0) { // inserción correcta
                 echo '<div class="alerta"><i class="fa-solid fa-circle-check check"></i>
-                Cliente insertado correctamente.</div>';
+                Producto insertado correctamente.</div>';
             }
-            if ($_GET["cli"] == 1) { // email ya existe
-                echo '<div class="alerta"><i class="fa-solid fa-circle-exclamation exclamacion"></i>
-                El email ya existe en la base de datos.</div>';
-            }
-            if ($_GET["cli"] == 2) { // problema al insertar
+            if ($_GET["prod"] == 1) { // problema al insertar producto
                 echo '<div class="alerta"><i class="fa-solid fa-circle-xmark xmark"></i>
-                Ha ocurrido un error al intentar insertar el usuario.</div>';
+                Ha ocurrido un error al intentar insertar el producto.</div>';
+            }
+            if ($_GET["prod"] == 2) { // problema al insertar imagen
+                echo '<div class="alerta"><i class="fa-solid fa-circle-xmark xmark"></i>
+                Ha ocurrido un error al intentar insertar la imagen.</div>';
             }
         }
 
-        // ALERTAS DE MODIFICACIÓN DE CLIENTE
+        // ALERTAS DE MODIFICACIÓN DE PRODUCTO
         if (isset($_GET["upt"])) {
             if ($_GET["upt"] == 0) { // actualización correcta
                 echo '<div class="alerta"><i class="fa-solid fa-circle-check check"></i>
-                Cliente actualizado correctamente.</div>';
+                Producto actualizado correctamente.</div>';
             }
             if ($_GET["upt"] == 1) { // problema al actualizar
                 echo '<div class="alerta"><i class="fa-solid fa-circle-xmark xmark"></i>
-                Ha ocurrido un error al intentar actualizar el usuario.</div>';
+                Ha ocurrido un error al intentar actualizar el producto.</div>';
             }
         }
     ?>
@@ -118,15 +119,15 @@
     <main>
         <section class="panel-control">
             <div class="section-header">
-                <i class="fa-solid fa-users icono-header"></i>
-                <h2>Gestión de clientes</h2>
+                <i class="fa-solid fa-shop icono-header"></i>
+                <h2>Gestión de productos</h2>
             </div>
 
             <hr>
 
-            <a href="ins_cliente.php" class="boton-insertar">
+            <a href="ins_producto.php" class="boton-insertar">
                 <i class="fa-regular fa-square-plus"></i>
-                Insertar cliente
+                Insertar producto
             </a>
 
             <div class="caja-overflow">
@@ -134,40 +135,80 @@
                     <thead>
                         <tr>
                             <th>Acciones</th>
-                            <th>ID Cliente</th>
+                            <th>Imagen</th>
+                            <th>ID Producto</th>
                             <th>Nombre</th>
-                            <th>Apellidos</th>
-                            <th>Email</th>
+                            <th>Precio</th>
+                            <th>Activo</th>
+                            <th>Estado</th>
+                            <th>Marca</th>
+                            <th>Material</th>
+                            <th>Talla</th>
                             <th>Género</th>
-                            <th>Dirección</th>
-                            <th>Cod. Postal</th>
-                            <th>Población</th>
-                            <th>Provincia</th>
+                            <th>Tipo</th>
                             <th>Creación</th>
+                            <th class="medidas">Medidas</th>
+                            <th class="detalles">Detalles</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($clientes as $c): ?>
+                        <?php foreach ($productos as $p): ?>
                         <tr>
                             <td>
-                                <a href="edit_cliente.php?edit=<?= $c['id'] ?>">
+                                <a href="edit_producto.php?edit=<?= $p['id'] ?>">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </a>
-                                <a href="?eliminar=<?= $c['id'] ?>" 
-                                onclick="return confirm('¿Eliminar cliente?');">
+                                <!-- <a href="?eliminar=<?= $p['id'] ?>" 
+                                onclick="return confirm('¿Eliminar producto?');">
                                     <i class="fa-regular fa-trash-can"></i>
-                                </a>
+                                </a> -->
                             </td>
-                            <td>#<?= $c['id'] ?></td>
-                            <td><?= htmlspecialchars($c['nombre']) ?></td>
-                            <td><?= htmlspecialchars($c['apellidos']) ?></td>
-                            <td><?= htmlspecialchars($c['email']) ?></td>
-                            <td><?= $c['genero'] ?></td>
-                            <td><?= htmlspecialchars($c['direccion']) ?></td>
-                            <td><?= $c['codpostal'] ?></td>
-                            <td><?= htmlspecialchars($c['poblacion']) ?></td>
-                            <td><?= htmlspecialchars($c['provincia']) ?></td>
-                            <td> <?= date('d/m/Y H:i', strtotime($c['creado'])) ?> </td>
+                            <td>
+                                <img src="../img/<?= htmlspecialchars($p['imagen']) ?>" alt="imagen producto">
+                            </td>
+                            <td>#<?= $p['id'] ?></td>
+                            <td><?= htmlspecialchars($p['nombre']) ?></td>
+                            <td><?= number_format($p['precio'], 2) ?> €</td>
+                            <td>
+                                <?php
+                                if ($p['activo'] == 0) echo '<i class="fa-solid fa-x"></i>'; 
+                                elseif ($p['activo'] == 1) echo '<i class="fa-solid fa-check"></i>';
+                                elseif ($p['activo'] == 2) echo '<i class="fa-regular fa-bookmark"></i>';
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                    $estado = $p['estado'];
+                                    switch ($estado) {
+                                    case 1:
+                                        echo "<p>A estrenar</p>";
+                                        break;
+                                    case 2:
+                                        echo "<p>Como nuevo</p>";
+                                        break;
+                                    case 3:
+                                        echo "<p>Buen estado</p>";
+                                        break;
+                                    case 4:
+                                        echo "<p>Aceptable</p>";
+                                        break;
+                                    case 5:
+                                        echo "<p>Bastante usado</p>";
+                                        break;
+                                    default:
+                                        echo "<p>Desconocido</p>";
+                                        break;
+                                    }
+                                ?>
+                            </td>
+                            <td> <?= htmlspecialchars($p['marca']) ?> </td>
+                            <td> <?= htmlspecialchars($p['material']) ?> </td>
+                            <td> <?= htmlspecialchars($p['talla']) ?> </td>
+                            <td> <?= $p['genero'] ?> </td>
+                            <td> <?= $p['tipo'] ?> </td>
+                            <td> <?= date('d/m/Y H:i', strtotime($p['creado'])) ?> </td>
+                            <td class="text-area"> <?= htmlspecialchars($p['medidas']) ?> </td>
+                            <td class="text-area"> <?= htmlspecialchars($p['detalles']) ?> </td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

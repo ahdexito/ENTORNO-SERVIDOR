@@ -1,5 +1,6 @@
 <?php
     session_start();
+
     if(!isset($_SESSION["rol"])) {
         header("location:../index.php");
         die();
@@ -8,30 +9,35 @@
     include("../db/db.inc");
 
     if (isset($_POST["nombre"]) && !empty($_POST["nombre"])) {
-        $nombre = htmlspecialchars(($_POST["nombre"]));
-        $apellidos = htmlspecialchars(($_POST["apellidos"]));
-        $email = htmlspecialchars(($_POST["email"]));
-        $password = htmlspecialchars((sha1($_POST["password"])));
-        $direccion = htmlspecialchars(($_POST["direccion"]));
-        $genero = htmlspecialchars(($_POST["genero"]));
-        $codpostal = htmlspecialchars(($_POST["codpostal"]));
-        $poblacion = htmlspecialchars(($_POST["poblacion"]));
-        $provincia = htmlspecialchars(($_POST["provincia"]));
         $id = $_POST["id"];
+        $nombre = $_POST["nombre"];
+        $apellidos = $_POST["apellidos"] ?? "";
+        $email = $_POST["email"];
+        $direccion = $_POST["direccion"] ?? "";
+        $genero = $_POST["genero"] ?? "";
+        $codpostal = $_POST["codpostal"] ?? "";
+        $poblacion = $_POST["poblacion"] ?? "";
+        $provincia = $_POST["provincia"] ?? "";
 
-        $sql = "UPDATE clientes SET nombre = '$nombre', apellidos = '$apellidos', 
-            genero = '$genero', direccion = '$direccion', codpostal = '$codpostal', 
-            poblacion = '$poblacion', provincia = '$provincia', email = '$email' 
-            WHERE id = $id";
+        $sql = "UPDATE clientes SET nombre = ?, apellidos = ?, 
+            genero = ?, direccion = ?, codpostal = ?, 
+            poblacion = ?, provincia = ?, email = ? 
+            WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssssssssi", $nombre, $apellidos, $genero, $direccion, $codpostal, $poblacion, $provincia, $email, $id);
 
-        if (mysqli_query($conn, $sql)) {
+
+
+        if ($stmt->execute()) {
             header("location:gestion_clientes.php?upt=0");
-        }
-        else {
+        } else {
             header("location:gestion_clientes.php?upt=1");
         }
+
+        $stmt->close();
         die();
     }
+    
     if(!isset($_GET["edit"])) {
         header("location:gestion_clientes.php");
         die();

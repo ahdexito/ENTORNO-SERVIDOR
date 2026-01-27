@@ -1,5 +1,6 @@
 <?php
     session_start();
+    
     if(!isset($_SESSION["rol"])) {
         header("location:../index.php");
         die();
@@ -8,35 +9,44 @@
     include("../db/db.inc");
 
     if (isset($_POST["nombre"]) && !empty($_POST["nombre"])) {
-        $nombre = htmlspecialchars(($_POST["nombre"]));
-        $apellidos = htmlspecialchars(($_POST["apellidos"]));
-        $email = htmlspecialchars(($_POST["email"]));
-        $password = htmlspecialchars((sha1($_POST["password"])));
-        $direccion = htmlspecialchars(($_POST["direccion"]));
-        $genero = htmlspecialchars(($_POST["genero"]));
-        $codpostal = htmlspecialchars(($_POST["codpostal"]));
-        $poblacion = htmlspecialchars(($_POST["poblacion"]));
-        $provincia = htmlspecialchars(($_POST["provincia"]));
+        $nombre = $_POST["nombre"];
+        $apellidos = $_POST["apellidos"] ?? "";
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+        $direccion = $_POST["direccion"] ?? "";
+        $genero = $_POST["genero"] ?? "";
+        $codpostal = $_POST["codpostal"] ?? "";
+        $poblacion = $_POST["poblacion"] ?? "";
+        $provincia = $_POST["provincia"] ?? "";
 
-        $sql = "SELECT * FROM clientes WHERE email = '$email'";
-        $res = mysqli_query($conn, $sql);
+        // Comprobar si el email existe
+        $stmt_check = $conn->prepare("SELECT id FROM clientes WHERE email = ?");
+        $stmt_check->bind_param("s", $email);
+        $stmt_check->execute();
+        $res = $stmt_check->get_result();
 
-        if (mysqli_num_rows($res) > 0) {
+        if ($res->num_rows > 0) {
             header("location:gestion_clientes.php?cli=1");
             die();
         }
 
-        $sql = "INSERT INTO clientes(nombre, apellidos, genero, direccion, codpostal, poblacion, provincia, password, email)
-            VALUES ('$nombre', '$apellidos', '$genero', '$direccion', '$codpostal', '$poblacion', '$provincia', '$password', '$email');";
+        // Encriptar contraseña
+        $pass_encriptada = password_hash($password, PASSWORD_DEFAULT);
 
-        if (mysqli_query($conn, $sql)) {
+        $sql = "INSERT INTO clientes (nombre, apellidos, genero, direccion, codpostal, poblacion, provincia, password, email)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt_insert = $conn->prepare($sql);
+        $stmt_insert->bind_param("sssssssss", $nombre, $apellidos, $genero, $direccion, $codpostal, $poblacion, $provincia, $pass_encriptada, $email);
+
+        if ($stmt_insert->execute()) {
             header("location:gestion_clientes.php?cli=0");
-        }
-
-        else {
+        } else {
             header("location:gestion_clientes.php?cli=2");
         }
 
+        $stmt_insert->close();
+        $stmt_check->close();
         die();
     }
 ?>

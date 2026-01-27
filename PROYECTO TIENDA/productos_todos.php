@@ -1,15 +1,10 @@
 <?php
-/**
- * ARCHIVO: productos_todos.php
- * DESCRIPCIÓN: Listado completo de productos con soporte para filtrado por 
- * categoría/género y sistema de paginación integrado.
- */
 
 session_start();
 include("db/db.inc");
 
 /**
- * GESTIÓN DEL CARRITO (PATRÓN POST-REDIRECT-GET)
+ * GESTIÓN DEL CARRITO
  */
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_producto'])) {
     $id = htmlspecialchars(trim($_POST['id_producto']));
@@ -39,7 +34,7 @@ $total_carrito = count($_SESSION['carrito']);
  * LÓGICA DE FILTRADO Y CONSULTA
  */
 $filtro = $_GET['f'] ?? null;
-$where = "WHERE estado > 0";
+$where = "WHERE activo > 0";
 
 if ($filtro) {
     // Escapado para evitar inyecciones en la cláusula WHERE
@@ -95,25 +90,13 @@ function getEstadoTexto($estado) {
     <link rel="stylesheet" href="css/cliente/index/index.css">
     <script src="https://kit.fontawesome.com/bc8e4b1cda.js" crossorigin="anonymous"></script>
     <style>
-        article { 
-            display: flex;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-        }
-        article .p-card {
-            max-width: 15vw; 
-            min-width: 180px;
-        }
-        article .p-card .dropdown-btn { 
-            width: 10vw !important; 
-            min-width: 150px;
-        } 
+        article { display: flex; justify-content: flex-start; flex-wrap: wrap; }
+        article .p-card { max-width: 15vw; min-width: 180px; }
+        article .p-card .dropdown-btn { width: 10vw !important; min-width: 150px; } 
         article .p-card p { font-size: 1em; }
         article .p-card .btn-1 { font-size: 1em; }
-        a.activo {
-            color: #fff;
-            background-color: #1d1d1d;
-        }
+        a.activo { color: #fff; background-color: #1d1d1d; }
+        article h3 { color: #fff; font-size: 3em; padding: 50px; text-align: center;}
     </style>
 </head>
 <body>
@@ -180,46 +163,50 @@ function getEstadoTexto($estado) {
     <main>
         <section class="articulos">
             <article>
-                <?php foreach ($productos as $p): ?>
-                    <div class="p-card">
-                        <img src="img/<?= htmlspecialchars($p['imagen']) ?>" alt="<?= htmlspecialchars($p['nombre']) ?>" class="dropdown-btn">
-                        
-                        <div class="dropdown-content">
-                            <img src="img/<?= htmlspecialchars($p['imagen']) ?>" alt="Detalle" class="imagen-dropdown">
-                            <div class="dropdown-content-info">
-                                <h1 class="prod-nombre"><?= htmlspecialchars($p['nombre']) ?></h1>
-                                <ul>
-                                    <li><p class="prod-talla">TALLA: <?= htmlspecialchars($p['talla']) ?></p></li>
-                                    <li><p class="prod-genero">GÉNERO: <?= htmlspecialchars($p['genero']) ?></p></li>
-                                    <li><p class="prod-material">MATERIAL: <?= htmlspecialchars($p['material']) ?></p></li>
-                                    <li><p class="prod-precio">PRECIO: <?= htmlspecialchars($p['precio']) ?> €</p></li>
-                                    <li><p class="prod-estado">ESTADO: <?= getEstadoTexto($p['estado']) ?></p></li>
-                                    <?php if (!empty($p['medidas'])): ?>
-                                        <li><p class='prod-medidas'>MEDIDAS: <?= htmlspecialchars($p['medidas']) ?></p></li>
-                                    <?php endif; ?>
-                                    <?php if (!empty($p['detalles'])): ?>
-                                        <li><p class='prod-detalles'>DETALLES: <?= htmlspecialchars($p['detalles']) ?></p></li>
-                                    <?php endif; ?>
-                                </ul>
+                <?php if ($productos->num_rows > 0): ?>
+                    <?php foreach ($productos as $p): ?>
+                        <div class="p-card">
+                            <img src="img/<?= htmlspecialchars($p['imagen']) ?>" alt="<?= htmlspecialchars($p['nombre']) ?>" class="dropdown-btn">
+                            
+                            <div class="dropdown-content">
+                                <img src="img/<?= htmlspecialchars($p['imagen']) ?>" alt="Detalle" class="imagen-dropdown">
+                                <div class="dropdown-content-info">
+                                    <h1 class="prod-nombre"><?= htmlspecialchars($p['nombre']) ?></h1>
+                                    <ul>
+                                        <li><p class="prod-talla">TALLA: <?= htmlspecialchars($p['talla']) ?></p></li>
+                                        <li><p class="prod-genero">GÉNERO: <?= htmlspecialchars($p['genero']) ?></p></li>
+                                        <li><p class="prod-material">MATERIAL: <?= htmlspecialchars($p['material']) ?></p></li>
+                                        <li><p class="prod-precio">PRECIO: <?= htmlspecialchars($p['precio']) ?> €</p></li>
+                                        <li><p class="prod-estado">ESTADO: <?= getEstadoTexto($p['estado']) ?></p></li>
+                                        <?php if (!empty($p['medidas'])): ?>
+                                            <li><p class='prod-medidas'>MEDIDAS: <?= htmlspecialchars($p['medidas']) ?></p></li>
+                                        <?php endif; ?>
+                                        <?php if (!empty($p['detalles'])): ?>
+                                            <li><p class='prod-detalles'>DETALLES: <?= htmlspecialchars($p['detalles']) ?></p></li>
+                                        <?php endif; ?>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
 
-                        <p class="prod-nombre"><u><?= htmlspecialchars($p['nombre']) ?></u></p>
-                        <p class="prod-talla">Talla <?= htmlspecialchars($p['talla']) ?></p>
-                        <p class="prod-precio"><?= htmlspecialchars($p['precio']) ?> €</p>
-                        
-                        <form method="POST">
-                            <input type="hidden" name="id_producto" value="<?= $p['id'] ?>">
-                            <?php if ($p['activo'] == 2): ?>
-                                <button type="button" class="btn-1 disabled"><i class="fa-solid fa-lock"></i> RESERVADO</button>
-                            <?php elseif (isset($_SESSION['carrito'][$p['id']])): ?>
-                                <button type="button" class="btn-1 disabled" disabled><i class="fa-solid fa-cart-arrow-down"></i>Ya en el carrito</button>
-                            <?php else: ?>
-                                <button type="submit" class="btn-1"><i class="fa-solid fa-cart-plus"></i>Añadir</button>
-                            <?php endif; ?>
-                        </form>
-                    </div>
-                <?php endforeach; ?>
+                            <p class="prod-nombre"><u><?= htmlspecialchars($p['nombre']) ?></u></p>
+                            <p class="prod-talla">Talla <?= htmlspecialchars($p['talla']) ?></p>
+                            <p class="prod-precio"><?= htmlspecialchars($p['precio']) ?> €</p>
+                            
+                            <form method="POST">
+                                <input type="hidden" name="id_producto" value="<?= $p['id'] ?>">
+                                <?php if ($p['activo'] == 2): ?>
+                                    <button type="button" class="btn-1 disabled"><i class="fa-solid fa-lock"></i> RESERVADO</button>
+                                <?php elseif (isset($_SESSION['carrito'][$p['id']])): ?>
+                                    <button type="button" class="btn-1 disabled" disabled><i class="fa-solid fa-cart-arrow-down"></i>Ya en el carrito</button>
+                                <?php else: ?>
+                                    <button type="submit" class="btn-1"><i class="fa-solid fa-cart-plus"></i>Añadir</button>
+                                <?php endif; ?>
+                            </form>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <h3>No hay artículos disponibles en esta categoría...</h3>
+                <?php endif; ?>
             </article>
 
             <?php

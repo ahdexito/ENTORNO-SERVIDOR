@@ -1,9 +1,4 @@
 <?php
-/**
- * ARCHIVO: carrito.php
- * DESCRIPCIÓN: Gestiona el resumen de compra, eliminación de productos 
- * y la finalización del pedido mediante transacciones SQL.
- */
 
 session_start();
 require_once "db/db.inc";
@@ -60,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar_pedido']) &&
     $conn->begin_transaction();
     try {
         // Insertar el pedido principal
-        $stmt = $conn->prepare("INSERT INTO pedidos (cliente_id, total, estado) VALUES (?, ?, 'pendiente')");
+        $stmt = $conn->prepare("INSERT INTO pedidos (cliente_id, total, estado) VALUES (?, ?, 'pagado')");
         $stmt->bind_param("id", $cliente_id, $total);
         $stmt->execute();
         $pedido_id = mysqli_insert_id($conn);

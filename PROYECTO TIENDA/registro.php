@@ -1,9 +1,4 @@
 <?php
-    /**
-     * ARCHIVO: registro.php
-     * DESCRIPCIÓN: Gestiona el registro de los clientes.
-     */
-
     include("db/db.inc");
 
     $error_msg = "";
@@ -19,36 +14,48 @@
             $error_msg = "Rellena todos los campos obligatorios.";
         } else {
 
-            $nombre     = $_POST["nombre"];
-            $apellidos  = $_POST["apellidos"] ?? "";
-            $email      = $_POST["email"];
-            $password   = sha1($_POST["password"]);
-            $direccion  = $_POST["direccion"] ?? "";
-            $genero     = $_POST["genero"] ?? "";
-            $codpostal  = $_POST["codpostal"] ?? "";
-            $poblacion  = $_POST["poblacion"] ?? "";
-            $provincia  = $_POST["provincia"] ?? "";
+            $nombre = $_POST["nombre"];
+            $apellidos = $_POST["apellidos"] ?? "";
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+            $direccion = $_POST["direccion"] ?? "";
+            $genero = $_POST["genero"] ?? "";
+            $codpostal = $_POST["codpostal"] ?? "";
+            $poblacion = $_POST["poblacion"] ?? "";
+            $provincia = $_POST["provincia"] ?? "";
 
             // Comprobar si el email ya existe
-            $sql = "SELECT id FROM clientes WHERE email = '$email'";
-            $res = mysqli_query($conn, $sql);
+            $stmt_check = $conn->prepare("SELECT id FROM clientes WHERE email = ?");
+            $stmt_check->bind_param("s", $email);
+            $stmt_check->execute();
+            $res = $stmt_check->get_result();
 
-            if (mysqli_num_rows($res) > 0) {
+            if ($res->num_rows > 0) {
                 $error_msg = "<i class='fa-solid fa-triangle-exclamation'></i> Ya existe un usuario registrado con ese email.";
             } else {
 
+                // encriptar contraseña
+                $pass_encriptada = password_hash($password, PASSWORD_DEFAULT);
+
                 // Insertar cliente
                 $sql = "INSERT INTO clientes
-                (nombre, apellidos, genero, direccion, codpostal, poblacion, provincia, password, email)
-                VALUES
-                ('$nombre', '$apellidos', '$genero', '$direccion', '$codpostal', '$poblacion', '$provincia', '$password', '$email')";
+                    (nombre, apellidos, genero, direccion, codpostal, poblacion, provincia, password, email)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-                if (mysqli_query($conn, $sql)) {
+                $stmt_insert = $conn->prepare($sql);
+                $stmt_insert->bind_param("sssssssss", $nombre, $apellidos, $genero, $direccion, $codpostal, $poblacion, $provincia, $pass_encriptada, $email);
+
+
+                if ($stmt_insert->execute()) {
                     $exito = "<i class='fa-solid fa-circle-check'></i> Cuenta creada satisfactoriamente. <br> <a href='login.php'>Iniciar sesión</a>";
                 } else {
                     $error_msg = "<i class='fa-solid fa-triangle-exclamation'></i> Ha ocurrido un error inesperado.";
                 }
+
+                $stmt_insert->close();
             }
+
+            $stmt_check->close();
         }
     }
 ?>

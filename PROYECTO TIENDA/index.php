@@ -1,13 +1,7 @@
 <?php
-/**
- * ARCHIVO: index.php
- * DESCRIPCIÓN: Página principal de la tienda. Gestiona la visualización de 
- * novedades y la lógica de agregar productos al carrito de sesión.
- */
 
 session_start();
 include("db/db.inc");
-
 
 // Procesamos las acciones antes de enviar cualquier HTML al navegador.
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_producto'])) {
@@ -38,6 +32,7 @@ $total_carrito = count($_SESSION['carrito']);
  */
 $productos = $conn->query(
     "SELECT * FROM productos 
+    WHERE activo > 0
     ORDER BY id DESC 
     LIMIT 4"
 );

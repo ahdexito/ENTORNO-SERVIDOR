@@ -1,56 +1,54 @@
 <?php
-/**
- * ARCHIVO: login.php
- * DESCRIPCIÓN: Gestiona el inicio de sesión de los clientes.
- */
-
-// Inclusión del archivo de conexión a la base de datos
 include("db/db.inc");
 
-// Variable para capturar mensajes y mostrarlos en el cuerpo
 $error_msg = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    // Validación de formato de Email
+    // Validación de formato de email
     if(isset($_POST["email"]) && !empty($_POST["email"]) && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
         
         // Validación de presencia de contraseña
         if(isset($_POST["password"]) && !empty($_POST["password"])) {
             
-            // Limpieza de datos (Email) y cifrado (Password)
-            $email = htmlspecialchars(trim($_POST["email"]));
-            $password = sha1($_POST["password"]);
+            // Limpieza de datos (email) y cifrado (password)
+            $email_input = trim($_POST["email"]);
+            $password_input = $_POST["password"];
 
             // Preparación de consulta segura contra SQL Injection
-            $check = $conn -> prepare("SELECT id, nombre, email FROM clientes WHERE email = ? AND password = ?");
-            $check -> bind_param("ss", $email, $password);
-            $check -> execute();
-            $check -> store_result();
+            $stmt = $conn->prepare("SELECT id, nombre, email, password FROM clientes WHERE email = ?");
+            $stmt->bind_param("s", $email_input);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
             // Verificación de existencia del usuario
-            if ($check -> num_rows > 0) {
-                session_start();
+            if ($cliente = $result->fetch_assoc()) {
 
-                // Extracción de datos para la sesión
-                $check -> bind_result($id, $nombre, $emailDB);
-                $check -> fetch();
+                if (password_verify($password_input, $cliente["password"])) {
+                    
+                    session_start();
 
-                $_SESSION["id_cliente"] = $id;
-                $_SESSION["nombre"] = $nombre;
-                $_SESSION["email"] = $emailDB;
+                    $_SESSION["id_cliente"] = $cliente["id"];
+                    $_SESSION["nombre"] = $cliente["nombre"];
+                    $_SESSION["email"] = $cliente["email"];
 
-                // Redirección segura antes de que exista salida de texto
-                header("location:./index.php");
-                die();
+                    header("location:./index.php");
+                    die();
+                } else {
+                    // Contraseña incorrecta
+                    $error_msg = "El email y/o la contraseña NO coinciden.";
+                }
             } else {
+                // Email no encontrado
                 $error_msg = "El email y/o la contraseña NO coinciden.";
             }
+
+            $stmt->close();
         } else {
             $error_msg = "Error en el campo 'contraseña'.";
         }
     } else {
-        if(isset($_POST["email"])) {
+        if (isset($_POST["email"])) {
             $error_msg = "El email NO es válido.";
         }
     }
